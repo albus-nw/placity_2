@@ -1,0 +1,1 @@
+B:\workspace\placity\platforms\windows\AppPackages\CordovaApp.Windows_0.2.1.0_anycpu_debug_Test\CordovaApp.Windows_0.2.1.0_anycpu_debug.appx

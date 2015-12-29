@@ -1,0 +1,159 @@
+﻿html {
+    height: 100%;
+}
+
+body {
+    position: relative;
+    height: 100%;
+    background: url(../img/P.svg);
+    background-size: inherit;
+    -moz-animation-name: startAnimation;
+    -o-animation-name: startAnimation;
+    -webkit-animation-name: startAnimation;
+    animation-name: startAnimation;
+    -moz-animation-duration: 5s;
+    -o-animation-duration: 5s;
+    -webkit-animation-duration: 5s;
+    animation-duration: 5s;
+}
+
+a.menuButton {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    /*appearance: button;*/
+    display: block;
+    text-decoration: none;
+    clear: both;
+    width: 60%;
+    background-color: #062D2F;
+    left: 20%;
+    margin-bottom: 10%;
+    position: relative;
+}
+
+#shit {
+    font-size: 20px;
+    color: red;
+    background-color: green;
+}
+
+    #shit:hover {
+        background-color: black;
+    }
+
+.menuButtonDiv {
+    height: 100%;
+}
+
+.view-frame {
+    height: 100%;
+}
+
+.view-frame.ng-enter, .view-frame.ng-leave {
+    background: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.view-frame.ng-enter {
+    -webkit-animation: 0.5s fade-in;
+    -moz-animation: 0.5s fade-in;
+    -o-animation: 0.5s fade-in;
+    animation: 0.5s fade-in;
+    z-index: 100;
+}
+
+.view-frame.ng-leave {
+    -webkit-animation: 0.5s fade-out;
+    -moz-animation: 0.5s fade-out;
+    -o-animation: 0.5s fade-out;
+    animation: 0.5s fade-out;
+    z-index: 99;
+}
+
+
+#map {
+    height: 75%;   
+}
+#map:before {
+    content: '';
+    float: left;
+    height: 100%;
+}
+#map:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+@keyframes startAnimation {
+    from {
+        background-color: grey;
+    }
+
+    to {
+        background: url(../images/P.svg);
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}

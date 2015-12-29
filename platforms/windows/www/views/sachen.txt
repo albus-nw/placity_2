@@ -1,0 +1,10 @@
+Here's a simple trick that lets you launch the Windows Phone 8 Emulator without using Visual Studio 2012. Hyper-V can be used to do it. The Windows Phone 8 emulator is a kind of VHD and we will see how to launch Windows Phone 8 Emulator without using Visual Studio 2012.
+
+Follow the below steps
+
+  1 Verify that you have installed the Windows Phone 8 SDK and also the prerequisites like Hyper-V on your Windows 8 PC.
+  2 Open "Command Prompt" in "Administrator" mode and then set the current directory to "C:\Program Files (x86)\Microsoft XDE\8.0”. This is the path if you have installed Windows Phone 8 SDK on C: drive.
+  3  If the Windows Phone emulator is launched for the first time, you might need to prove the path to the Windows Phone 8 emulators installed by the Windows Phone 8 SDK. Launch the Flash.vhd file with the below sample command.
+              xde -vhd "C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.0\Emulation\Images\Flash.vhd"
+
+   4 This will launch the Windows Phone 8 emulator and the Hyper-V settings will be configured accordingly.

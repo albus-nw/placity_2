@@ -1,0 +1,33 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "Placity"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "Placity"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "Placity"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "Placity"
+        },
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "Placity"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "Placity"
+        },
+        "phonegap-plugin-barcodescanner": {
+            "PACKAGE_NAME": "Placity"
+        }
+    },
+    "dependent_plugins": {}
+}

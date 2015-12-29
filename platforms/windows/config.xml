@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="io.cordova.placity" version="0.2.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <preference name="AndroidPersistentFileLocation" value="Internal" />
+    <name>Placity</name>
+    <description>Placity</description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">FH Bingen - Proj SS15</author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <preference name="KeepRunning" value="True" />
+    <preference name="ShowTitle" value="False" />
+    <preference name="InAppBrowserStorageEnabled" value="True" />
+    <preference name="SuppressesIncrementalRendering" value="True" />
+    <vs:plugin name="cordova-plugin-dialogs" version="1.2.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" />
+    <preference name="Fullscreen" value="True" />
+    <vs:platformSpecificValues xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps">
+        <vs:platformSpecificWidget id="placity" platformName="windows" version="0.2.1.0">
+            <vs:name>Placity</vs:name>
+        </vs:platformSpecificWidget>
+    </vs:platformSpecificValues>
+    <preference name="android-minSdkVersion" value="16" />
+    <preference name="android-maxSdkVersion" value="23" />
+    <preference name="android-targetSdkVersion" value="16" />
+    <preference name="AndroidLaunchMode" value="standard" />
+    <vs:plugin name="cordova-plugin-geolocation" version="1.0.1" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" />
+    <vs:plugin name="cordova-plugin-vibration" version="2.0.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" />
+    <vs:plugin name="cordova-plugin-file" version="3.0.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" />
+    <vs:plugin name="cordova-plugin-device" version="1.1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" />
+</widget>
