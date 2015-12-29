@@ -7,13 +7,10 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-dialogs": {
-            "PACKAGE_NAME": "io.cordova.placity"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "io.cordova.placity"
-        },
         "cordova-plugin-device": {
+            "PACKAGE_NAME": "io.cordova.placity"
+        },
+        "cordova-plugin-dialogs": {
             "PACKAGE_NAME": "io.cordova.placity"
         },
         "cordova-plugin-file": {
@@ -23,6 +20,9 @@
             "PACKAGE_NAME": "io.cordova.placity"
         },
         "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "io.cordova.placity"
+        },
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "io.cordova.placity"
         },
         "phonegap-plugin-barcodescanner": {
