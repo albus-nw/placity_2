@@ -71,4 +71,10 @@
     <ItemGroup>
         <ProjectReference Include="B:\workspace\placity\plugins\cordova-plugin-vibration\src\windows\Vibration\Vibration.csproj" />
     </ItemGroup>
+    <PropertyGroup>
+        <PreBuildEvent>
+      cd /d $(MSBuildThisFileDirectory)
+      node -e "require('C:\\Users\\Hans\\AppData\\Roaming\\npm\\node_modules\\vs-tac\\lib\\hooks.js').updateAppxManifest('B:\\workspace\\placity\\platforms\\windows','B:\\workspace\\placity\\platforms\\windows\\..\\..\\')"
+    </PreBuildEvent>
+    </PropertyGroup>
 </Project>

@@ -1,8 +1,8 @@
 ﻿var placity = angular.module("placity", ['ngRoute', 'Controllers', 'ui.bootstrap' ]);
 
-placity.config(function ($routeProvider, $locationProvider) {
+placity.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
     $routeProvider
-    .when('/', { templateUrl: '../views/hauptmenu.html', controller: 'indexCtrl' })
+    .when('/', { templateUrl: 'views/hauptmenu.html', controller: 'indexCtrl' })
         //Hauptmenü
     .when('/Optionen', { templateUrl: 'views/options.html', controller: 'optionsCtrl' })
     .when('/Ergebnisse', { template: '<a href="/.." class="btn btn-primary btn-sm">Zurück</a>' })
@@ -21,8 +21,8 @@ placity.config(function ($routeProvider, $locationProvider) {
 
    .otherwise({ redirectTo: '/' });
 
-    $locationProvider.html5Mode(true).hashPrefix("#");
-});
+  //  $locationProvider.html5Mode(false);
+}]);
 
 
 //ms-appx wp8 problem umgehen

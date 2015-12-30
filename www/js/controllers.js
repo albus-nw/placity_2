@@ -4,27 +4,27 @@ controllers.buttons = {};
 controllers.buttons.hauptmenu = [
     {
         "value": "Ergebnisse",
-        "href": "/Ergebnisse",
+        "href": "#/Ergebnisse",
         "class": "btn btn-primary menuButton"
     },
     {
         "value": "Routen",
-        "href": "/Routen",
+        "href": "#/Routen",
         "class": "btn btn-primary menuButton"
     },
     {
         "value": "Optionen",
-        "href": "/Optionen",
+        "href": "#/Optionen",
         "class": "btn btn-primary menuButton"
     },
     {
         "value": "Profil",
-        "href": "/Profil",
+        "href": "#/Profil",
         "class": "btn btn-primary menuButton"
     },
     {
         "value": "Abmelden",
-        "href": "/Abmelden",
+        "href": "#/Abmelden",
         "class": "btn btn-primary menuButton",
         "ng-click": "beep(1)"
     }
@@ -33,24 +33,24 @@ controllers.buttons.hauptmenu = [
 controllers.buttons.routen = [
     {
     "value": "QR-Code scannen",
-    "href": "/QrScan",
+    "href": "#/QrScan",
     "class": "btn btn-primary menuButton"
 },
     {
         "value": "Route online suchen",
-        "href": "/RouteOnline",
+        "href": "#/RouteOnline",
         "class": "btn btn-primary menuButton",
         "ng-click": "$scope.vibe()"
     },
     {
         "value": "lokale Routen",
-        "href": "/RouteLokal",
+        "href": "#/RouteLokal",
         "class": "btn btn-primary menuButton",
         "ng-click": "vibe()"
     },
     {
         "value": "RoutenID",
-        "href": "/RouteId",
+        "href": "#/RouteId",
         "class": "btn btn-primary menuButton"
     },
     {
@@ -63,7 +63,7 @@ controllers.buttons.routen = [
 controllers.buttons.options = [
     {
         "value": "Standort",
-        "href": "/Standort",
+        "href": "#/Standort",
         "class": "btn btn-primary menuButton"
     }
 ];

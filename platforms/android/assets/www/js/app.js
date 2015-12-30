@@ -1,19 +1,19 @@
 ﻿var placity = angular.module("placity", ['ngRoute', 'Controllers', 'ui.bootstrap' ]);
 
-placity.config(function ($routeProvider, $locationProvider) {
+placity.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
     $routeProvider
-    .when('/', { templateUrl: '../views/hauptmenu.html', controller: 'indexCtrl' })
+    .when('/', { templateUrl: 'views/hauptmenu.html', controller: 'indexCtrl' })
         //Hauptmenü
     .when('/Optionen', { templateUrl: 'views/options.html', controller: 'optionsCtrl' })
-    .when('/Ergebnisse', { template: '<a href="/.." class="btn btn-primary btn-sm">Zurück</a>' })
-    .when('/Profil', { template: '<a href="/.." class="btn btn-primary btn-sm">Zurück</a>  <div class="menuButtonDiv"> <div ng-repeat="button in buttons">   <a class="{{button.class}}" ng-href={{button.href}}>{{button.value}}</a>   </div>' })
-    .when('/Abmelden', { template: '<a href="/.." class="btn btn-primary btn-sm">Zurück</a>' })
+    .when('/Ergebnisse', { template: '<a href="#/.." class="btn btn-primary btn-sm">Zurück</a>' })
+    .when('/Profil', { template: '<a href="#/.." class="btn btn-primary btn-sm">Zurück</a>  <div class="menuButtonDiv"> <div ng-repeat="button in buttons">   <a class="{{button.class}}" ng-href={{button.href}}>{{button.value}}</a>   </div>' })
+    .when('/Abmelden', { template: '<a href="#/.." class="btn btn-primary btn-sm">Zurück</a>' })
     .when('/Routen', { templateUrl: 'views/routenmenu.html', controller: 'routenmenuCtrl' })
         //Routenmenü
     .when('/QrScan', { templateUrl: 'views/scan.html', controller: 'ScanCtrl', controllerAs: 'vm'})
-    .when('/RouteOnline', { template: '<a href="/.." class="btn btn-primary btn-sm">Zurück</a>' })
-    .when('/RouteId', { template: '<a href="/.." class="btn btn-primary btn-sm">Zurück</a>' })
-    .when('/RouteLokal', { template: '<a href="/.." class="btn btn-primary btn-sm">Zurück</a>' })
+    .when('/RouteOnline', { template: '<a href="#/.." class="btn btn-primary btn-sm">Zurück</a>' })
+    .when('/RouteId', { template: '<a href="#/.." class="btn btn-primary btn-sm">Zurück</a>' })
+    .when('/RouteLokal', { template: '<a href="#/.." class="btn btn-primary btn-sm">Zurück</a>' })
             //eine per routenID bestimmte Route, routenID prüfen, starten, laden oä
         .when('/Routen/:routenID', { templateUrl: 'views/routenID.html', controller: 'routenIDCtrl' })
         //Optionen
@@ -21,8 +21,8 @@ placity.config(function ($routeProvider, $locationProvider) {
 
    .otherwise({ redirectTo: '/' });
 
-    $locationProvider.html5Mode(true).hashPrefix("#");
-});
+    $locationProvider.html5Mode(false);
+}]);
 
 
 //ms-appx wp8 problem umgehen
