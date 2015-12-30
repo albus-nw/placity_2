@@ -4,27 +4,27 @@ controllers.buttons = {};
 controllers.buttons.hauptmenu = [
     {
         "value": "Ergebnisse",
-        "href": "#/Ergebnisse",
+        "href": "/Ergebnisse",
         "class": "btn btn-primary menuButton"
     },
     {
         "value": "Routen",
-        "href": "#/Routen",
+        "href": "/Routen",
         "class": "btn btn-primary menuButton"
     },
     {
         "value": "Optionen",
-        "href": "#/Optionen",
+        "href": "/Optionen",
         "class": "btn btn-primary menuButton"
     },
     {
         "value": "Profil",
-        "href": "#/Profil",
+        "href": "/Profil",
         "class": "btn btn-primary menuButton"
     },
     {
         "value": "Abmelden",
-        "href": "#/Abmelden",
+        "href": "/Abmelden",
         "class": "btn btn-primary menuButton",
         "ng-click": "beep(1)"
     }
@@ -33,24 +33,24 @@ controllers.buttons.hauptmenu = [
 controllers.buttons.routen = [
     {
     "value": "QR-Code scannen",
-    "href": "#/QrScan",
+    "href": "/QrScan",
     "class": "btn btn-primary menuButton"
 },
     {
         "value": "Route online suchen",
-        "href": "#/RouteOnline",
+        "href": "/RouteOnline",
         "class": "btn btn-primary menuButton",
         "ng-click": "$scope.vibe()"
     },
     {
         "value": "lokale Routen",
-        "href": "#/RouteLokal",
+        "href": "/RouteLokal",
         "class": "btn btn-primary menuButton",
         "ng-click": "vibe()"
     },
     {
         "value": "RoutenID",
-        "href": "#/RouteId",
+        "href": "/RouteId",
         "class": "btn btn-primary menuButton"
     },
     {
@@ -63,7 +63,7 @@ controllers.buttons.routen = [
 controllers.buttons.options = [
     {
         "value": "Standort",
-        "href": "#/Standort",
+        "href": "/Standort",
         "class": "btn btn-primary menuButton"
     }
 ];
@@ -95,7 +95,7 @@ controllers.controller("indexCtrl",['$scope', function ($scope) {
   
 }]);
 
-controllers.controller("routenCtrl",['$scope' ,function ($scope) {
+controllers.controller("routenmenuCtrl",['$scope' ,function ($scope) {
     $scope.buttons = controllers.buttons.routen;
    // console.log(JSON.stringify(controllers.buttons));
     
@@ -106,6 +106,12 @@ controllers.controller("routenCtrl",['$scope' ,function ($scope) {
     $scope.vibe = function () {
         navigator.vibrate(292);
     };
+
+
+}]);
+
+controllers.controller("routenIDCtrl", ['$scope', '$routeParams', function ($scope, $routeParams) {
+    $scope.routenID = $routeParams.routenID;
 
 
 }]);
@@ -168,12 +174,15 @@ controllers.controller("standortCtrl", ['$scope', function ($scope) {
 }]);
 
 
-controllers.controller('ScanCtrl', ['$scope', function ($scope) {
+controllers.controller('ScanCtrl', ['$rootScope', '$scope', '$location', function ($rootScope, $scope, $location) {
     var vm = this;
     vm.result = cordova.plugins.barcodeScanner.scan(onSucess.bind(vm), function (error) {
         return "Scanning failed: " + error ;
     });
-    console.log($scope.result+"WAWSWAW");
+    console.log("location 1 " + $location);
+    vm.$location = $location;
+    console.log("location vm " + vm.$location);
+   // console.log($scope.result+"WAWSWAW");
    
 
     function onSucess(result) {
@@ -184,10 +193,13 @@ controllers.controller('ScanCtrl', ['$scope', function ($scope) {
                "Format: " + result.format + "\n" +
                "Cancelled: " + result.cancelled;
         //alert(vm.result);
-        console.log($scope.result);
-        console.log(this.result);
+      //  console.log($scope.result);
+       // console.log(this.result);
     
         //    console.log(vm.result);
+        this.$location.path('/Routen/' + result.text);
+        $rootScope.$apply();
+        console.log("location 555 " + this.$location.path());
         return this.result;
     };
     console.log($scope.result + "wwwwwwwwwwwwww");

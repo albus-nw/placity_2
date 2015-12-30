@@ -1,3 +1,0 @@
-B:\workspace\placity\platforms\windows\CordovaApp.Phone.jsproj;neutral
-B:\workspace\placity\plugins\cordova-plugin-vibration\src\windows\Vibration\Vibration.csproj;neutral
-B:\workspace\placity\plugins\phonegap-plugin-barcodescanner\src\windows\lib\WinRTBarcodeReader.csproj;neutral
