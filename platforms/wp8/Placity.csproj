@@ -241,9 +241,6 @@
         <Content Include="Plugins\cordova-plugin-dialogs\notification-beep.wav" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Plugins\cordova-plugin-file\File.cs" />
-    </ItemGroup>
-    <ItemGroup>
         <Compile Include="Plugins\cordova-plugin-geolocation\Geolocation.cs" />
     </ItemGroup>
     <ItemGroup>

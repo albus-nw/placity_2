@@ -76,16 +76,25 @@ controllers.buttons.standort = [
     }
 ];
 
-console.log(controllers.buttons);
+//console.log(controllers.buttons);
 
-controllers.controller("indexCtrl",['$scope', function ($scope) {
-    //deviceready hier noch nicht unbedingt gefeuert
-    $scope.text = "text, junge";
-    
+
+//global playerName
+playerName = null;
+
+controllers.controller("indexCtrl",['$scope', '$location', function ($scope, $location) {
+    $scope.playerName = "";
+    //hier: playerName aus datei lesen, wenn nicht vorhanden, auf login routen und datei schreiben dort
+    if (!playerName) {
+        $location.path('/Login');
+
+    }
+    else {
+        $scope.playerName = playerName;
+    }
+
     $scope.buttons = controllers.buttons.hauptmenu;
- //   console.log($scope.text);
-    //console.log(navigator.vibrate);
-    //navigator.vibrate(10000);
+
     $scope.beep = function () {
         navigator.notification.beep(1);
     };
@@ -95,10 +104,27 @@ controllers.controller("indexCtrl",['$scope', function ($scope) {
   
 }]);
 
+controllers.controller("loginCtrl", ['$scope', '$location', function ($scope, $location) {
+    
+    $scope.login = function () {
+        playerName = $scope.playerName + "";
+        $location.path('/');
+    };
+    $scope.noLogin = function () {
+        playerName = "noName";
+        $location.path('/');
+    };
+}]);
+
+controllers.controller("logoutCtrl", ['$scope', function ($scope) {
+    $scope.playerName = playerName;
+    playerName = null;
+
+}]);
+
 controllers.controller("routenmenuCtrl",['$scope' ,function ($scope) {
     $scope.buttons = controllers.buttons.routen;
-   // console.log(JSON.stringify(controllers.buttons));
-    
+   
     navigator.vibrate(292);
     $scope.beep = function () {
         navigator.notification.beep(1);

@@ -33,7 +33,14 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        app.receivedEvent('deviceready');
+      //  app.receivedEvent('deviceready');
+        navigator.vibrate(1);
+        navigator.notification.beep(1);
+        navigator.vibrate(7);
+
+        //angular manuel bootstrappen, "ng-app" im body tag dafür entfe´rnt
+        var domElement = document.querySelector('body');
+        angular.bootstrap(domElement, ['placity']);
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {

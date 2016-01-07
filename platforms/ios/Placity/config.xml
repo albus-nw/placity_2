@@ -23,24 +23,19 @@
     <feature name="Vibration">
         <param name="ios-package" value="CDVVibration" />
     </feature>
-    <preference name="AndroidPersistentFileLocation" value="Internal" />
-    <feature name="File">
-        <param name="ios-package" value="CDVFile" />
-        <param name="onload" value="true" />
-    </feature>
     <feature name="Device">
         <param name="ios-package" value="CDVDevice" />
     </feature>
     <feature name="BarcodeScanner">
         <param name="ios-package" value="CDVBarcodeScanner" />
     </feature>
+    <vs:plugin name="cordova-plugin-file" version="3.0.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" />
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
     <name>Placity</name>
     <description>Placity</description>
     <author email="dev@cordova.apache.org" href="http://cordova.io">FH Bingen - Proj SS15</author>
     <content src="index.html" />
-    <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
@@ -64,8 +59,9 @@
     <preference name="AndroidLaunchMode" value="standard" />
     <vs:plugin name="cordova-plugin-geolocation" version="1.0.1" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" />
     <vs:plugin name="cordova-plugin-vibration" version="2.0.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" />
-    <vs:plugin name="cordova-plugin-file" version="3.0.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" />
     <vs:plugin name="cordova-plugin-device" version="1.1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" />
     <preference name="deployment-target" value="9.2" />
     <access origin="*" subdomains="true" />
+    <vs:plugin name="cordova-plugin-splashscreen" version="3.0.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" />
+    <icon src="img/P.svg" />
 </widget>

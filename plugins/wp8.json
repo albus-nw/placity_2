@@ -13,9 +13,6 @@
         "cordova-plugin-dialogs": {
             "PACKAGE_NAME": "{57b90ac0-ad03-11e5-93a0-d371be3bc8ea}"
         },
-        "cordova-plugin-file": {
-            "PACKAGE_NAME": "{57b90ac0-ad03-11e5-93a0-d371be3bc8ea}"
-        },
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "{57b90ac0-ad03-11e5-93a0-d371be3bc8ea}"
         },
