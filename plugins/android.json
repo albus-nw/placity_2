@@ -24,6 +24,9 @@
         },
         "phonegap-plugin-barcodescanner": {
             "PACKAGE_NAME": "io.cordova.placity"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "io.cordova.placity"
         }
     },
     "dependent_plugins": {}

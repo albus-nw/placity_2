@@ -263,4 +263,7 @@
             <HintPath>plugins\phonegap-plugin-barcodescanner\zxing.wp8.0.dll</HintPath>
         </Reference>
     </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Plugins\cordova-plugin-file\File.cs" />
+    </ItemGroup>
 </Project>

@@ -55,6 +55,9 @@
 		23464FB4A61E4BB8BF8C6B71 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 146A7CB0974743D68EA2B928 /* CoreVideo.framework */; };
 		24D7EAFADC7B46DFAAADB2A0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB3257FE5AB64D99BA794131 /* QuartzCore.framework */; };
 		19DEF7E60538414C95057680 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B762DE674C544F8AA10E89C3 /* CoreImage.framework */; };
+		9CA67F15624943128BCFC2F6 /* CDVFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA433E9DE084543A2E5C327 /* CDVFile.m */; };
+		44CC7BB248FB4D0EB7E1D084 /* CDVLocalFilesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0665E602BC874F50961DC7EA /* CDVLocalFilesystem.m */; };
+		8B8BE4B0C2E7445996343B67 /* CDVAssetLibraryFilesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = A2574C8597FC4763972B27D2 /* CDVAssetLibraryFilesystem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,6 +144,12 @@
 		146A7CB0974743D68EA2B928 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "CoreVideo.framework"; path = "System/Library/Frameworks/CoreVideo.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
 		BB3257FE5AB64D99BA794131 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "QuartzCore.framework"; path = "System/Library/Frameworks/QuartzCore.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
 		B762DE674C544F8AA10E89C3 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "CoreImage.framework"; path = "System/Library/Frameworks/CoreImage.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
+		0CA433E9DE084543A2E5C327 /* CDVFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVFile.m"; path = "cordova-plugin-file/CDVFile.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		0665E602BC874F50961DC7EA /* CDVLocalFilesystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVLocalFilesystem.m"; path = "cordova-plugin-file/CDVLocalFilesystem.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		A2574C8597FC4763972B27D2 /* CDVAssetLibraryFilesystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVAssetLibraryFilesystem.m"; path = "cordova-plugin-file/CDVAssetLibraryFilesystem.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		1BB084FA0BB34169BA3907AD /* CDVFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVFile.h"; path = "cordova-plugin-file/CDVFile.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		49CE2BED47654F92914591B4 /* CDVLocalFilesystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLocalFilesystem.h"; path = "cordova-plugin-file/CDVLocalFilesystem.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		569BDE903ECC4285A8D8E0E1 /* CDVAssetLibraryFilesystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVAssetLibraryFilesystem.h"; path = "cordova-plugin-file/CDVAssetLibraryFilesystem.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +276,12 @@
 				C213B9DFAB384CB1A66782E2 /* CDVBarcodeScanner.mm */,
 				D7E5A7DF02AF4DAB917B62AD /* zxing-all-in-one.cpp */,
 				1F15F37C0A854AF5A7E399DC /* zxing-all-in-one.h */,
+				0CA433E9DE084543A2E5C327 /* CDVFile.m */,
+				0665E602BC874F50961DC7EA /* CDVLocalFilesystem.m */,
+				A2574C8597FC4763972B27D2 /* CDVAssetLibraryFilesystem.m */,
+				1BB084FA0BB34169BA3907AD /* CDVFile.h */,
+				49CE2BED47654F92914591B4 /* CDVLocalFilesystem.h */,
+				569BDE903ECC4285A8D8E0E1 /* CDVAssetLibraryFilesystem.h */,
 			);
 			name = Plugins;
 			path = "Placity/Plugins";
@@ -460,6 +475,9 @@
 				121F536C5AB547739EF09470 /* CDVDevice.m in Sources */,
 				22F0CA1CFF654CCEB83B01F4 /* CDVBarcodeScanner.mm in Resources */,
 				EF27BFCB78534856AAA7CB87 /* zxing-all-in-one.cpp in Resources */,
+				9CA67F15624943128BCFC2F6 /* CDVFile.m in Sources */,
+				44CC7BB248FB4D0EB7E1D084 /* CDVLocalFilesystem.m in Sources */,
+				8B8BE4B0C2E7445996343B67 /* CDVAssetLibraryFilesystem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

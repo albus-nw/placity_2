@@ -24,6 +24,9 @@
         },
         "phonegap-plugin-barcodescanner": {
             "PACKAGE_NAME": "Placity"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "Placity"
         }
     },
     "dependent_plugins": {}

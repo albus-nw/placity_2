@@ -19,9 +19,6 @@
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "io.cordova.placity"
         },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "io.cordova.placity"
-        },
         "cordova-plugin-vibration": {
             "PACKAGE_NAME": "io.cordova.placity"
         },

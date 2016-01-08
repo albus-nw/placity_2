@@ -14,6 +14,12 @@
         <param name="wp-package" value="BarcodeScanner" />
     </feature>
     <vs:plugin name="cordova-plugin-file" version="3.0.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" />
+    <vs:plugin name="cordova-plugin-splashscreen" version="3.0.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" />
+    <icon src="img/P.svg" />
+    <preference name="AndroidPersistentFileLocation" value="Internal" />
+    <feature name="File">
+        <param name="wp-package" value="File" />
+    </feature>
     <name>Placity</name>
     <description>Placity</description>
     <author email="dev@cordova.apache.org" href="http://cordova.io">FH Bingen - Proj SS15</author>
@@ -44,6 +50,5 @@
     <vs:plugin name="cordova-plugin-device" version="1.1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" />
     <preference name="deployment-target" value="9.2" />
     <access origin="*" subdomains="true" />
-    <vs:plugin name="cordova-plugin-splashscreen" version="3.0.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" />
-    <icon src="img/P.svg" />
+    <icon src="www/img/logo.png" />
 </widget>
