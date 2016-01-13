@@ -82,25 +82,35 @@ controllers.buttons.standort = [
 //global playerName
 playerName = null;
 
-controllers.controller("indexCtrl",['$scope', '$location', function ($scope, $location) {
-    $scope.playerName = "";
-    //hier: playerName aus datei lesen, wenn nicht vorhanden, auf login routen und datei schreiben dort
-    var data = readFromFile('profile.json');
+controllers.controller("indexCtrl",['$scope', '$location', '$http', function ($scope, $location, $http) {
     var z = this;
+    //hier: playerName aus datei lesen, wenn nicht vorhanden, auf login routen und datei schreiben dort
+    var data = readFromFile('profile.json', function (result) {
+        if (result == null) {
+            $location.path('/Login');
+        }
+        else {
+            console.log('<<<<<<<<<<<<Yeeaaayyy!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+            playerName = result.playerName;
+            z.playerName = playerName;
+        }
+    });
+    
     console.log('<<<<<<<<<<<<<<<<<<<<<<<<<<< adada   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><');
     console.log('<<<<<<<<<<<<<<<<<<<<<<<<<<< adada ' + data + '  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><');
-    if (data && data.playerName) {
-        console.log('<<<<<<<<<<<<<<<<<<<<<<<<<<<  '+data+'  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><');
-        $scope.playerName = data.playerName;
-        playerName = data.playerName;
-    }
-    if (!playerName) {
-        $location.path('/Login');
+    console.log('<<<<<<<<<<<<<<<<<<<<<<<<<<< globaler PlayerName ' + playerName + '  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><');
+    //if (data && data.playerName) {
+    //    console.log('<<<<<<<<<<<<<<<<<<<<<<<<<<<  '+data+'  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><');
+    //    $scope.playerName = data.playerName;
+    //    playerName = data.playerName;
+    //}
+    //if (playerName == null) {
+    //    $location.path('/Login');
 
-    }
-    else {
-        $scope.playerName = playerName;
-    }
+    //}
+    //else {
+    //    $scope.playerName = playerName;
+    //}
 
     $scope.buttons = controllers.buttons.hauptmenu;
 
@@ -110,17 +120,22 @@ controllers.controller("indexCtrl",['$scope', '$location', function ($scope, $lo
     $scope.vibe = function () {
         navigator.vibrate(292);
     };
-  
-}]);
+    
+    $http.get('http://df.albus-it.com:80/api/v2/db/_table').success(function (response) {
+        console.log("!!!!!!!!!!!!!!!!!!---------------------DATA:  " + response.data);
+    });
+
+
+    }]);
 
 controllers.controller("loginCtrl", ['$scope', '$location', function ($scope, $location) {
-    
-    $scope.login = function () {
-        //playerName = $scope.playerName + "";
-        writeToFile('profile.json', { playerName : 'dennis 23' });
+    var vm = $scope;
+    vm.login = function () {
+        playerName = vm.playerName + "";
+        writeToFile('profile.json', { playerName: vm.playerName + "" });
         $location.path('/');
     };
-    $scope.noLogin = function () {
+    vm.noLogin = function () {
         playerName = "noName";
         $location.path('/');
     };
@@ -267,15 +282,23 @@ function writeToFile(fileName, data) {
     }, errorHandler.bind(null, fileName));
 };
 
-//datei lesen
-function readFromFile(fileName) {
+/**
+ * @param {url} filename 
+ */
+function readFromFile(fileName, callback) {
     var pathToFile = cordova.file.dataDirectory + fileName;
     window.resolveLocalFileSystemURL(pathToFile, function (fileEntry) {
         fileEntry.file(function (file) {
             var reader = new FileReader();
 
             reader.onloadend = function (e) {
-                console.log('<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>vor dem retuern 256 >>>>>>>>>>>>>>akdgkg   ' + this.result);
+                var result = this.result;
+                // Make sure the callback is a function​
+                if (typeof callback === "function") {
+                    // Call it, since we have confirmed it is callable​
+                    callback(result);
+                }
+                console.log('adadad<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>vor dem retuern 256 >>>>>>>>>>>>>>akdgkg   ' + this.result);
               playerName = this.result.playerName;
                 return JSON.parse(this.result);
             };
