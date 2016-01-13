@@ -121,8 +121,10 @@ controllers.controller("indexCtrl",['$scope', '$location', '$http', function ($s
         navigator.vibrate(292);
     };
     
-    $http.get('http://df.albus-it.com:80/api/v2/db/_table').success(function (response) {
-        console.log("!!!!!!!!!!!!!!!!!!---------------------DATA:  " + response.data);
+    $http.get('http://df.albus-it.com:80/api/v2/db/_table').then(function (response) {
+        console.log("!!!!!!!!!!!!!!!!!!---------------------DATA:  " + response.data.toString());
+    },function (response) {
+        console.log("!!!!!!!!!!!!!!!!!!-----------------fehler----DATA:  " + response.data.toString());
     });
 
 

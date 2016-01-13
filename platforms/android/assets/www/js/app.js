@@ -1,4 +1,4 @@
-﻿var placity = angular.module("placity", ['ngRoute', 'Controllers', 'ui.bootstrap' ]);
+﻿var placity = angular.module("placity", ['ngRoute', 'Controllers', 'ui.bootstrap', 'ngResource' ]);
 placity.constant('DF', 'http://df.albus-it.com');
 placity.constant('APP_API_KEY', '427994563fdc8f1159ff7d04bd00c62ecab42f7bcd3f9e99ae2a5a38f5408d3d');
 
@@ -27,8 +27,17 @@ placity.config(['$routeProvider', '$locationProvider', function ($routeProvider,
         .otherwise({ redirectTo: '/' });
 
     $locationProvider.html5Mode(false);
+
+   
     
 }]);
+
+placity.config(['$resourceProvider', function ($resourceProvider) {
+    // Don't strip trailing slashes from calculated URLs
+    $resourceProvider.defaults.stripTrailingSlashes = false;
+   $http.defaults.headers.common['X-DreamFactory-API-Key'] = APP_API_KEY;
+}]);
+
 
 
 //ms-appx wp8 problem umgehen

@@ -3033,7 +3033,6 @@
     ".git\\objects\\bc\\64d48aca655c2b9addc9cb014da308c36d007a",
     ".git\\hooks\\pre-commit.sample",
     ".git\\objects\\58\\cb3ffffeb06238a426a9356bc1a12f72ceffbd",
-    "config.xml",
     ".git\\objects\\83\\a38238ee618ccb64c7988bc670fa4e3e914950",
     ".git\\objects\\0d\\7ea5bd6ec9f93d35d950baba126d54de69da67",
     ".git\\objects\\15\\e10e004cd7be6f792eb4e32f5e48696526bf82",
@@ -7544,7 +7543,30 @@
     ".git\\objects\\e2\\548f19b60420de770f99e8a2760be4a7f285d5",
     "plugins\\phonegap-plugin-barcodescanner\\src\\android\\LibraryProject\\res\\values-he\\strings.xml",
     ".git\\objects\\85\\1c94d3eecdb9e5eacae608536d31ff8d8c2768",
-    ".git\\objects\\5a\\524cfa007e8415047188c08d3879f66c301ae1"
+    ".git\\objects\\5a\\524cfa007e8415047188c08d3879f66c301ae1",
+    ".git\\objects\\3e\\fd109ff7cd4af4d716a312983e9d7ad49f4705",
+    ".git\\objects\\bf\\1226ccc89d798fefde74b22e1bcd3a3aff5396",
+    ".git\\objects\\ab\\85082be39af1be26f2bcf0d2faafe203bffe50",
+    ".git\\objects\\f2\\78b915cfac63b927a36b649aa0259f41b1f2b3",
+    ".git\\objects\\83\\0da8df211f483a58eaad7d5feddd84aa16e4d3",
+    ".git\\objects\\e3\\22c45c629cfbb0282ad5580ada97b8d2275580",
+    ".git\\objects\\36\\c65112147016e95550a7b95443644251154eb0",
+    ".git\\objects\\85\\aff1e096c3b701de96afa7f88d1516dbf21cbb",
+    ".git\\objects\\b2\\09acc4396fde1fb8f48c23938813f5de6055ed",
+    ".git\\objects\\be\\96fdbcff2d2ea5788e57a548623085a6f7e3ee",
+    ".git\\objects\\db\\56987eecb2d4ed0ec6d46671f381bd9c6b5774",
+    ".git\\objects\\69\\7ecc88786f203906bbca240df22409062f67a3",
+    ".git\\objects\\27\\5f180825c86669cac3702261d4acff1f0fbe1d",
+    ".git\\objects\\40\\2c0dbeb789121b126420adb5acc706a188c67e",
+    ".git\\objects\\60\\68dbede3360b2e170b68a766ddb6ee24097c3b",
+    ".git\\objects\\29\\a6b9c22f01dcdbf882901e6c2bfaef73d6f427",
+    ".git\\objects\\c3\\bc5229b2fe963e201862aa5fee27e5a12e8427",
+    ".git\\objects\\4d\\d306b9a16323a7237df4aebea9c9b223115c7a",
+    ".git\\objects\\23\\0c9178fb3d50433d9ad0b3d577c613e1cfeb99",
+    ".git\\objects\\7a\\8f7491c4e8fd3e9ea3ef608ada12a3660ec9df",
+    ".git\\objects\\e0\\bf621ffaf1abf39905ff7995b3d8e757c17f96",
+    ".git\\objects\\17\\902418fd41db094f32588e10f8f0ceb11ede51",
+    "config.xml"
   ],
   "deletedFilesIos": [],
   "addedPluginsIos": [
@@ -7556,7 +7578,7 @@
   ],
   "deletedPluginsIos": [],
   "changedFiles": [
-    "www\\js\\controllers.js"
+    "www\\js\\app.js"
   ],
   "deletedFiles": [],
   "addedPlugins": [],
