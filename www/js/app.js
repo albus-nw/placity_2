@@ -1,4 +1,6 @@
-﻿var placity = angular.module("placity", ['ngRoute', 'Controllers', 'ui.bootstrap' ]);
+﻿var placity = angular.module("placity", ['ngRoute', 'Controllers', 'ui.bootstrap','restDataServices',
+    'contentTypes',
+    'test' ]);
 placity.constant('DF', 'http://df.albus-it.com');
 placity.constant('APP_API_KEY', '427994563fdc8f1159ff7d04bd00c62ecab42f7bcd3f9e99ae2a5a38f5408d3d');
 
