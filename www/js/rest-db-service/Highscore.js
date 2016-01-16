@@ -35,7 +35,7 @@ angular.module('restDataServices')
      *               Highscore.remove({filter:'id>2'})     löscht alle Einträge mit ID > 2
      */
         function Highscore ($resource) {
-        return $resource('/api/v2/_table/Highscore/:id', {id: '@id'}, {
+        return $resource('/api/v2/db/_table/Highscore/:id', {id: '@id'}, {
             /**
              * @ngdoc function
              * @name Highscore.get

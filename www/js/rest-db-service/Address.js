@@ -35,7 +35,7 @@ angular.module('restDataServices')
      *               Address.remove({filter:'id>2'})     löscht alle Einträge mit ID > 2
      */
         function Address ($resource) {
-        return $resource('/api/v2/_table/Address/:id', {id: '@id'}, {
+        return $resource('/api/v2/db/_table/Address/:id', {id: '@id'}, {
             /**
              * @ngdoc function
              * @name Address.get

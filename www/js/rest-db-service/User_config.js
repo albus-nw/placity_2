@@ -35,7 +35,7 @@ angular.module('restDataServices')
      *               User_config.remove({filter:'id>2'})     löscht alle Einträge mit ID > 2
      */
         function User_config ($resource) {
-        return $resource('/api/v2/_table/User_config/:id', {id: '@id'}, {
+        return $resource('/api/v2/db/_table/User_config/:id', {id: '@id'}, {
             /**
              * @ngdoc function
              * @name User_config.get

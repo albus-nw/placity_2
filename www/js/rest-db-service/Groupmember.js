@@ -35,7 +35,7 @@ angular.module('restDataServices')
      *               Groupmember.remove({filter:'id>2'})     löscht alle Einträge mit ID > 2
      */
         function Groupmember ($resource) {
-        return $resource('/api/v2/_table/Groupmember/:id', {id: '@id'}, {
+        return $resource('/api/v2/db/_table/Groupmember/:id', {id: '@id'}, {
             /**
              * @ngdoc function
              * @name Groupmember.get

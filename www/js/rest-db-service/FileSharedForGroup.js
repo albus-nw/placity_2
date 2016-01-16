@@ -35,7 +35,7 @@ angular.module('restDataServices')
      *               FileSharedForGroup.remove({filter:'id>2'})     löscht alle Einträge mit ID > 2
      */
         function FileSharedForGroup ($resource) {
-        return $resource('/api/v2/_table/FileSharedForGroup/:id', {id: '@id'}, {
+        return $resource('/api/v2/db/_table/FileSharedForGroup/:id', {id: '@id'}, {
             /**
              * @ngdoc function
              * @name FileSharedForGroup.get

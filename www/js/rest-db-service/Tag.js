@@ -35,7 +35,7 @@ angular.module('restDataServices')
      *               Tag.remove({filter:'id>2'})     löscht alle Einträge mit ID > 2
      */
         function Tag ($resource) {
-        return $resource('/api/v2/_table/Tag/:id', {id: '@id'}, {
+        return $resource('/api/v2/db/_table/Tag/:id', {id: '@id'}, {
             /**
              * @ngdoc function
              * @name Tag.get

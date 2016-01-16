@@ -35,7 +35,7 @@ angular.module('restDataServices')
      *               Content.remove({filter:'id>2'})     löscht alle Einträge mit ID > 2
      */
         function Content ($resource) {
-        return $resource('/api/v2/_table/Content/:id', {id: '@id'}, {
+        return $resource('/api/v2/db/_table/Content/:id', {id: '@id'}, {
             /**
              * @ngdoc function
              * @name Content.get

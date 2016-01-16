@@ -35,7 +35,7 @@ angular.module('restDataServices')
      *               v_orgamember.remove({filter:'id>2'})     löscht alle Einträge mit ID > 2
      */
         function v_orgamember ($resource) {
-        return $resource('/api/v2/_table/v_orgamember/:id', {id: '@id'}, {
+        return $resource('/api/v2/db/_table/v_orgamember/:id', {id: '@id'}, {
             /**
              * @ngdoc function
              * @name v_orgamember.get

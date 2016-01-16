@@ -35,7 +35,7 @@ angular.module('restDataServices')
      *               Player.remove({filter:'id>2'})     löscht alle Einträge mit ID > 2
      */
         function Player ($resource) {
-        return $resource('/api/v2/_table/Player/:id', {id: '@id'}, {
+        return $resource('/api/v2/db/_table/Player/:id', {id: '@id'}, {
             /**
              * @ngdoc function
              * @name Player.get

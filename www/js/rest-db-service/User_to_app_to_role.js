@@ -35,7 +35,7 @@ angular.module('restDataServices')
      *               User_to_app_to_role.remove({filter:'id>2'})     löscht alle Einträge mit ID > 2
      */
         function User_to_app_to_role ($resource) {
-        return $resource('/api/v2/_table/User_to_app_to_role/:id', {id: '@id'}, {
+        return $resource('/api/v2/db/_table/User_to_app_to_role/:id', {id: '@id'}, {
             /**
              * @ngdoc function
              * @name User_to_app_to_role.get

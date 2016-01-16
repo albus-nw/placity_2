@@ -35,7 +35,7 @@ angular.module('restDataServices')
      *               Organization.remove({filter:'id>2'})     löscht alle Einträge mit ID > 2
      */
         function Organization ($resource) {
-        return $resource('/api/v2/_table/Organization/:id', {id: '@id'}, {
+        return $resource('/api/v2/db/_table/Organization/:id', {id: '@id'}, {
             /**
              * @ngdoc function
              * @name Organization.get

@@ -35,7 +35,7 @@ angular.module('restDataServices')
      *               v_orga.remove({filter:'id>2'})     löscht alle Einträge mit ID > 2
      */
         function v_orga ($resource) {
-        return $resource('/api/v2/_table/v_orga/:id', {id: '@id'}, {
+        return $resource('/api/v2/db/_table/v_orga/:id', {id: '@id'}, {
             /**
              * @ngdoc function
              * @name v_orga.get

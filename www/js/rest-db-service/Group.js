@@ -35,7 +35,7 @@ angular.module('restDataServices')
      *               Group.remove({filter:'id>2'})     löscht alle Einträge mit ID > 2
      */
         function Group ($resource) {
-        return $resource('/api/v2/_table/Group/:id', {id: '@id'}, {
+        return $resource('/api/v2/db/_table/Group/:id', {id: '@id'}, {
             /**
              * @ngdoc function
              * @name Group.get

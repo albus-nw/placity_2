@@ -35,7 +35,7 @@ angular.module('restDataServices')
      *               FileSharedForOrga.remove({filter:'id>2'})     löscht alle Einträge mit ID > 2
      */
         function FileSharedForOrga ($resource) {
-        return $resource('/api/v2/_table/FileSharedForOrga/:id', {id: '@id'}, {
+        return $resource('/api/v2/db/_table/FileSharedForOrga/:id', {id: '@id'}, {
             /**
              * @ngdoc function
              * @name FileSharedForOrga.get

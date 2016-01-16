@@ -35,7 +35,7 @@ angular.module('restDataServices')
      *               One_Time_Access_Code.remove({filter:'id>2'})     löscht alle Einträge mit ID > 2
      */
         function One_Time_Access_Code ($resource) {
-        return $resource('/api/v2/_table/One_Time_Access_Code/:id', {id: '@id'}, {
+        return $resource('/api/v2/db/_table/One_Time_Access_Code/:id', {id: '@id'}, {
             /**
              * @ngdoc function
              * @name One_Time_Access_Code.get
