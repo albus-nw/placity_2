@@ -1,12 +1,58 @@
 {
   "changedFilesIos": [
     "www\\js\\app.js",
-    "www\\js\\controllers.js"
+    "www\\js\\controllers.js",
+    ".git\\ms-persist.xml",
+    "config.xml",
+    ".git\\index",
+    ".git\\refs\\heads\\master",
+    ".git\\logs\\HEAD",
+    ".git\\logs\\refs\\heads\\master",
+    ".git\\objects\\dd\\43ecf5f047353d0f902c0ef9c287b1fc8e279d",
+    ".git\\objects\\31\\1861455fb5c0affbf4239128dcf5bed5233a11",
+    ".git\\objects\\1f\\f2b8d0470c74c71dacd0ff5688a05f98427389",
+    ".git\\objects\\17\\6ca3134681d8182eb606d550427a785038e396",
+    ".git\\objects\\23\\fdf159ecb39279ea3b4a10a48702fefcb22769",
+    ".git\\objects\\fc\\3185517f471e070ced4e18320bd57acc68a657",
+    ".git\\objects\\f5\\361ea166ca1f80dac281c724ed14facc296a80",
+    ".git\\objects\\11\\55a6ea2e3acd8a9fe836cf1d4528ed4d405043",
+    ".git\\objects\\7d\\cc2ec3b9d0c6ef91f0c57e406f9d854e386c7a",
+    ".git\\objects\\69\\555cc45b25820e7842aa9fb0485600d516aaf4",
+    ".git\\objects\\4e\\1f1ce70cde6fc6b8b0606a55cdce123bd5231e",
+    ".git\\objects\\58\\8eea79c8c217c9c10100be843d433ea4ed560c",
+    ".git\\objects\\df\\63d12f044b9442551b2bf736701c95635c321d",
+    ".git\\objects\\ec\\8c6c81d6d8b106d72a4c25206cceda5575c26c",
+    ".git\\objects\\fb\\0cdea90ba323653403804caada23b3591b565d",
+    ".git\\objects\\73\\87a2b55dd95b90f0358961d1ce391d19af20bf",
+    ".git\\objects\\78\\13e5e3c75444a7e2a4564ee16a2ef1025bcea9",
+    ".git\\objects\\d1\\2923d33aefd83af6103292de0a047cd13ba73c",
+    ".git\\objects\\4e\\eff0b3a55988329df96aa3b702cfdbf46f3b11",
+    ".git\\objects\\b5\\28ea3430dbc7b40c70a0e612ec3a007fa7b673",
+    ".git\\objects\\53\\4771f9b93d3bcd61bb707285318c210ff7f445",
+    ".git\\objects\\df\\e73388f3b5ccc2201def53c22eea3be5eda9d0",
+    ".git\\objects\\3c\\3f4eb7aa879b8ca75ab298b7e8e7126a7d8d5d",
+    ".git\\objects\\cf\\38c41256c7fdcd59601bb1857604bc6834864d",
+    ".git\\objects\\a6\\bb4f8d6c14392825046977aef7dd1936ed5cb6",
+    ".git\\objects\\11\\0a7c905fbdd59a4d798f3e4f03c3cbccca75fd",
+    ".git\\logs\\refs\\remotes\\origin\\master",
+    ".git\\refs\\remotes\\origin\\master",
+    "www\\views\\frageFreitext.html",
+    "www\\views\\options.html"
   ],
-  "deletedFilesIos": [],
-  "addedPluginsIos": [],
+  "deletedFilesIos": [
+    "www\\views\\options.html~RF4a49586.TMP"
+  ],
+  "addedPluginsIos": [
+    "cordova-plugin-dialogs@1.2.0",
+    "cordova-plugin-geolocation@1.0.1",
+    "cordova-plugin-vibration@2.0.0",
+    "cordova-plugin-device@1.1.0",
+    "cordova-plugin-file@3.0.0"
+  ],
   "deletedPluginsIos": [],
-  "changedFiles": [],
+  "changedFiles": [
+    "www\\views\\options.html"
+  ],
   "deletedFiles": [],
   "addedPlugins": [],
   "deletedPlugins": []

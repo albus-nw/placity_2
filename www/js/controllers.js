@@ -110,14 +110,14 @@ controllers.controller("indexCtrl",['$scope', '$location', '$http', function ($s
     };
     var req = {
         method: "GET",
-        url: 'https://df.albus-it.com:80/api/v2/db/_table&api_key=427994563fdc8f1159ff7d04bd00c62ecab42f7bcd3f9e99ae2a5a38f5408d3d',
-        //headers: {
-        //    'X-DreamFactory-API-Key': '427994563fdc8f1159ff7d04bd00c62ecab42f7bcd3f9e99ae2a5a38f5408d3d'
-        //    //'X-DreamFactory-Session-Token' : $cookies.get('session_token')
-        //}
+        url: 'http://df.albus-it.com:80/api/v2/db/_table',
+        headers: {
+            'X-DreamFactory-API-Key': '427994563fdc8f1159ff7d04bd00c62ecab42f7bcd3f9e99ae2a5a38f5408d3d'
+            //'X-DreamFactory-Session-Token' : $cookies.get('session_token')
+        }
     };
     $http(req).then(function (response) {
-        console.log("!!!!!!!!!!!!!!!!!!----------toString----DATA:  " + response.data);
+        console.log("!!!!!!!!!!!!!!!!!!----------toString----DATA:  " + response.data.resource[0].name);
     }, function (response) {
         console.log("!!!!!!!!!!!!!!!!!!-----------------fehler----DATA:  " + response.data);
         //console.log("!!!!!!!!!!!!!!!!!!-----------------fehler----DATA:  " + response.data.toString());
@@ -266,12 +266,12 @@ function writeToFile(fileName, data) {
             fileEntry.createWriter(function (fileWriter) {
                 fileWriter.onwriteend = function (e) {
                     // for real-world usage, you might consider passing a success callback
-                    console.log('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>Write of file "' + fileName + '"" completed.');
+                    console.log('>>>>Write of file "' + fileName + '"" completed.');
                 };
 
                 fileWriter.onerror = function (e) {
                     // you could hook this up with our global error handler, or pass in an error callback
-                    console.log('<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>Write failed: ' + e.toString());
+                    console.log('>>>>>>>Write failed: ' + e.toString());
                 };
 
                 var blob = new Blob([data], { type: 'text/plain' });
@@ -331,6 +331,17 @@ var errorHandler = function (fileName, e) {
             break;
     };
 
-    console.log('<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>Error (' + fileName + '): ' + msg);
+    console.log('Error (' + fileName + '): ' + msg);
 };
 
+controllers.controller('frageFreitextCtrl', ['$scope', function ($scope) {
+    $scope.frage = "Was geht ab?";
+
+}]);
+controllers.directive('frageFreitext', function () {
+    return {
+        restrict: 'E',
+        templateUrl: 'views/frageFreitext.html'
+    };
+
+});
