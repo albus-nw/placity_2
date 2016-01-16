@@ -1,4 +1,4 @@
-﻿var placity = angular.module("placity", ['ngRoute', 'Controllers', 'ui.bootstrap', 'ngResource' ]);
+﻿var placity = angular.module("placity", ['ngRoute', 'Controllers', 'ui.bootstrap' ]);
 placity.constant('DF', 'http://df.albus-it.com');
 placity.constant('APP_API_KEY', '427994563fdc8f1159ff7d04bd00c62ecab42f7bcd3f9e99ae2a5a38f5408d3d');
 
@@ -9,7 +9,7 @@ placity.config(['$routeProvider', '$locationProvider', function ($routeProvider,
         .when('/Optionen', { templateUrl: 'views/options.html', controller: 'optionsCtrl' })
         .when('/Ergebnisse', { template: '<a href="#/.." class="btn btn-primary btn-sm">Zurück</a>' })
         .when('/Profil', { template: '<a href="#/.." class="btn btn-primary btn-sm">Zurück</a>  <div class="menuButtonDiv"> <div ng-repeat="button in buttons">   <a class="{{button.class}}" ng-href={{button.href}}>{{button.value}}</a>   </div>' })
-        .when('/Abmelden', { template: '<div>{{vm.playerName}}  abgemeldet</div> <br /><a href="#/Login" class="btn btn-primary btn-sm">Login</a>', controller: 'logoutCtrl' , controllerAs: 'vm' })
+        .when('/Abmelden', { template: '<div>{{playerName}}  abgemeldet</div> <br /><a href="#/Login" class="btn btn-primary btn-sm">Login</a>', controller: 'logoutCtrl'  })
                                                                 
         .when('/Routen', { templateUrl: 'views/routenmenu.html', controller: 'routenmenuCtrl' })
             //Routenmenü
@@ -32,11 +32,11 @@ placity.config(['$routeProvider', '$locationProvider', function ($routeProvider,
     
 }]);
 
-placity.config(['$resourceProvider', function ($resourceProvider) {
-    // Don't strip trailing slashes from calculated URLs
-    $resourceProvider.defaults.stripTrailingSlashes = false;
-   $http.defaults.headers.common['X-DreamFactory-API-Key'] = APP_API_KEY;
-}]);
+//placity.config(['$resourceProvider', function ($resourceProvider) {
+//    // Don't strip trailing slashes from calculated URLs
+//    $resourceProvider.defaults.stripTrailingSlashes = false;
+//   //$http.defaults.headers.common['X-DreamFactory-API-Key'] = APP_API_KEY;
+//}]);
 
 
 
@@ -50,3 +50,8 @@ placity.config( [
     }
 ]);
 
+placity.config(['$httpProvider', function ($httpProvider) {
+    $httpProvider.defaults.headers.common['X-DreamFactory-API-Key'] = '427994563fdc8f1159ff7d04bd00c62ecab42f7bcd3f9e99ae2a5a38f5408d3d';
+    $httpProvider.defaults.headers.common['Accept'] = 'application/json';
+ //   $httpProvider.defaults.headers.common['X-DreamFactory-Session-Token'] = $cookies.get('session_token');
+}]);

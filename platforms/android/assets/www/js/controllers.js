@@ -83,48 +83,44 @@ controllers.buttons.standort = [
 playerName = null;
 
 controllers.controller("indexCtrl",['$scope', '$location', '$http', function ($scope, $location, $http) {
-    var z = this;
+    var vm = $scope;
+    //vm.playerName = playerName;
     //hier: playerName aus datei lesen, wenn nicht vorhanden, auf login routen und datei schreiben dort
-    var data = readFromFile('profile.json', function (result) {
-        if (result == null) {
-            $location.path('/Login');
-        }
-        else {
-            console.log('<<<<<<<<<<<<Yeeaaayyy!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-            playerName = result.playerName;
-            z.playerName = playerName;
-        }
-    });
-    
-    console.log('<<<<<<<<<<<<<<<<<<<<<<<<<<< adada   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><');
-    console.log('<<<<<<<<<<<<<<<<<<<<<<<<<<< adada ' + data + '  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><');
-    console.log('<<<<<<<<<<<<<<<<<<<<<<<<<<< globaler PlayerName ' + playerName + '  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><');
-    //if (data && data.playerName) {
-    //    console.log('<<<<<<<<<<<<<<<<<<<<<<<<<<<  '+data+'  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><');
-    //    $scope.playerName = data.playerName;
-    //    playerName = data.playerName;
-    //}
-    //if (playerName == null) {
-    //    $location.path('/Login');
+    if (playerName == null) {
+        //in Callback das Ergebnis bearbeiten, "result" der Inhalt der datei
+        readFromFile('profile.json', function (result) {
+            if (result == null) {
+                $location.path('/Login');
+            }
+            else {
+                playerName = JSON.parse(result).playerName;
+                vm.playerName = playerName;
+            }
+        });
+    }
+    vm.playerName = playerName;
+  
+    vm.buttons = controllers.buttons.hauptmenu;
 
-    //}
-    //else {
-    //    $scope.playerName = playerName;
-    //}
-
-    $scope.buttons = controllers.buttons.hauptmenu;
-
-    $scope.beep = function () {
+    vm.beep = function () {
         navigator.notification.beep(1);
     };
-    $scope.vibe = function () {
+    vm.vibe = function () {
         navigator.vibrate(292);
     };
-    
-    $http.get('http://df.albus-it.com:80/api/v2/db/_table').then(function (response) {
-        console.log("!!!!!!!!!!!!!!!!!!---------------------DATA:  " + response.data.toString());
-    },function (response) {
-        console.log("!!!!!!!!!!!!!!!!!!-----------------fehler----DATA:  " + response.data.toString());
+    var req = {
+        method: "GET",
+        url: 'https://df.albus-it.com:80/api/v2/db/_table&api_key=427994563fdc8f1159ff7d04bd00c62ecab42f7bcd3f9e99ae2a5a38f5408d3d',
+        //headers: {
+        //    'X-DreamFactory-API-Key': '427994563fdc8f1159ff7d04bd00c62ecab42f7bcd3f9e99ae2a5a38f5408d3d'
+        //    //'X-DreamFactory-Session-Token' : $cookies.get('session_token')
+        //}
+    };
+    $http(req).then(function (response) {
+        console.log("!!!!!!!!!!!!!!!!!!----------toString----DATA:  " + response.data);
+    }, function (response) {
+        console.log("!!!!!!!!!!!!!!!!!!-----------------fehler----DATA:  " + response.data);
+        //console.log("!!!!!!!!!!!!!!!!!!-----------------fehler----DATA:  " + response.data.toString());
     });
 
 
@@ -144,7 +140,8 @@ controllers.controller("loginCtrl", ['$scope', '$location', function ($scope, $l
 }]);
 
 controllers.controller("logoutCtrl", ['$scope', function ($scope) {
-    $scope.playerName = playerName;
+    var vm = $scope;
+    vm.playerName = playerName+" ";
     playerName = null;
 
 }]);
@@ -300,9 +297,9 @@ function readFromFile(fileName, callback) {
                     // Call it, since we have confirmed it is callable​
                     callback(result);
                 }
-                console.log('adadad<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>vor dem retuern 256 >>>>>>>>>>>>>>akdgkg   ' + this.result);
-              playerName = this.result.playerName;
-                return JSON.parse(this.result);
+                console.log('adadad<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>vor dem retuern 256 >>>>>>>>>>>>>>akdgkg   ' + result +' ja...');
+              
+                //return JSON.parse(this.result);
             };
 
             reader.readAsText(file);
