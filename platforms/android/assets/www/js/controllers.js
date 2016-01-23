@@ -108,20 +108,20 @@ controllers.controller("indexCtrl",['$scope', '$location', '$http', function ($s
     vm.vibe = function () {
         navigator.vibrate(292);
     };
-    var req = {
-        method: "GET",
-        url: 'http://df.albus-it.com:80/api/v2/db/_table',
-        headers: {
-            'X-DreamFactory-API-Key': '427994563fdc8f1159ff7d04bd00c62ecab42f7bcd3f9e99ae2a5a38f5408d3d'
-            //'X-DreamFactory-Session-Token' : $cookies.get('session_token')
-        }
-    };
-    $http(req).then(function (response) {
-        console.log("!!!!!!!!!!!!!!!!!!----------toString----DATA:  " + response.data.resource[0].name);
-    }, function (response) {
-        console.log("!!!!!!!!!!!!!!!!!!-----------------fehler----DATA:  " + response.data);
-        //console.log("!!!!!!!!!!!!!!!!!!-----------------fehler----DATA:  " + response.data.toString());
-    });
+    //var req = {
+    //    method: "GET",
+    //    url: 'http://df.albus-it.com:80/api/v2/db/_table',
+    //    headers: {
+    //        'X-DreamFactory-API-Key': '427994563fdc8f1159ff7d04bd00c62ecab42f7bcd3f9e99ae2a5a38f5408d3d'
+    //        //'X-DreamFactory-Session-Token' : $cookies.get('session_token')
+    //    }
+    //};
+    //$http(req).then(function (response) {
+    //    console.log("!!!!!!!!!!!!!!!!!!----------toString----DATA:  " + response.data.resource[0].name);
+    //}, function (response) {
+    //    console.log("!!!!!!!!!!!!!!!!!!-----------------fehler----DATA:  " + response.data);
+    //    //console.log("!!!!!!!!!!!!!!!!!!-----------------fehler----DATA:  " + response.data.toString());
+    //});
 
 
     }]);
@@ -166,8 +166,11 @@ controllers.controller("routenIDCtrl", ['$scope', '$routeParams', function ($sco
 
 }]);
 
-controllers.controller("optionsCtrl", ['$scope', function ($scope) {
+controllers.controller("optionsCtrl", ['$scope','User', function ($scope,User) {
     $scope.buttons = controllers.buttons.options;
+    $scope.user = User.get({ id: '12' });
+    console.log($scope.user);
+
 }]);
 
 controllers.controller("standortCtrl", ['$scope', function ($scope) {

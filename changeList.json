@@ -1,12 +1,13 @@
 {
   "changedFilesIos": [
-    "www\\js\\controllers.js",
-    "www\\js\\app.js"
+    "www\\views\\options.html"
   ],
   "deletedFilesIos": [],
   "addedPluginsIos": [],
   "deletedPluginsIos": [],
-  "changedFiles": [],
+  "changedFiles": [
+    "www\\views\\options.html"
+  ],
   "deletedFiles": [],
   "addedPlugins": [],
   "deletedPlugins": []

@@ -1,6 +1,6 @@
-﻿var placity = angular.module("placity", ['ngRoute', 'Controllers', 'ui.bootstrap' ]);
-placity.constant('DF', 'http://df.albus-it.com');
-placity.constant('APP_API_KEY', '427994563fdc8f1159ff7d04bd00c62ecab42f7bcd3f9e99ae2a5a38f5408d3d');
+﻿var placity = angular.module("placity", ['ngRoute', 'Controllers', 'ui.bootstrap', 'restDataServices' ]);
+placity.constant('INSTANCE_URL', 'http://df.albus-it.com');
+//placity.constant('APP_API_KEY', '427994563fdc8f1159ff7d04bd00c62ecab42f7bcd3f9e99ae2a5a38f5408d3d');
 
 placity.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
     $routeProvider
@@ -32,11 +32,11 @@ placity.config(['$routeProvider', '$locationProvider', function ($routeProvider,
     
 }]);
 
-//placity.config(['$resourceProvider', function ($resourceProvider) {
-//    // Don't strip trailing slashes from calculated URLs
-//    $resourceProvider.defaults.stripTrailingSlashes = false;
-//   //$http.defaults.headers.common['X-DreamFactory-API-Key'] = APP_API_KEY;
-//}]);
+placity.config(['$resourceProvider', function ($resourceProvider) {
+    // Don't strip trailing slashes from calculated URLs
+    $resourceProvider.defaults.stripTrailingSlashes = false;
+   //$http.defaults.headers.common['X-DreamFactory-API-Key'] = APP_API_KEY;
+}]);
 
 
 
