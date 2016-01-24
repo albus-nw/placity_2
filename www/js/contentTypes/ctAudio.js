@@ -1,49 +1,49 @@
 /**
  * Created by albus on 16.01.2016.
  */
-(function () {
-    'use strict';
+//(function () {
+//    'use strict';
 
-    angular
-        .module('contentTypes')
-        .directive('ctAudioQE', ctAudioQE);
+//    angular
+//        .module('contentTypes')
+//        .directive('ctAudioQE', ctAudioQE);
 
-    ctAudioQE.$inject = [];
+//    ctAudioQE.$inject = [];
 
-    /* @ngInject */
-    function ctAudioQE() {
-        var directive = {
-            bindToController: true,
-            controller: ctAudioCtrlQE,
-            controllerAs: 'vm',
-            restrict: 'E',
-            scope: {}
-        };
-        return directive;
+//    /* @ngInject */
+//    function ctAudioQE() {
+//        var directive = {
+//            bindToController: true,
+//            controller: ctAudioCtrlQE,
+//            controllerAs: 'vm',
+//            restrict: 'E',
+//            scope: {}
+//        };
+//        return directive;
 
 
-    }
+//    }
 
-    ctAudioCtrlQE.$inject = ['Dataservice'];
+//    ctAudioCtrlQE.$inject = ['Dataservice'];
 
-    function ctAudioCtrlQE(Dataservice) {
-        // $scope wird nur zum Vergleich eingefügt (injiziert)
-        var vm = this;
+//    function ctAudioCtrlQE(Dataservice) {
+//        // $scope wird nur zum Vergleich eingefügt (injiziert)
+//        var vm = this;
 
-        vm.audioFiles = [];
+//        vm.audioFiles = [];
 
-        activate();
+//        activate();
 
-        function activate(){
-            //ToDo: this user (aktueller User hier einfügen)
-            return Dataservice.getMediafilesByType('12','audio').then(function(data){
-                vm.audioFiles = data;
-                return vm.audioFiles;
-            })
-        }
-    }
+//        function activate(){
+//            //ToDo: this user (aktueller User hier einfügen)
+//            return Dataservice.getMediafilesByType('12','audio').then(function(data){
+//                vm.audioFiles = data;
+//                return vm.audioFiles;
+//            })
+//        }
+//    }
 
-})();
+//})();
 
 (function () {
     'use strict';
@@ -58,7 +58,7 @@
     function ctAudioApp() {
         var directive = {
             bindToController: true,
-            templateUrl:'app/contentTypes/ctAudioApp.html',
+            templateUrl:'js/contentTypes/ctAudioApp.html',
             controller: ctAudioCtrlApp,
             controllerAs: 'vm',
             restrict: 'E'
@@ -79,7 +79,7 @@
             id_content_type: 1,
             data_obj: {
                 id:14,
-                audiofileurl:"http://143.93.91.92/upload/12/Smetana_-_Die_Moldau.mp3",
+                audiofileurl: "http://143.93.91.92/upload/2016_1_16/Ab%20An%20De%20See.mp3",
                 info:"InfoText"
             },
             pos: 1
@@ -87,9 +87,9 @@
 
         vm.config={
             sources:[
-                {src: $sce.trustAsResourceUrl("http://143.93.91.92/upload/12/Smetana_-_Die_Moldau.mp3"), type: "audio/mpeg"}
+                { src: $sce.trustAsResourceUrl("http://143.93.91.92/upload/2016_1_16/Ab%20An%20De%20See.mp3"), type: "audio/mpeg" }
             ],
-            theme: "bower_components/videogular-themes-default/videogular.css",
+            theme: "js/frameworks/videogular-themes-default/videogular.css",
         };
         }
 

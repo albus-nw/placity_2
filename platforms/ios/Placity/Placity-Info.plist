@@ -6,6 +6,14 @@
     <dict>
       <key>NSAllowsArbitraryLoads</key>
       <true/>
+      <key>NSExceptionDomains</key>
+      <dict>
+        <key>df.albus-it.com</key>
+        <dict>
+          <key>NSExceptionAllowsInsecureHTTPLoads</key>
+          <true/>
+        </dict>
+      </dict>
     </dict>
     <key>CFBundleDevelopmentRegion</key>
     <string>English</string>

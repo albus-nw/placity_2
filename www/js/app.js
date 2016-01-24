@@ -1,4 +1,4 @@
-﻿var placity = angular.module("placity", ['ngRoute', 'Controllers', 'ui.bootstrap', 'restDataServices' ]);
+﻿var placity = angular.module("placity", ['ngRoute', 'Controllers', 'contentTypes', 'ui.bootstrap', 'restDataServices', 'ngAnimate' ]);
 placity.constant('INSTANCE_URL', 'http://df.albus-it.com');
 //placity.constant('APP_API_KEY', '427994563fdc8f1159ff7d04bd00c62ecab42f7bcd3f9e99ae2a5a38f5408d3d');
 
@@ -7,7 +7,7 @@ placity.config(['$routeProvider', '$locationProvider', function ($routeProvider,
         .when('/', { templateUrl: 'views/hauptmenu.html', controller: 'indexCtrl' })
             //Hauptmenü
         .when('/Optionen', { templateUrl: 'views/options.html', controller: 'optionsCtrl' })
-        .when('/Ergebnisse', { template: '<a href="#/.." class="btn btn-primary btn-sm">Zurück</a>' })
+        .when('/Ergebnisse', { template: '<a href="#/.." class="btn btn-primary btn-sm">Zurück</a>  <div>   <ct-audio-app></ct-audio-app>         </div>' })
         .when('/Profil', { template: '<a href="#/.." class="btn btn-primary btn-sm">Zurück</a>  <div class="menuButtonDiv"> <div ng-repeat="button in buttons">   <a class="{{button.class}}" ng-href={{button.href}}>{{button.value}}</a>   </div>' })
         .when('/Abmelden', { template: '<div>{{playerName}}  abgemeldet</div> <br /><a href="#/Login" class="btn btn-primary btn-sm">Login</a>', controller: 'logoutCtrl'  })
                                                                 

@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html ng-csp="">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+
+    <!--
+        Passen Sie die Inhaltssicherheitsrichtlinie im META-Tag unten nach Bedarf an. Fügen Sie "default-src" die Option "unsafe-inline" hinzu, um Inline-JavaScript zu aktivieren.
+        Details finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=617521".
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src * 'self' 'unsafe-inline'; script-src * 'self' 'unsafe-inline' 'unsafe-eval'" />
+
+    <title>Placity</title>
+    
+    <!-- BlankCordovaApp1-Verweise -->
+    <link href="css/index.css" rel="stylesheet" />
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+    <link href="css/bootstrap-theme.css" rel="stylesheet" />
+
+    <!--für win8 security policy bzgl dynamic code dingens
+    https://github.com/MSOpenTech/winstore-jscompat/blob/master/winstore-jscompat.js -->
+    <!--<script src="scripts/frameworks/winstore-jscompat.js"></script>-->
+    <script src="js/frameworks/jquery.js"></script>
+    <script src="js/frameworks/angular.js"></script>
+    <script src="js/frameworks/angular-route.min.js"></script>
+    <!--<script src="js/frameworks/ui-bootstrap.js"></script>-->
+    <script src="js/frameworks/ui-bootstrap-tpls.js"></script>
+
+    <script src="js/osm/OpenLayers.debug.js"></script>
+
+    
+    <script src="js/controllers.js"></script>
+    <script src="js/app.js"></script>
+    <!--<script src="device.js"></script>
+    <script src="vibration.js"></script>-->
+   <!-- <script src="plugins/cordova-plugin-vibration/tests/tests.js"></script>-->
+<script src="js/index.js"></script>
+   
+</head>
+<body >
+<div> Jooooooooooooooooooo!!! <br />ccc</div>
+    <div ng-view class="view-frame"></div>
+    <!-- Cordova-Verweis, wird Ihrer App beim Erstellen hinzugefügt. -->
+    <script src="cordova.js"></script>
+    <script src="js/platformOverrides.js"></script>
+    
+    
+    
+</body>
+</html>

@@ -35,7 +35,7 @@ angular.module('restDataServices')
      *               Mediafile.remove({filter:'id>2'})     löscht alle Einträge mit ID > 2
      */
         function Mediafile ($resource) {
-        return $resource('/api/v2/db/_table/Mediafile/:id', {id: '@id'}, {
+        return $resource('http://df.albus-it.com/api/v2/db/_table/Mediafile/:id', {id: '@id'}, {
             /**
              * @ngdoc function
              * @name Mediafile.get

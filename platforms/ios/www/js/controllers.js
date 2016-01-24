@@ -76,8 +76,6 @@ controllers.buttons.standort = [
     }
 ];
 
-//console.log(controllers.buttons);
-
 
 //global playerName
 playerName = null;
@@ -98,7 +96,7 @@ controllers.controller("indexCtrl",['$scope', '$location', '$http', function ($s
             }
         });
     }
-    //z.playerName = playerName;
+    vm.playerName = playerName;
   
     vm.buttons = controllers.buttons.hauptmenu;
 
@@ -108,12 +106,6 @@ controllers.controller("indexCtrl",['$scope', '$location', '$http', function ($s
     vm.vibe = function () {
         navigator.vibrate(292);
     };
-    
-    $http.get('http://df.albus-it.com:80/api/v2/db/_table').then(function (response) {
-        console.log("!!!!!!!!!!!!!!!!!!---------------------DATA:  " + response.data.toString());
-    },function (response) {
-        console.log("!!!!!!!!!!!!!!!!!!-----------------fehler----DATA:  " + response.data.toString());
-    });
 
 
     }]);
@@ -132,7 +124,8 @@ controllers.controller("loginCtrl", ['$scope', '$location', function ($scope, $l
 }]);
 
 controllers.controller("logoutCtrl", ['$scope', function ($scope) {
-    $scope.playerName = playerName;
+    var vm = $scope;
+    vm.playerName = playerName+" ";
     playerName = null;
 
 }]);
@@ -157,8 +150,11 @@ controllers.controller("routenIDCtrl", ['$scope', '$routeParams', function ($sco
 
 }]);
 
-controllers.controller("optionsCtrl", ['$scope', function ($scope) {
+controllers.controller("optionsCtrl", ['$scope','User', function ($scope,User) {
     $scope.buttons = controllers.buttons.options;
+    $scope.user = User.get({ id: '12' });
+    console.log($scope.user);
+
 }]);
 
 controllers.controller("standortCtrl", ['$scope', function ($scope) {
@@ -257,12 +253,12 @@ function writeToFile(fileName, data) {
             fileEntry.createWriter(function (fileWriter) {
                 fileWriter.onwriteend = function (e) {
                     // for real-world usage, you might consider passing a success callback
-                    console.log('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>Write of file "' + fileName + '"" completed.');
+                    console.log('>>>>Write of file "' + fileName + '"" completed.');
                 };
 
                 fileWriter.onerror = function (e) {
                     // you could hook this up with our global error handler, or pass in an error callback
-                    console.log('<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>Write failed: ' + e.toString());
+                    console.log('>>>>>>>Write failed: ' + e.toString());
                 };
 
                 var blob = new Blob([data], { type: 'text/plain' });
@@ -322,6 +318,6 @@ var errorHandler = function (fileName, e) {
             break;
     };
 
-    console.log('<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>Error (' + fileName + '): ' + msg);
+    console.log('Error (' + fileName + '): ' + msg);
 };
 

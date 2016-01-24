@@ -1,12 +1,15 @@
 {
   "changedFilesIos": [
-    "www\\views\\options.html"
+    "www\\js\\contenttypes\\ctFrageFreitext.js",
+    "www\\js\\contenttypes\\ctFrageFreitext.html",
+    "www\\js\\contenttypes\\ctaudio.js",
+    "www\\index.html"
   ],
   "deletedFilesIos": [],
   "addedPluginsIos": [],
   "deletedPluginsIos": [],
   "changedFiles": [
-    "www\\views\\options.html"
+    "www\\index.html"
   ],
   "deletedFiles": [],
   "addedPlugins": [],

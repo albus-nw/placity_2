@@ -19,17 +19,17 @@
 
     ])
 
-    .config([
-        '$routeProvider',
+    //.config([
+    //    '$routeProvider',
 
-        function ($routeProvider) {
-            $routeProvider
-                .when('/content', {
-                    title    	: 'TEST',
-                    templateUrl	: 'app/contentTypes/test.html',
-                    controller 	: 'testCtrl'
-                })
-        }
-    ])
+    //    function ($routeProvider) {
+    //        $routeProvider
+    //            .when('/content', {
+    //                title    	: 'TEST',
+    //                templateUrl	: 'js/contentTypes/test.html',
+    //                controller 	: 'testCtrl'
+    //            })
+    //    }
+    //])
 
 })();
