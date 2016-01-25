@@ -1,15 +1,9 @@
 {
-  "changedFilesIos": [
-    "www\\js\\app.js",
-    "www\\index.html"
-  ],
+  "changedFilesIos": [],
   "deletedFilesIos": [],
   "addedPluginsIos": [],
   "deletedPluginsIos": [],
-  "changedFiles": [
-    "www\\js\\app.js",
-    "www\\index.html"
-  ],
+  "changedFiles": [],
   "deletedFiles": [],
   "addedPlugins": [],
   "deletedPlugins": []

@@ -1,10 +1,10 @@
 ﻿
 <div >
-    <p style="font-size: large; color:blue;">Hallo {{playerName}}! <br /> <br /> <br /></p>
+    <p style="font-size: large; color:blue;">Hallo {{vm.playerName}}! <br /> <br /> <br /></p>
  
     
     <div class="menuButtonDiv">
-        <div ng-repeat="button in buttons">
+        <div ng-repeat="button in vm.buttons">
             <a class="{{button.class}}" ng-href="{{button.href}}" >{{button.value}}</a>
         </div>
     </div>

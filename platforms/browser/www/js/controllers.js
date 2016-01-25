@@ -76,56 +76,48 @@ controllers.buttons.standort = [
     }
 ];
 
+//console.log(controllers.buttons);
+
 
 //global playerName
 playerName = null;
 
-controllers.controller("indexCtrl",['$scope', '$location', '$http', function ($scope, $location, $http) {
-    var vm = $scope;
-    //vm.playerName = playerName;
+controllers.controller("indexCtrl",['$scope', '$location', function ($scope, $location) {
+    $scope.playerName = "";
     //hier: playerName aus datei lesen, wenn nicht vorhanden, auf login routen und datei schreiben dort
-    if (playerName == null) {
-        //in Callback das Ergebnis bearbeiten, "result" der Inhalt der datei
-        readFromFile('profile.json', function (result) {
-            if (result == null) {
-                $location.path('/Login');
-            }
-            else {
-                playerName = JSON.parse(result).playerName;
-                vm.playerName = playerName;
-            }
-        });
-    }
-    vm.playerName = playerName;
-  
-    vm.buttons = controllers.buttons.hauptmenu;
+    if (!playerName) {
+        $location.path('/Login');
 
-    vm.beep = function () {
+    }
+    else {
+        $scope.playerName = playerName;
+    }
+
+    $scope.buttons = controllers.buttons.hauptmenu;
+
+    $scope.beep = function () {
         navigator.notification.beep(1);
     };
-    vm.vibe = function () {
+    $scope.vibe = function () {
         navigator.vibrate(292);
     };
-
-
-    }]);
+  
+}]);
 
 controllers.controller("loginCtrl", ['$scope', '$location', function ($scope, $location) {
-    var vm = $scope;
-    vm.login = function () {
-        playerName = vm.playerName + "";
-        writeToFile('profile.json', { playerName: vm.playerName + "" });
+    
+    $scope.login = function () {
+        playerName = $scope.playerName + "";
         $location.path('/');
     };
-    vm.noLogin = function () {
+    $scope.noLogin = function () {
         playerName = "noName";
         $location.path('/');
     };
 }]);
 
 controllers.controller("logoutCtrl", ['$scope', function ($scope) {
-    var vm = $scope;
-    vm.playerName = playerName+" ";
+    $scope.playerName = playerName;
     playerName = null;
 
 }]);
@@ -150,11 +142,8 @@ controllers.controller("routenIDCtrl", ['$scope', '$routeParams', function ($sco
 
 }]);
 
-controllers.controller("optionsCtrl", ['$scope','User', function ($scope,User) {
+controllers.controller("optionsCtrl", ['$scope', function ($scope) {
     $scope.buttons = controllers.buttons.options;
-    $scope.user = User.get({ id: '12' });
-    console.log($scope.user);
-
 }]);
 
 controllers.controller("standortCtrl", ['$scope', function ($scope) {
@@ -242,82 +231,3 @@ controllers.controller('ScanCtrl', ['$rootScope', '$scope', '$location', functio
     console.log($scope.result + "wwwwwwwwwwwwww");
     
 }]);
-
-
-//in Dateisystem schreiben
-////https://www.neontribe.co.uk/cordova-file-plugin-examples/
-function writeToFile(fileName, data) {
-    data = JSON.stringify(data, null, '\t');
-    window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (directoryEntry) {
-        directoryEntry.getFile(fileName, { create: true }, function (fileEntry) {
-            fileEntry.createWriter(function (fileWriter) {
-                fileWriter.onwriteend = function (e) {
-                    // for real-world usage, you might consider passing a success callback
-                    console.log('>>>>Write of file "' + fileName + '"" completed.');
-                };
-
-                fileWriter.onerror = function (e) {
-                    // you could hook this up with our global error handler, or pass in an error callback
-                    console.log('>>>>>>>Write failed: ' + e.toString());
-                };
-
-                var blob = new Blob([data], { type: 'text/plain' });
-                fileWriter.write(blob);
-            }, errorHandler.bind(null, fileName));
-        }, errorHandler.bind(null, fileName));
-    }, errorHandler.bind(null, fileName));
-};
-
-/**
- * @param {url} filename 
- */
-function readFromFile(fileName, callback) {
-    var pathToFile = cordova.file.dataDirectory + fileName;
-    window.resolveLocalFileSystemURL(pathToFile, function (fileEntry) {
-        fileEntry.file(function (file) {
-            var reader = new FileReader();
-
-            reader.onloadend = function (e) {
-                var result = this.result;
-                // Make sure the callback is a function​
-                if (typeof callback === "function") {
-                    // Call it, since we have confirmed it is callable​
-                    callback(result);
-                }
-                console.log('adadad<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>vor dem retuern 256 >>>>>>>>>>>>>>akdgkg   ' + result +' ja...');
-              
-                //return JSON.parse(this.result);
-            };
-
-            reader.readAsText(file);
-        }, errorHandler.bind(null, fileName));
-    }, errorHandler.bind(null, fileName));
-};
-
-var errorHandler = function (fileName, e) {
-    var msg = '';
-
-    switch (e.code) {
-        case FileError.QUOTA_EXCEEDED_ERR:
-            msg = 'Storage quota exceeded';
-            break;
-        case FileError.NOT_FOUND_ERR:
-            msg = 'File not found';
-            break;
-        case FileError.SECURITY_ERR:
-            msg = 'Security error';
-            break;
-        case FileError.INVALID_MODIFICATION_ERR:
-            msg = 'Invalid modification';
-            break;
-        case FileError.INVALID_STATE_ERR:
-            msg = 'Invalid state';
-            break;
-        default:
-            msg = 'Unknown error';
-            break;
-    };
-
-    console.log('Error (' + fileName + '): ' + msg);
-};
-
