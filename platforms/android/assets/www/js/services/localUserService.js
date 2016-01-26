@@ -25,6 +25,7 @@
 
         };
 
+        //ToDo read/write file als eigenen service
 
         function readFromFile(fileName, callback) {
             var pathToFile = cordova.file.dataDirectory + fileName;

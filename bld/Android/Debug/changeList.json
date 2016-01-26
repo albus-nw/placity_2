@@ -1,14 +1,19 @@
 {
   "changedFilesIos": [
-    "www\\js\\services\\localUserService.js",
-    "www\\js\\controllers\\indexCtrl.js"
+    "www\\js\\contentTypes\\ctImage.js",
+    "www\\js\\contentTypes\\ctImage.html",
+    ".git\\ms-persist.xml",
+    "www\\index.html",
+    "www\\views\\hauptmenu.html",
+    "www\\views\\routenmenu.html"
   ],
-  "deletedFilesIos": [],
+  "deletedFilesIos": [
+    "www\\js\\contentTypes\\1bs1pw30.enq~"
+  ],
   "addedPluginsIos": [],
   "deletedPluginsIos": [],
   "changedFiles": [
-    "www\\js\\services\\localUserService.js",
-    "www\\js\\controllers\\indexCtrl.js"
+    "www\\js\\contentTypes\\ctImage.js"
   ],
   "deletedFiles": [],
   "addedPlugins": [],
