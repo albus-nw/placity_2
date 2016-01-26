@@ -1,39 +1,12 @@
 {
   "changedFilesIos": [
-    "www\\js\\app.js",
-    ".git\\ms-persist.xml",
-    "www\\index.html",
-    "www\\views\\routenmenu.html",
-    "www\\views\\scan.html",
-    "www\\js\\controllers\\controllers.js",
-    "www\\js\\controllers\\scanCtrl.js",
-    "www\\js\\controllers\\routenmenuCtrl.js",
-    "www\\js\\controllers\\indexCtrl.js",
-    "www\\views\\hauptmenu.html",
-    "www\\js\\controllers\\routenIDCtrl.js",
-    "www\\js\\controllers\\optionsCtrl.js",
-    "www\\js\\controllers\\standortCtrl.js",
-    "www\\views\\routenID.html",
-    "www\\views\\standort.html",
-    "www\\js\\controllers\\config.js"
+    "www\\js\\services\\localUserService.js",
+    "www\\js\\controllers\\indexCtrl.js"
   ],
-  "deletedFilesIos": [
-    "www\\js\\controllers\\controller.js",
-    "www\\js\\controllers.js",
-    "www\\js\\controllers\\scan.js",
-    "www\\js\\controllers\\routenmenu.js"
-  ],
+  "deletedFilesIos": [],
   "addedPluginsIos": [],
   "deletedPluginsIos": [],
-  "changedFiles": [
-    "www\\js\\controllers\\routenIDCtrl.js",
-    "www\\js\\controllers\\optionsCtrl.js",
-    "www\\js\\controllers\\config.js",
-    ".git\\ms-persist.xml",
-    "www\\js\\controllers\\controllers.js",
-    "www\\js\\app.js",
-    "www\\index.html"
-  ],
+  "changedFiles": [],
   "deletedFiles": [],
   "addedPlugins": [],
   "deletedPlugins": []

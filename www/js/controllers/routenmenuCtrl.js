@@ -7,16 +7,7 @@
     angular
         .module('placity.controllers')
         .controller('routenmenuCtrl', routenmenuCtrl)
-         .config(config);
-
-    function config($routeProvider) {
-        $routeProvider
-             .when('/Routen', {
-                 templateUrl: 'views/routenmenu.html',
-                 controller: 'routenmenuCtrl',
-                 controllerAs: 'vm'
-             })
-    }
+    
 
     //routenmenuCtrl.$inject = []; 
 

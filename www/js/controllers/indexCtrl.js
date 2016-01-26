@@ -8,9 +8,9 @@
         .module('placity.controllers')
         .controller('indexCtrl', indexCtrl);
 
-    indexCtrl.$inject = [ '$http','$location']; 
+    indexCtrl.$inject = [ '$http','$location', 'localUserService']; 
 
-    function indexCtrl($location, $http) {
+    function indexCtrl($location, $http, localUserService) {
             var vm = this;
             ////vm.playerName = playerName;
             ////hier: playerName aus datei lesen, wenn nicht vorhanden, auf login routen und datei schreiben dort
@@ -26,7 +26,7 @@
             //        }
             //    });
             //}     //TODO: playerName aus file lesen als service realisieren
-            vm.playerName = 'Niemand';
+            vm.playerName = localUserService.getData().playerName;
   
             vm.buttons = [
                                 {
@@ -53,7 +53,13 @@
                                     "value": "Abmelden",
                                     "href": "#/Abmelden",
                                     "class": "btn btn-primary menuButton",
+                                },
+                                {
+                                    "value": "Lokal Login",
+                                    "href": "#/Login",
+                                    "class": "btn btn-primary menuButton",
                                 }
+
                       ];
 
     }

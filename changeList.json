@@ -1,5 +1,8 @@
 {
-  "changedFilesIos": [],
+  "changedFilesIos": [
+    "www\\js\\services\\localUserService.js",
+    "www\\js\\controllers\\indexCtrl.js"
+  ],
   "deletedFilesIos": [],
   "addedPluginsIos": [],
   "deletedPluginsIos": [],
