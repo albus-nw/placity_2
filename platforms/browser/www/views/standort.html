@@ -1,0 +1,15 @@
+﻿
+
+<div>
+   <!--vm.geolocation: {{vm.geolocation}}-->
+    <br />
+    vm.lat: {{vm.lat}}
+</div>
+<div ng-repeat="button in vm.buttons">
+    <!--   -.-    -->
+    <a class="{{button.class}}" ng-click="vm.getPos()">{{button.value}}</a>    
+</div>
+
+<div id="map" style="border: 5px dotted red"></div>
+
+<a href="#/.." class="btn btn-primary btn-sm">Zurück</a>
