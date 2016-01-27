@@ -41,7 +41,16 @@
         vm.answerGiven = "";
        
         vm.test = function () {
-            console.log(vm.answerGiven);
+            if (vm.answerGiven == vm.data.answer) {
+                console.log("richtig");
+                vm.answerGiven = "Richtig!";
+                
+                }
+            else {
+                console.log("falsch");
+                vm.answerGiven = "Falsch!";
+            }
+
     }
 
    
