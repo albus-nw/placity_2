@@ -1,4 +1,4 @@
-﻿/*
+/*
 
   OpenLayers.js -- OpenLayers Map Viewer Library
 

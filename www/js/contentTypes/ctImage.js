@@ -20,11 +20,12 @@
         return directive;
     }
 
-
-    function ctImageCtrl() {
+    ctImageCtrl.$inject = ['$scope'];
+    /* @ngInject */
+    function ctImageCtrl($scope) {
         
-        var vm = this;
-        vm.data = {
+        //var vm = this;
+        $scope.data = {
             src: 'http://143.93.91.92/philipp/avatar1.jpg',
             alt: '...'
         };

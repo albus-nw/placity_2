@@ -1,8 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.cordova.placity" version="0.2.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="AndroidPersistentFileLocation" value="Internal" />
-    <vs:plugin name="cordova-plugin-splashscreen" version="3.0.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" />
-    <icon src="img/P.svg" />
     <name>Placity</name>
     <description>Placity</description>
     <author email="dev@cordova.apache.org" href="http://cordova.io">FH Bingen - Proj SS15</author>
@@ -34,4 +32,6 @@
     <preference name="deployment-target" value="9.2" />
     <access origin="*" subdomains="true" />
     <icon src="www/img/logo.png" />
+    <vs:plugin name="cordova-plugin-file" version="3.0.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" />
+    <access origin="http://df.albus-it.com/*" />
 </widget>
