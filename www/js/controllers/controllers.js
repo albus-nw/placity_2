@@ -9,42 +9,6 @@
 
 })();
 
-////global playerName
-//playerName = null;
-
-
-
-//controllers.controller("loginCtrl", ['$scope', '$location', function ($scope, $location) {
-//    var vm = $scope;
-//    vm.login = function () {
-//        playerName = vm.playerName + "";
-//        writeToFile('profile.json', { playerName: vm.playerName + "" });
-//        $location.path('/');
-//    };
-//    vm.noLogin = function () {
-//        playerName = "noName";
-//        $location.path('/');
-//    };
-//}]);
-
-//controllers.controller("logoutCtrl", ['$scope', function ($scope) {
-//    var vm = $scope;
-//    vm.playerName = playerName+" ";
-//    playerName = null;
-
-//}]);
-
-
-
-//controllers.controller("optionsCtrl", ['$scope','User', function ($scope,User) {
-//    $scope.buttons = controllers.buttons.options;
-//    $scope.user = User.get({ id: '12' });
-//    console.log($scope.user);
-
-//}]);
-
-
-
 
 ////in Dateisystem schreiben
 //////https://www.neontribe.co.uk/cordova-file-plugin-examples/
