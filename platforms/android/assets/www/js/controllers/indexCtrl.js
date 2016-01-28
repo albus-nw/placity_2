@@ -8,7 +8,7 @@
         .module('placity.controllers')
         .controller('indexCtrl', indexCtrl);
 
-    indexCtrl.$inject = [ '$http','$location', 'localUserService']; 
+    indexCtrl.$inject = ['$http','$location', 'localUserService']; 
 
     function indexCtrl($location, $http, localUserService) {
             var vm = this;
@@ -27,8 +27,7 @@
             //    });
         //}     //TODO: playerName aus file lesen als service realisieren
 
-            vm.playerName = '';
-            vm.$apply(function () { vm.playerName = localUserService.getData().playerName; });
+           vm.playerName = localUserService.getData().playerName;
             
   
             vm.buttons = [
