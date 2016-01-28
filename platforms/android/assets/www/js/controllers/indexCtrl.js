@@ -25,8 +25,11 @@
             //            vm.playerName = playerName;
             //        }
             //    });
-            //}     //TODO: playerName aus file lesen als service realisieren
-            vm.playerName = localUserService.getData().playerName;
+        //}     //TODO: playerName aus file lesen als service realisieren
+
+            vm.playerName = '';
+            vm.$apply(function () { vm.playerName = localUserService.getData().playerName; });
+            
   
             vm.buttons = [
                                 {

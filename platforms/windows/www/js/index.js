@@ -1,4 +1,4 @@
-ï»¿/*
+/*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -38,7 +38,7 @@ var app = {
         navigator.notification.beep(1);
         navigator.vibrate(7);
 
-        //angular manuel bootstrappen, "ng-app" im body tag dafï¿½r entfeï¿½rnt
+        //angular manuel bootstrappen, "ng-app" im body tag dafür entfe´rnt
         var domElement = document.querySelector('body');
         angular.bootstrap(domElement, ['placity']);
     },

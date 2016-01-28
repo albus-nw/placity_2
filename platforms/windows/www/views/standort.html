@@ -1,13 +1,11 @@
 ﻿
-
 <div>
    <!--vm.geolocation: {{vm.geolocation}}-->
     <br />
     vm.lat: {{vm.lat}}
 </div>
-<div ng-repeat="button in vm.buttons">
-    <!--   -.-    -->
-    <a class="{{button.class}}" ng-click="vm.getPos()">{{button.value}}</a>    
+<div >
+    <a class="btn btn-primary btn-sm" ng-click="vm.getPos()">Aktualisieren</a>    
 </div>
 
 <div id="map" style="border: 5px dotted red"></div>
