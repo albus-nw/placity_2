@@ -14,7 +14,8 @@
             templateUrl: 'js/contentTypes/ctImage.html',
             controller: ctImageCtrl,
             controllerAs: 'vm',
-            restrict: 'E'
+            restrict: 'E',
+            scope: { }
         };
 
         return directive;
