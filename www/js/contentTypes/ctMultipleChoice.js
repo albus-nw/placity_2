@@ -42,12 +42,12 @@
        
         vm.test = function () {
             if (vm.answerGiven == vm.data.answer) {
-                console.log("richtig");
+               // console.log("richtig");
                 vm.answerGiven = "Richtig!";
                 
                 }
             else {
-                console.log("falsch");
+              //  console.log("falsch");
                 vm.answerGiven = "Falsch!";
             }
 

@@ -28,7 +28,7 @@
         
         var vm = this;
         vm.data = {
-            text: 'Hier befindet<p> sich</p> <h1>Html</h1>-text<p> der</p> vom Nutzer als contenttype text angelegt wurde'
+            text: "Hier befindet<p> sich</p> <h1>Html</h1>-text<p> der</p> vom Nutzer als contenttype text angelegt wurde"
                     };
 
     }
