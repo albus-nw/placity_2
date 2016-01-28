@@ -16,7 +16,8 @@
             templateUrl: 'js/contentTypes/ctVideo.html',
             controller: ContenttypeVideoController,
             controllerAs: 'vm',
-            restrict: 'E'
+            restrict: 'E',
+            scope: { }
         };
         return directive;
 
@@ -28,7 +29,7 @@
         $scope.description = "-";
         $scope.fileSrc = "";
 
-        $scope.j = { "res": { "contenttype": "video", "src": "https://upload.wikimedia.org/wikipedia/commons/transcoded/8/87/Schlossbergbahn.webm/Schlossbergbahn.webm.480p.webm", "description": "Eine Bahn frt einen Berg hoch", "autoplay": true } };
+        $scope.j = { "res": { "contenttype": "video", "src": "https://upload.wikimedia.org/wikipedia/commons/transcoded/8/87/Schlossbergbahn.webm/Schlossbergbahn.webm.480p.webm", "description": "Eine Bahn faehrt einen Berg hoch", "autoplay": true } };
 
         $scope.playVideo = function () {
             console.log("play");

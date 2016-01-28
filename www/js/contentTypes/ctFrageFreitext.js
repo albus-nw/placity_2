@@ -29,17 +29,20 @@
     function ctFrageFreitextCtrl() {
         var vm = this;
         vm.answerGiven="";
+        vm.message="";
         vm.content = {
-            frage: "Alles fresh?",
-            answer: "ja"
+            frage: "Wann wurde Rom gegründet ?",
+            answer: "753"
         };
         
         vm.teste = function () {
             if (vm.content.answer == vm.answerGiven) {
                 console.log("Richtig!");
+                vm.message="Richtig";
             }
             else {
                 console.log("Falsch!");
+                vm.message="Falsch";
             }
         }
     }

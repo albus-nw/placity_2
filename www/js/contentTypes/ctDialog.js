@@ -32,10 +32,10 @@
             "avatar1": "http://143.93.91.92/philipp/avatar1.jpg",
             "avatar2": "http://143.93.91.92/philipp/avatar2.jpg",
             "texte": {
-                "text1": "<p>Hi du</p>",
-                "text2": "<p>Alles klar soweit?</p>",
-                "text3": "<p>Grüße dich</p>",
-                "text4": "<p>Alles bestens, kann nicht klagen</p>"
+                "text1": "<h1>Hi Avatar2</h1>",
+                "text2": "<h2>Ein Hallo zurück ;)</h2>",
+                "text3": "<h3>Geht es dir gut?</h3>",
+                "text4": "<h4>Alles bestens, kann nicht klagen</h4>"
             }
 
         };

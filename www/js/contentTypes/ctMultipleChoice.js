@@ -28,14 +28,14 @@
         
         var vm = this;
         vm.data = {
-            "text": "Hier befindet sich eine <h1>Html Frage:</h1><p>Wählen Sie:</p>",
-            "answer": "2",
+            "text": "<p>Wann wurde Rom gegründet ?</p>",
+            "answer": "753",
             "choice": {
-                "choice1": "1",
-                "choice2": "2",
-                "choice3": "3",
-                "choice4": "4",
-                "choice5": "5"
+                "choice1": "357",
+                "choice2": "17",
+                "choice3": "753",
+                "choice4": "166",
+                "choice5": "1652"
             }
         };
         vm.answerGiven = "";
