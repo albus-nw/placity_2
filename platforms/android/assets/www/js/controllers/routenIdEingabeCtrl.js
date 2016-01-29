@@ -12,10 +12,11 @@
     routenIdEingabeCtrl.$inject = ['$scope', '$location'];
 
     function routenIdEingabeCtrl($scope, $location) {
-        $scope.routenID = '';
-        $scope.submit = function () {
-            console.log("routenID: " + $scope.routenID);
-            $location.path('/Routen/' + $scope.routenID);
+        var vm = this;
+        vm.routenID = '';
+        vm.submit = function () {
+            console.log("routenID: " + vm.routenID);
+            $location.path('/Routen/' + vm.routenID);
         };
 
         

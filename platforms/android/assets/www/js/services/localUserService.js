@@ -18,8 +18,7 @@
                         if (result) {
                             localPlayer = JSON.parse(result);
                             console.log("ääääääälocalPlayer[field]:  " + localPlayer[field]);
-                            // console.log("result: " + result + "#############localPlayer: " + localPlayer + "#######localPlayer." + field + " : " + localPlayer.playerName + "#######result." + field + " : " + result.field);
-                            //angular.element($('#hauptmenu')).scope().$apply();
+                           
                             return localPlayer[field];
                         }
                         else {
