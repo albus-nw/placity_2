@@ -8,12 +8,13 @@
         .module('placity.controllers')
         .controller('indexCtrl', indexCtrl);
 
-    indexCtrl.$inject = ['$http','$location', 'localUserService']; 
+    indexCtrl.$inject = ['$scope','$http','$location', 'localUserService']; 
 
-    function indexCtrl($location, $http, localUserService) {
+    function indexCtrl($scope, $location, $http, localUserService) {
+        /* jshint validthis:true */
         var vm = this;
-            vm.playerName = '';
-            vm.buttons = [
+        vm.playerName = '';
+        vm.buttons = [
                                 {
                                     "value": "Ergebnisse",
                                     "href": "#/Ergebnisse",
@@ -45,13 +46,15 @@
                                     "class": "btn btn-primary menuButton",
                                 }
 
-                      ];
-            
-            activate();
+            ];
+        $scope.$evalAsync(activate);
+          // $scope.$apply(function () { vm.playerName = localUserService.getData("playerName"); });
+           // activate();
 
             function activate() {
-                vm.playerName = localUserService.getData().playerName;
-
+                vm.playerName = localUserService.getData("playerName");
+               
+                
             }
     }
 })();

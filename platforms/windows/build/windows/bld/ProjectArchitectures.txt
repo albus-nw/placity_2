@@ -1,0 +1,2 @@
+B:\workspace\placity\platforms\windows\CordovaApp.Windows.jsproj;neutral
+B:\workspace\placity\plugins\phonegap-plugin-barcodescanner\src\windows\lib\WinRTBarcodeReader.csproj;neutral

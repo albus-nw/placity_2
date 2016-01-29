@@ -1,0 +1,12 @@
+﻿<br />
+<a href="#/Routen" class="btn btn-primary btn-sm">Zurück</a>
+<div>
+    Routen suchen:
+    <div>
+        <input type="text" ng-model="suchbegriff" placeholder="Suchebegriff" />
+        <a class="btn btn-primary btn-sm" ng-click="show = true">Suchen</a>
+    </div>
+    <div ng-show="show">
+        Suche nach {{suchbegriff}} ergab 0 Treffer
+    </div>
+</div>

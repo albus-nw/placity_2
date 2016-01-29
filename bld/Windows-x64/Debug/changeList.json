@@ -1,0 +1,20 @@
+{
+  "changedFilesIos": [
+    "plugins\\phonegap-plugin-barcodescanner\\src\\windows\\lib\\obj\\debug\\resources.resfiles.intermediate",
+    "plugins\\phonegap-plugin-barcodescanner\\src\\windows\\lib\\obj\\debug\\pri.resfiles.intermediate",
+    "plugins\\phonegap-plugin-barcodescanner\\src\\windows\\lib\\obj\\debug\\layout.resfiles.intermediate",
+    "plugins\\phonegap-plugin-barcodescanner\\src\\windows\\lib\\obj\\debug\\priconfig.xml.intermediate"
+  ],
+  "deletedFilesIos": [],
+  "addedPluginsIos": [],
+  "deletedPluginsIos": [],
+  "changedFiles": [
+    "plugins\\phonegap-plugin-barcodescanner\\src\\windows\\lib\\obj\\debug\\resources.resfiles.intermediate",
+    "plugins\\phonegap-plugin-barcodescanner\\src\\windows\\lib\\obj\\debug\\pri.resfiles.intermediate",
+    "plugins\\phonegap-plugin-barcodescanner\\src\\windows\\lib\\obj\\debug\\layout.resfiles.intermediate",
+    "plugins\\phonegap-plugin-barcodescanner\\src\\windows\\lib\\obj\\debug\\priconfig.xml.intermediate"
+  ],
+  "deletedFiles": [],
+  "addedPlugins": [],
+  "deletedPlugins": []
+}

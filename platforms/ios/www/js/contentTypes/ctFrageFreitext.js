@@ -7,7 +7,7 @@
 
     angular
         .module('contentTypes')
-        .directive('ctFrageFreitext', ctFrageFreitext);
+        .directive('ctFragefreitext', ctFrageFreitext); //wichtig nicht 'ctFrageFreitext'
 
     ctFrageFreitext.$inject = [];
 
@@ -18,19 +18,33 @@
             templateUrl: 'js/contentTypes/ctFrageFreitext.html',
             controller: ctFrageFreitextCtrl,
             controllerAs: 'vm',
-            restrict: 'E'
+            restrict: 'E',
+            scope : { }
         };
+
         return directive;
 
     }
 
     function ctFrageFreitextCtrl() {
         var vm = this;
-
+        vm.answerGiven="";
+        vm.message="";
         vm.content = {
-            frage: "Alles fresh?"
+            frage: "Wann wurde Rom gegründet ?",
+            answer: "753"
         };
-
+        
+        vm.teste = function () {
+            if (vm.content.answer == vm.answerGiven) {
+                console.log("Richtig!");
+                vm.message="Richtig";
+            }
+            else {
+                console.log("Falsch!");
+                vm.message="Falsch";
+            }
+        }
     }
 
 })();

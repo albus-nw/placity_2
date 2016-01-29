@@ -1,6 +1,12 @@
-﻿<div>
-   Frage: {{vm.content.frage}}
-</div>
-<div>
-   Antwort: <input type="text" />
+﻿<div style="display:block;">
+   
+    <p>{{vm.content.frage}}</p>
+
+
+    <form name="myForm" ng-submit="vm.teste()">
+        <h1>Antwort:</h1>
+        <input type="text" ng-model="vm.answerGiven" />
+        <button type="submit" class="btn btn-primary" >Antwort absenden</button>
+    </form>
+    {{vm.message}}
 </div>

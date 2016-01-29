@@ -1,12 +1,20 @@
 {
-  "changedFilesIos": [],
+  "changedFilesIos": [
+    "www\\views\\routenmenu.html",
+    "www\\views\\options.html",
+    "www\\views\\scan.html",
+    "www\\views\\standort.html",
+    "www\\js\\controllers\\config.js"
+  ],
   "deletedFilesIos": [],
   "addedPluginsIos": [],
   "deletedPluginsIos": [],
   "changedFiles": [
-    "www\\js\\controllers\\controllers.js",
-    "www\\js\\services\\localUserService.js",
-    "www\\js\\controllers\\indexctrl.js"
+    "www\\views\\routenmenu.html",
+    "www\\views\\options.html",
+    "www\\views\\scan.html",
+    "www\\views\\standort.html",
+    "www\\js\\controllers\\config.js"
   ],
   "deletedFiles": [],
   "addedPlugins": [],
