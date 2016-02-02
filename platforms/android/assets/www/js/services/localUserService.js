@@ -18,22 +18,31 @@
                         if (result) {
                             localPlayer = JSON.parse(result);
                             console.log("ääääääälocalPlayer[field]:  " + localPlayer[field]);
-                           
-                            return localPlayer[field];
+                            if (!field) {
+                                return localPlayer;
+                            }
+                            else {
+                                return localPlayer[field];
+                            }
                         }
                         else {
                             localPlayer = null;
-                            return 'Anon';
+                            return 'no data';
                         }
                     });
                    
                 }
                 else {
                     if (localPlayer != null) {
-                        return localPlayer[field];
+                        if (!field) {
+                            return localPlayer;
+                        }
+                        else {
+                            return localPlayer[field];
+                        }
                     }
                     else {
-                        return '......';
+                        return 'no data';
                     }
                 }
 

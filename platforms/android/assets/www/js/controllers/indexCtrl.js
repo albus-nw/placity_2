@@ -14,6 +14,7 @@
         /* jshint validthis:true */
         var vm = this;
         vm.playerName = '';
+        vm.penisLaenge = '';
         vm.buttons = [
                                 {
                                     "value": "Ergebnisse",
@@ -53,7 +54,7 @@
 
             function activate() {
                 vm.playerName = localUserService.getData("playerName");
-               
+                vm.penisLaenge = localUserService.getData("penisLaenge");
                 
             }
     }
