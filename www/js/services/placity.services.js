@@ -4,7 +4,8 @@
     angular.module('placity.services', [
         // Angular modules
         'ngAnimate',
-        'ngRoute'
+        'ngRoute',
+        'restDataServices'
 
         // Custom modules
 
