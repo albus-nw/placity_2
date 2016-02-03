@@ -15,7 +15,12 @@
 
         return service;
 
-         function readFromFile(fileName, callback) {
+        function readFromFile(fileName, callback) {
+            /// <summary>
+            /// Lesen aus einer json-Datei, verarbieten des results in der Callback-Funktion
+            /// </summary>
+            /// <param name="fileName" type="json file"></param>
+            /// <param name="callback" type="function"></param>
             var pathToFile = cordova.file.dataDirectory + fileName;
             window.resolveLocalFileSystemURL(pathToFile, function (fileEntry) {
                 fileEntry.file(function (file) {
@@ -28,9 +33,7 @@
                             // Call it, since we have confirmed it is callable​
                             callback(result);
                         }
-                        console.log('adadad<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>vor dem retuern 256 >>>>>>>>>>>>>>akdgkg   ' + result + ' ja...');
-
-                        //return JSON.parse(this.result);
+                         JSON.parse(this.result);
                     };
 
                     reader.readAsText(file);
@@ -38,9 +41,12 @@
             }, errorHandler.bind(null, fileName));
          };
 
-        //in Dateisystem schreiben
-        ////https://www.neontribe.co.uk/cordova-file-plugin-examples/
-         function writeToFile(fileName, data) {
+        function writeToFile(fileName, data) {
+            /// <summary>
+            /// Schreibt data lokal in Dateisystem, sollte Datei mit dem Namen fileName nicht existieren, wird diese erstellt, andernfalls überschrieben
+            /// </summary>
+            /// <param name="fileName" type="file"></param>
+            /// <param name="data" type="type"></param>
              data = JSON.stringify(data, null, '\t');
              window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (directoryEntry) {
                  directoryEntry.getFile(fileName, { create: true }, function (fileEntry) {

@@ -48,14 +48,14 @@
                                 }
 
             ];
-        $scope.$evalAsync(activate);
+      //  $scope.$evalAsync(activate);
           // $scope.$apply(function () { vm.playerName = localUserService.getData("playerName"); });
            // activate();
 
-            function activate() {
-                vm.playerName = localUserService.getData("playerName");
-                vm.penisLaenge = localUserService.getData("penisLaenge");
-                
-            }
+        setTimeout(function () {
+            vm.playerName = localUserService.getData("playerName");
+            vm.penisLaenge = localUserService.getData("penisLaenge");
+        });
+
     }
 })();

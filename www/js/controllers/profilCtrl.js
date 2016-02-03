@@ -8,17 +8,24 @@
     profilCtrl.$inject = ['$location', 'User', 'fileService']; 
 
     function profilCtrl($location, User, fileService) {
-
-        /* jshint validthis:true */
+         /* jshint validthis:true */
         var vm = this;
         
         vm.title = 'profilCtrl';
         vm.user = User.get({ id: '12' });
        
-        setTimeout(function () {
-            console.log("inside timeout >>>>>>>>>>>>>> " + vm.user['name']);
-            fileService.writeToFile('katrin2.json', vm.user);
-        }, 15000);
+        new Promise(function (resolve, reject) {
+            var xx = User.get({ id: '12' });
+            resolve(xx);
+        }).then(function (result) {
+            console.log(result);
+            fileService.writeToFile('kat.json', result);
+        });
+
+        //setTimeout(function () {
+        //    console.log("inside timeout >>>>>>>>>>>>>> " + vm.user['name']);
+        //    fileService.writeToFile('katrin2.json', vm.user);
+        //}, 15000);
         
        
     }

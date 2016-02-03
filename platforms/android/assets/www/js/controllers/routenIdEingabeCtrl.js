@@ -14,15 +14,11 @@
     function routenIdEingabeCtrl($scope, $location) {
         var vm = this;
         vm.routenID = '';
+        vm.route;
         vm.submit = function () {
             console.log("routenID: " + vm.routenID);
-            $location.path('/Routen/' + vm.routenID);
+            $location.path('/Routen/' + vm.routenID);           
         };
 
-        
-
-        //activate();
-
-        //function activate() { }
     }
 })();

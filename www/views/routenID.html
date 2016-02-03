@@ -1,1 +1,14 @@
-﻿<br /><br /><br /><div><em>RoutenID:  {{vm.routenID}}</em><br /><a href="#/Routen" class="btn btn-primary btn-sm">Zurück</a></div>
+﻿<br /><br /><br />
+<div>
+   
+    <a href="#/Routen" class="btn btn-primary btn-sm">Zurück</a>
+    <div>
+        <em>RoutenID:  {{vm.routenID}}</em><br />
+        <a ng-click="vm.save()" class="btn btn-primary">Route speichern</a>
+        <a ng-click="vm.aod()" class="btn btn-primary">All On Device</a>
+    </div>
+    <div>
+        {{vm.lokaleRouten}}
+        {{vm.route}}
+    </div>
+</div>

@@ -35,7 +35,7 @@ angular.module('restDataServices')
      *               Route.remove({filter:'id>2'})     löscht alle Einträge mit ID > 2
      */
         function Route ($resource) {
-        return $resource('/api/v2/db/_table/Route/:id', {id: '@id'}, {
+        return $resource('http://df.albus-it.com/api/v2/db/_table/Route/:id', {id: '@id'}, {
             /**
              * @ngdoc function
              * @name Route.get
