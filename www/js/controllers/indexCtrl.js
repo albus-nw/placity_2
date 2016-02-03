@@ -12,7 +12,7 @@
 
     function indexCtrl($scope, $location, $http, localUserService) {
         /* jshint validthis:true */
-        var vm = this;
+        var vm = this; 
         vm.playerName = '';
         vm.penisLaenge = '';
         vm.buttons = [
