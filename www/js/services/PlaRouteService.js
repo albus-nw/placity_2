@@ -12,10 +12,10 @@
       .module('placity.services')
       .factory('PlaRouteService',  PlaRouteService);
 
-    PlaRouteService.$inject = ['fileService', 'Page', 'Route'];
+    PlaRouteService.$inject = ['fileService', 'Page', 'Route', '$q'];
     
     
-    function PlaRouteService(fileService, Page, Route) {
+    function PlaRouteService(fileService, Page, Route, $q) {
         var service = {
             getRoute: getRoute,
             getRouteFromServer: getRouteFromServer,
@@ -27,7 +27,7 @@
         };
 
         var lokaleRouten = [];
-        fileService.readFromFile('lokaleRouten.json', function (result) { lokaleRouten = JSON.parse(result); });
+        fileService.readFromFile('lokaleRouten.json').then( function (result) { lokaleRouten = result; });
 
         //function getData() {
         ////http://df.albus-it.com:80/api/v2/db/_table/page?filter=id_route%3D1&related=content_by_id_page
@@ -42,6 +42,7 @@
 
             if (isOnDevice(id)) {
                 console.log("from device");
+
                 return getRouteFromDevice(id);
             }
             else {
@@ -72,11 +73,12 @@
             /// </summary>
             /// <param name="id" type="type"></param>
             /// <returns type=""></returns>
-            var route = {};
-            fileService.readFromFile("Route" + id + ".json", function (result) { route = result; });
-            setTimeout(function () {
-                return route;
-            }, 10000);  //ist das kacke ey...
+          //  var route = {};
+            //fileService.readFromFile("Route" + id + ".json").then(function (result) { route = result; });
+            var route = $q.defer();
+            fileService.readFromFile("Route" + id + ".json").then(function (result) { route.resolve(result); });
+            return route.promise;
+          
             }
 
         function saveRoute(route) {

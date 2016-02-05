@@ -17,7 +17,13 @@
         vm.save = save;
         vm.aod = function () { vm.lokaleRouten = PlaRouteService.getAllOnDevice(); };
         vm.lokaleRouten = {};
-        vm.route = PlaRouteService.getRoute(vm.routenID);
+        vm.route = '';
+        vm.fromDevice = function () {
+            PlaRouteService.getRouteFromDevice(vm.routenID).then(function (result) { vm.route = result; });
+        };
+        vm.fromServer = function () { vm.route = PlaRouteService.getRouteFromServer(vm.routenID); };
+       
+        //PlaRouteService.getRouteFromDevice(vm.routenID).then(function (result) { vm.route = result; });
 
 
         //if (PlaRouteService.isOnServer(vm.routenID)) {

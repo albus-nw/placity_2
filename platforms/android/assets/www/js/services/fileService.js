@@ -5,9 +5,9 @@
         .module('placity.services')
         .factory('fileService', fileService);
 
-    fileService.$inject = [];
+    fileService.$inject = ['$q'];
 
-    function fileService() {
+    function fileService($q) {
         var service = {
             readFromFile : readFromFile,
             writeToFile : writeToFile
@@ -15,31 +15,38 @@
 
         return service;
 
-        function readFromFile(fileName, callback) {
+        function readFromFile(fileName) {
             /// <summary>
             /// Lesen aus einer json-Datei, verarbieten des results in der Callback-Funktion
             /// </summary>
-            /// <param name="fileName" type="json file"></param>
-            /// <param name="callback" type="function"></param>
+            /// <param name="fileName" type="type"></param>
+            /// <returns type="promise"></returns>
+           
             var pathToFile = cordova.file.dataDirectory + fileName;
+
+            var deferred = $q.defer();
+
             window.resolveLocalFileSystemURL(pathToFile, function (fileEntry) {
                 fileEntry.file(function (file) {
                     var reader = new FileReader();
 
                     reader.onloadend = function (e) {
                         var result = this.result;
-                        // Make sure the callback is a function​
-                        if (typeof callback === "function") {
-                            // Call it, since we have confirmed it is callable​
-                            callback(result);
+                        if (result) {
+                            deferred.resolve(JSON.parse(result));
                         }
-                         JSON.parse(this.result);
+                        else {
+                            deferred.reject("Ohhh...noooo");
+                        }
+                        
                     };
 
                     reader.readAsText(file);
                 }, errorHandler.bind(null, fileName));
             }, errorHandler.bind(null, fileName));
-         };
+
+            return deferred.promise;
+        };
 
         function writeToFile(fileName, data) {
             /// <summary>

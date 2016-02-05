@@ -5,9 +5,9 @@
         .module('placity.services')
         .factory('localUserService', localUserService);
 
-    localUserService.$inject = ['fileService'];
+    localUserService.$inject = ['fileService', '$q'];
 
-    function localUserService(fileService) {
+    function localUserService(fileService, $q) {
         var localPlayer;
 
         return {
@@ -21,38 +21,45 @@
             /// </summary>
             /// <param name="field" type="type" optional="true"></param>
             /// <returns type="">Object oder value</returns>
+
+            var data = $q.defer();
+
             if (localPlayer === undefined) {
-                fileService.readFromFile('profile.json', function (result) {
+                fileService.readFromFile('profile.json').then( function (result) {
                     console.log("result: " + result);
-                    if (result) {
-                        localPlayer = JSON.parse(result);
-                        if (!field) {
-                            return localPlayer;
+                   // if (result) {
+                        localPlayer = result;
+                    //  }
+                        if (localPlayer != null) {
+                            if (!field) {
+                                data.resolve(localPlayer);
+                            }
+                            else {
+                                data.resolve(localPlayer[field]);
+                            }
                         }
                         else {
-                            return localPlayer[field];
+                            data.reject('no data');
                         }
-                    }
-                    else {
-                        localPlayer = null;
-                        return 'no data';
-                    }
+                    
                 });
                    
             }
             else {
                 if (localPlayer != null) {
                     if (!field) {
-                        return localPlayer;
+                        data.resolve(localPlayer);
                     }
                     else {
-                        return localPlayer[field];
+                        data.resolve(localPlayer[field]);
                     }
                 }
                 else {
-                    return 'no data';
+                    data.reject('no data');
                 }
             }
+
+            return data.promise;
         }
 
 

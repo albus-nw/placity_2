@@ -8,13 +8,13 @@
         .module('placity.controllers')
         .controller('indexCtrl', indexCtrl);
 
-    indexCtrl.$inject = ['$scope','$http','$location', 'localUserService']; 
+    indexCtrl.$inject = ['$scope','$http','$location', 'localUserService', 'fileService']; 
 
-    function indexCtrl($scope, $location, $http, localUserService) {
+    function indexCtrl($scope, $location, $http, localUserService, fileService) {
         /* jshint validthis:true */
         var vm = this; 
         vm.playerName = '';
-        vm.penisLaenge = '';
+        vm.penisLaenge = 'klein';
         vm.buttons = [
                                 {
                                     "value": "Ergebnisse",
@@ -47,15 +47,10 @@
                                     "class": "btn btn-primary menuButton",
                                 }
 
-            ];
-      //  $scope.$evalAsync(activate);
-          // $scope.$apply(function () { vm.playerName = localUserService.getData("playerName"); });
-           // activate();
+        ];
 
-        setTimeout(function () {
-            vm.playerName = localUserService.getData("playerName");
-            vm.penisLaenge = localUserService.getData("penisLaenge");
-        });
+        localUserService.getData("penisLaenge").then(function (result) { vm.penisLaenge = result; });
+        localUserService.getData("playerName").then(function (result) { vm.playerName = result; });
 
     }
 })();
