@@ -27,7 +27,7 @@
     function ctDialogCtrl() {
         
         var vm = this;
-        vm.data = {
+       /* vm.data = {
             "contenttype": "dialog",
             "avatar1": "http://143.93.91.92/philipp/avatar1.jpg",
             "avatar2": "http://143.93.91.92/philipp/avatar2.jpg",
@@ -38,7 +38,34 @@
                 "text4": "<h4>Alles bestens, kann nicht klagen</h4>"
             }
 
-        };
+        };*/
+        vm.data={	
+    "avatar1" : "http://143.93.91.92/philipp/avatar1.jpg",
+    "avatar2" : "http://143.93.91.92/philipp/avatar1.jpg",
+    "languages":[
+                {"lang": "de_DE",
+                 "fields": [{
+                          "text" :[ 
+                            "<p>Hi Alex</p>",
+                            "<p>Hi Paul</p>",
+                            "<p>Na wie gehts?</p>",
+                            "<p>Alles bestens, kann nicht klagen</p>"
+                            ]
+                        }]
+                },
+                {"lang": "en_EN",
+                 "fields": [{
+                          "text" :[
+                            "<p>Hi Alex</p>",
+                            "<p>Hi Paul</p>",
+                            "<p>How are you?</p>",
+                            "<p>Quite nice, thanks!</p>"
+                            ]
+                        }]
+                } 
+
+            ]
+};
 
     }
 })();

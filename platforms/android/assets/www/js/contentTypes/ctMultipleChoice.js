@@ -14,7 +14,7 @@
         var directive = {
             bindToController: true,
             templateUrl: 'js/contentTypes/ctMultipleChoice.html',
-            controller: ctTextCtrl,
+            controller: ctMultipleChoiceCtrl,
             controllerAs: 'vm',
             restrict: 'E',
             scope: { }
@@ -24,24 +24,48 @@
     }
 
 
-    function ctTextCtrl() {
+    function ctMultipleChoiceCtrl() {
         
         var vm = this;
         vm.data = {
-            "text": "<p>Wann wurde Rom gegründet ?</p>",
-            "answer": "753",
-            "choice": {
-                "choice1": "357",
-                "choice2": "17",
-                "choice3": "753",
-                "choice4": "166",
-                "choice5": "1652"
+            "languages": [
+
+            {
+                "lang": "de_DE",
+                "fields": [{
+                    "text": "<p>Wann wurde Rom gegründet ?</p>",
+                    "answer": "753",
+                    "choice": [
+                        "357",
+                        "17",
+                        "753",
+                        "166",
+                        "1652"
+                    ]
+                }]
+            },
+            {
+                "lang": "en_EN",
+                "fields": [{
+                    "text": "<p>When was Rome foundet?</p>",
+                    "answer": "753",
+                    "choice": [
+                        "357",
+                        "17",
+                        "753",
+                        "166",
+                        "1652"
+                    ]
+
+                }]
             }
+            ]
+
         };
         vm.answerGiven = "";
        
         vm.test = function () {
-            if (vm.answerGiven == vm.data.answer) {
+            if (vm.answerGiven == vm.data.languages[0].fields[0].answer) {
                // console.log("richtig");
                 vm.answerGiven = "Richtig!";
                 

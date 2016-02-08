@@ -3,13 +3,26 @@
 
 <div style="display:block;">
 
-    <div ng-bind-html="vm.data.text"></div>
+    <div ng-bind-html="vm.data.languages[0].fields[0].text"></div>
    
     <form name="myForm" ng-submit="submitForm()">
-        <div class="radio" ng-repeat="choice in vm.data.choice">
+        <div class="radio" ng-repeat="choice in vm.data.languages[0].fields[0].choice">
             <label><input type="radio" name="choice" ng-model="vm.answerGiven" value="{{choice}}">{{choice}}</label>
         </div>
         <button type="submit" class="btn btn-primary" ng-click="vm.test()">Antwort absenden</button>
         {{vm.answerGiven}}
         </form>
+</div> 
+
+<div style="display:block;">
+
+    <div ng-bind-html="vm.data.languages[1].fields[0].text"></div>
+
+    <form name="myForm" ng-submit="submitForm()">
+        <div class="radio" ng-repeat="choice in vm.data.languages[1].fields[0].choice">
+            <label><input type="radio" name="choice" ng-model="vm.answerGiven" value="{{choice}}">{{choice}}</label>
+        </div>
+        <button type="submit" class="btn btn-primary" ng-click="vm.test()">Antwort absenden</button>
+        {{vm.answerGiven}}
+    </form>
 </div> 

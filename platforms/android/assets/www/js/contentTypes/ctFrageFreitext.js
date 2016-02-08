@@ -1,5 +1,5 @@
 ﻿/**
- * created by pk on 24.01.2016
+ * created by pk, PW on 24.01.2016
  */
 
 (function () {
@@ -28,21 +28,35 @@
 
     function ctFrageFreitextCtrl() {
         var vm = this;
-        vm.answerGiven="";
-        vm.message="";
-        vm.content = {
-            frage: "Wann wurde Rom gegründet ?",
-            answer: "753"
+        vm.answerGiven = "";
+        vm.message = "";
+        vm.data = {
+            "languages": [
+             {
+                 "lang": "de_DE",
+                 "fields": [{
+                     "question": "Wann wurde Rom gegründet ?",
+                     "answer": "753"
+                 }]
+             },
+             {
+                 "lang": "en_EN",
+                 "fields": [{
+                     "question": "When was Rome foundet ?",
+                     "answer": "753"
+                 }]
+             }]
         };
-        
+
+
         vm.teste = function () {
-            if (vm.content.answer == vm.answerGiven) {
+            if (vm.data.languages[0].fields[0].answer == vm.answerGiven) {
                 console.log("Richtig!");
-                vm.message="Richtig";
+                vm.message = "Richtig";
             }
             else {
                 console.log("Falsch!");
-                vm.message="Falsch";
+                vm.message = "Falsch";
             }
         }
     }

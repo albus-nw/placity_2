@@ -28,8 +28,24 @@
         
         var vm = this;
         vm.data = {
-            text: "<p>Hier befindet sich</p> <h1>Html-text</h1><h2> der vom Nutzer</h2><h3>als contenttype text angelegt wurde</h3>"
-                    };
+            "languages": [
+                           {
+                               "lang": "de_DE",
+                               "fields": [{
+                                   "text": "<p>Hier beindet sich html text</p> <p>der vom <h1>Nutzer</h1> als contenttype text angelegt wurde</p>"
+                               }]
+                           },
+
+                           {
+                               "lang": "en_EN",
+                               "fields": [{
+                                   "text": "<p>You'll find HTML Text here</p> <p>which the<h1>user</h1>produced as ContentType Text</p>"
+                               }]
+                           }
+            ]
+        }
+
+        ;
 
     }
 })();

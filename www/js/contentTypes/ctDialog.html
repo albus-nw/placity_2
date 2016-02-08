@@ -1,9 +1,9 @@
 ﻿<!--ContentType Dialog, PW-->
 <div>
 
-    <h1>Dialog:</h1>
+
    
-        <div ng-repeat="dialog in vm.data.texte" style="clear:both;">
+        <div ng-repeat="dialog in vm.data.languages[0].fields[0].text" style="clear:both;">
            <span ng-if="($index %2) == 0" style="float:left;">
             <img alt="" src="{{vm.data.avatar1}}" />
                <span ng-bind-html="dialog"></span>
@@ -14,5 +14,23 @@
             </span> 
             
         </div>
+
+</div> 
+<div style="clear:both;"></div>
+<div>
+
+  
+
+    <div ng-repeat="dialog in vm.data.languages[1].fields[0].text" style="clear:both;">
+        <span ng-if="($index %2) == 0" style="float:left;">
+            <img alt="" src="{{vm.data.avatar1}}" />
+            <span ng-bind-html="dialog"></span>
+        </span>
+        <span ng-if="($index %2) == 1" style="float:right;">
+            <img alt="" src="{{vm.data.avatar2}}" />
+            <span ng-bind-html="dialog"></span>
+        </span>
+
+    </div>
 
 </div> 
