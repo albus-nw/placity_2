@@ -1,4 +1,9 @@
-﻿(function () {
+﻿/**
+ * nicht benutzt
+ * --> PlaRoutenService stattdessen
+ */
+
+(function () {
     'use strict';
 
     angular

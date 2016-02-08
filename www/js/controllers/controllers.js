@@ -5,7 +5,9 @@
 (function () {
     'use strict';
 
-    angular.module('placity.controllers', []);
+    angular.module('placity.controllers', [
+                            'placity.services'
+                     ]);
 
 })();
 

@@ -15,8 +15,8 @@
         'ngRoute',
         'ngMaterial',
         'ngResource',
-        'restDataServices'
-
+        'restDataServices',
+        'placity.services'
     ])
 
     //.config([

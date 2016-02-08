@@ -16,14 +16,21 @@
     
     
     function PlaRouteService(fileService, Page, Route, $q) {
+        var route = {};
+        route['id'] = {};
+        route['pages'] = {};
+
         var service = {
+            
             getRoute: getRoute,
             getRouteFromServer: getRouteFromServer,
             getRouteFromDevice: getRouteFromDevice,
             saveRoute: saveRoute,
             isOnDevice: isOnDevice,
             isOnServer: isOnServer,
-            getAllOnDevice: getAllOnDevice
+            getAllOnDevice: getAllOnDevice,
+            getPage: getPage,
+            getPageContents: getPageContents
         };
 
         var lokaleRouten = [];
@@ -61,7 +68,7 @@
             /// </summary>
             /// <param name="id" type="type"></param>
             /// <returns type=""></returns>
-            var route = {};
+           // var route = {};
             route['id'] = id;
             route['pages'] = Page.get({ filter: 'id_route=' + id, related: 'content_by_id_page' });
             return route;
@@ -75,7 +82,7 @@
             /// <returns type=""></returns>
           //  var route = {};
             //fileService.readFromFile("Route" + id + ".json").then(function (result) { route = result; });
-            var route = $q.defer();
+             route = $q.defer();
             fileService.readFromFile("Route" + id + ".json").then(function (result) { route.resolve(result); });
             return route.promise;
           
@@ -123,8 +130,41 @@
             return lokaleRouten;
         }
 
+        function getPage(page_pos) {
+            /// <summary>
+            /// Liefert die gesamte page an der Position page_pos der geladenen Route
+            /// </summary>
+            /// <param name="page_pos" >Page Position</param>
+            /// <returns >Page an der Position oder null</returns>
+            var res = $q.defer();
+            for (var i = 0; i < route.pages.resource.length; i++) {
+                if (route.pages.resource[i].pos == page_pos) {
+                    res = route.pages.resource[i];
+                    break;
+                }
+            }
+            return res.promise;
+          //  var page = route.pages.resource[0].content_by_id_page[0].data_obj
+        }
 
-
+        function getPageContents(page_pos, content_pos) {
+            var res = $q.defer();
+                getPage(page_pos).then(function (result) {
+                    if (content_pos === 'undefined') {    //kein parameter gesetzt
+                        res = result.content_by_id_page;
+                    }
+                    else {
+                        //Array nicht unbedingt nach pos sortiert
+                        for (var i = 0; i < result.content_by_id_page.length; i++) {
+                            if (result.content_by_id_page[i].pos == content_pos) {
+                                res = result.content_by_id_page[i];
+                                break;
+                            }
+                        }
+                    }
+                });
+            return res.promise;
+        }
 
         return service;
     }

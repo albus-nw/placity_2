@@ -8,36 +8,39 @@
         .module('placity.controllers')
         .controller('routenIDCtrl', routenIDCtrl);
 
-    routenIDCtrl.$inject = ['$routeParams', 'PlaRouteService']; 
+    routenIDCtrl.$inject = ['$routeParams', 'PlaRouteService', '$location']; 
 
     function routenIDCtrl($routeParams, PlaRouteService) {
         /* jshint validthis:true */
         var vm = this;
+        vm.playing = false;
         vm.routenID = $routeParams.routenID;
         vm.save = save;
+        vm.play = play;
         vm.aod = function () { vm.lokaleRouten = PlaRouteService.getAllOnDevice(); };
         vm.lokaleRouten = {};
-        vm.route = '';
+        vm.route = {};
         vm.fromDevice = function () {
+
             PlaRouteService.getRouteFromDevice(vm.routenID).then(function (result) { vm.route = result; });
         };
-        vm.fromServer = function () { vm.route = PlaRouteService.getRouteFromServer(vm.routenID); };
+        vm.fromServer = function () {
+            vm.route = PlaRouteService.getRouteFromServer(vm.routenID);
+        };
        
-        //PlaRouteService.getRouteFromDevice(vm.routenID).then(function (result) { vm.route = result; });
-
-
-        //if (PlaRouteService.isOnServer(vm.routenID)) {
-        //    vm.route = PlaRouteService.getRoute(vm.routenID);
-        //    console.log("route: " + vm.route);
-        //}
-        //else {
-        //    vm.route = "nix Route gibt";
-        //}
-
+       
         function save() {
             PlaRouteService.saveRoute(vm.route);
         }
 
+        function play() {
+            vm.playing = true;
+            PlaRouteService.getPage(2).then(function (result) { vm.route = "\nPage Pos 2 : " + result; });
+          
+            PlaRouteService.getPageContents(2).then(function (result) { vm.route += "\nPage Pos 2 Contenst :" + result; });
+            PlaRouteService.getPageContents(2, 1).then(function(result) { vm.route += "\n Page Pos 2 Contents Pos 1 " + result;});
+            console.log(vm.route);
+        }
 
 
     }
