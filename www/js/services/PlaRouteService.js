@@ -30,11 +30,34 @@
             isOnServer: isOnServer,
             getAllOnDevice: getAllOnDevice,
             getPage: getPage,
-            getPageContents: getPageContents
+            getPageContents: getPageContents,
+            setActiveRoute: setActiveRoute,
+            getActiveRoute: getActiveRoute
         };
-
+      //  var vm = this;
         var lokaleRouten = [];
         fileService.readFromFile('lokaleRouten.json').then( function (result) { lokaleRouten = result; });
+
+        function setActiveRoute(active_route) {
+            /// <summary>
+            /// PW: legt aktive Route fest
+            /// </summary>
+            /// <param name="active_route" type="type"></param>
+            route = active_route;
+            
+        }
+
+        function getActiveRoute() {
+            /// <summary>
+            /// PW: gibt aktive Route zurück
+            /// </summary>
+            /// <returns type=""></returns>
+            return route;
+
+        }
+
+        
+
 
         //function getData() {
         ////http://df.albus-it.com:80/api/v2/db/_table/page?filter=id_route%3D1&related=content_by_id_page
@@ -49,11 +72,12 @@
 
             if (isOnDevice(id)) {
                 console.log("from device");
-
+               // setActiveRoute(getRouteFromDevice(id));
                 return getRouteFromDevice(id);
             }
             else {
                 console.log("from server");
+                //setActiveRoute(getRouteFromServer(id));
                 return getRouteFromServer(id);
             }
             //var route = {};
@@ -71,6 +95,7 @@
            // var route = {};
             route['id'] = id;
             route['pages'] = Page.get({ filter: 'id_route=' + id, related: 'content_by_id_page' });
+            setActiveRoute(route);
             return route;
         }
 

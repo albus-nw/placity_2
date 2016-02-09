@@ -8,9 +8,9 @@
         .module('placity.controllers')
         .controller('routenIDCtrl', routenIDCtrl);
 
-    routenIDCtrl.$inject = ['$routeParams', 'PlaRouteService', '$location']; 
+    routenIDCtrl.$inject = ['$routeParams', 'PlaRouteService', '$location', '$scope'];
 
-    function routenIDCtrl($routeParams, PlaRouteService) {
+    function routenIDCtrl($routeParams, PlaRouteService, $scope) {
         /* jshint validthis:true */
         var vm = this;
         vm.playing = false;
@@ -32,9 +32,15 @@
         function save() {
             PlaRouteService.saveRoute(vm.route);
         }
-
-        function play() {
+        
+       
+        function play($scope) {
+          
             vm.playing = true;
+
+         
+
+            
             PlaRouteService.getPage(2).then(function (result) { vm.route = "\nPage Pos 2 : " + result; });
           
             PlaRouteService.getPageContents(2).then(function (result) { vm.route += "\nPage Pos 2 Contenst :" + result; });
