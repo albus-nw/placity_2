@@ -1,6 +1,6 @@
 ﻿<div style="display:block;">
    
-    <p>{{vm.data.languages[0].fields[0].question}}</p>
+    <p>{{vm.ctFrageFreitext.question}}</p>
 
 
     <form name="myForm" ng-submit="vm.teste()">
@@ -11,15 +11,3 @@
     {{vm.message}}
 </div>
 
-<div style="display:block;">
-
-    <p>{{vm.data.languages[1].fields[0].question}}</p>
-
-
-    <form name="myForm" ng-submit="vm.teste()">
-        <h1>Antwort:</h1>
-        <input type="text" ng-model="vm.answerGiven" />
-        <button type="submit" class="btn btn-primary">Antwort absenden</button>
-    </form>
-    {{vm.message}}
-</div>

@@ -24,10 +24,11 @@
     }
 
     ctDialogCtrl.$inject = ['$scope'];
-    function ctDialogCtrl() {
+    function ctDialogCtrl($scope) {
         
         var vm = this;
-        vm.ctText = $scope.$parent.ctDialog;
+        vm.ctDialog = $scope.$parent.ctDialog;
+        console.log(vm.ctDialog);
 
     }
 })();
