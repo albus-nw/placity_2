@@ -19,9 +19,11 @@
         var route = {};
         route['id'] = {};
         route['pages'] = {};
+        console.log("ding ding ding");
+        var lokaleRouten = null;
+        fileService.readFromFile('lokaleRouten.json').then(function (result) { lokaleRouten = result; });
 
         var service = {
-            
             getRoute: getRoute,
             getRouteFromServer: getRouteFromServer,
             getRouteFromDevice: getRouteFromDevice,
@@ -31,38 +33,13 @@
             getAllOnDevice: getAllOnDevice,
             getPage: getPage,
             getPageContents: getPageContents,
-            setActiveRoute: setActiveRoute,
-            getActiveRoute: getActiveRoute
+            getCurrentRouteId: getCurrentRouteId,
+            PageIter: PageIterator
         };
-      
-        var lokaleRouten = [];
-        fileService.readFromFile('lokaleRouten.json').then( function (result) { lokaleRouten = result; });
 
-        function setActiveRoute(active_route) {
-            /// <summary>
-            /// PW: legt aktive Route fest
-            /// </summary>
-            /// <param name="active_route" type="type"></param>
-            route = active_route;
-            
-        }
-
-        function getActiveRoute() {
-            /// <summary>
-            /// PW: gibt aktive Route zurück
-            /// </summary>
-            /// <returns type=""></returns>
-            return route;
-
-        }
-
-        
-
-
-        //function getData() {
-        ////http://df.albus-it.com:80/api/v2/db/_table/page?filter=id_route%3D1&related=content_by_id_page
-        //}
-
+        /*
+         * 
+         */
         function getRoute(id) {
             /// <summary>
             /// gibt zur id gehörende Route zurück
@@ -70,49 +47,80 @@
             /// </summary>
             /// <param name="id" ></param>
 
-            if (isOnDevice(id)) {
-                console.log("from device");
-               // setActiveRoute(getRouteFromDevice(id));
-                return getRouteFromDevice(id);
+            var res = $q.defer();
+            if (id === undefined) {
+                //keine id angegeben, gebe aktuelle Route zurück, falls gesetzt, oder halt null             
+                    res.resolve(route);
+            }
+            else if (id == route.id) {
+                res.resolve(route);
             }
             else {
-                console.log("from server");
-                //setActiveRoute(getRouteFromServer(id));
-                return getRouteFromServer(id);
+                if (isOnDevice(id)) {
+                    console.log("from device");
+                    res.resolve(getRouteFromDevice(id));
+                }
+                else {
+                    console.log("from server");
+                    res.resolve(getRouteFromServer(id));
+                }
             }
-            //var route = {};
-            //route['id'] = id;
-            //route['pages'] = Page.get({ filter: 'id_route=' + id, related: 'content_by_id_page' });
-            //return route;
+           return res.promise;
         }
 
+        /*
+         * 
+         */
         function getRouteFromServer(id) {
             /// <summary>
             /// 
             /// </summary>
             /// <param name="id" type="type"></param>
             /// <returns type=""></returns>
-           // var route = {};
-            route['id'] = id;
-            route['pages'] = Page.get({ filter: 'id_route=' + id, related: 'content_by_id_page' });
-            setActiveRoute(route);
-            return route;
+            var res = $q.defer();
+            if (isOnServer(id) == true) {
+                route['id'] = id;
+                Page.get({ filter: 'id_route=' + id, related: 'content_by_id_page' })
+                    .$promise.then(function (result) {
+                        route.pages = result;
+                        res.resolve(route);
+                        console.log(result);
+                        console.log(route);
+                    });
+            }
+            else {
+                route.id = id;
+                route.pages = result;
+                res.resolve(route);
+                console.log("not on server");
+            }
+            return res.promise;
         }
 
+        /*
+         * 
+         */
         function getRouteFromDevice(id) {
             /// <summary>
             /// 
             /// </summary>
             /// <param name="id" type="type"></param>
             /// <returns type=""></returns>
-          //  var route = {};
-            //fileService.readFromFile("Route" + id + ".json").then(function (result) { route = result; });
-             route = $q.defer();
-            fileService.readFromFile("Route" + id + ".json").then(function (result) { route.resolve(result); });
-            return route.promise;
+     
+             var res = $q.defer();
+             fileService.readFromFile("Route" + id + ".json")
+                 .then(function (result) {
+                     route = result;
+                     res.resolve(route);
+                     console.log(route);
+                 });
+            return res.promise;
           
-            }
+        }
 
+        /*
+         * 
+         */
         function saveRoute(route) {
             /// <summary>
             /// speichert übergebene Route lokal
@@ -125,6 +133,9 @@
             fileService.writeToFile('lokaleRouten.json', lokaleRouten);
         }
 
+        /*
+         * 
+         */
         function isOnDevice(id) {
             /// <summary>
             /// check, ob route lokal
@@ -134,6 +145,9 @@
             return lokaleRouten.indexOf(id) >= 0;
         }
 
+        /*
+         * 
+         */
         function isOnServer(id) {
             /// <summary>
             /// lookup on server
@@ -144,9 +158,13 @@
                 console.log("in if; true, route gefunden");
                 return true;
             }
-            return false;
+            //return false;
+            return true;
         }
 
+        /*
+         * 
+         */
         function getAllOnDevice() {
             /// <summary>
             /// 
@@ -155,6 +173,9 @@
             return lokaleRouten;
         }
 
+        /*
+         * 
+         */
         function getPage(page_pos) {
             /// <summary>
             /// Liefert die gesamte page an der Position page_pos der geladenen Route
@@ -172,6 +193,9 @@
           //  var page = route.pages.resource[0].content_by_id_page[0].data_obj
         }
 
+        /*
+         * 
+         */
         function getPageContents(page_pos, content_pos) {
             /// <summary>
             /// ohne content_pos die gesamte page als array zurück
@@ -181,7 +205,7 @@
             /// <returns type=""></returns>
             var res = $q.defer();
                 getPage(page_pos).then(function (result) {
-                    if (content_pos === 'undefined') {    //kein parameter gesetzt
+                    if (content_pos === undefined) {    //kein parameter gesetzt
                         res.resolve(result.content_by_id_page);
                     }
                     else {
@@ -195,6 +219,54 @@
                     }
                 });
             return res.promise;
+        }
+
+        /*
+         * 
+         */
+        function getCurrentRouteId() {
+            return route.id;
+        }
+
+        /*
+         * 
+         */
+        function PageIterator(routen_id) {
+            var nextIndex = 0;
+            var iteratedRoute,  numberOfPages;
+           
+            var initIter = initIter;
+
+            if (routen_id === undefined || routen_id == route.id) {
+                //PageIterator zur derzeit unter route gespeichertern Route
+               return initIter();
+            }
+            else {
+                //PageIterator zur derzeit nicht unter route gespeicherten Route
+                getRoute(routen_id)
+                    .then(function(result) {
+                       return initIter();
+                    });
+            }
+           
+            function initIter() {
+                iteratedRoute = route.id;
+                numberOfPages = route.pages.resource.length || 0;
+                return {
+                    next: next
+                };
+            }
+            
+            function next() {
+                if (nextIndex < numberOfPages) {
+                    nextIndex++;
+                    //index von 0 bis numberOfPages -1  ; position von 1 bis numberOfPages
+                    return { value: getPage(nextIndex), done: false };
+                }
+                else {
+                    return { done: true };
+                }
+            }
         }
 
         return service;

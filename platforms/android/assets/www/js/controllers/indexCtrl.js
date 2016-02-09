@@ -51,6 +51,6 @@
 
         localUserService.getData("penisLaenge").then(function (result) { vm.penisLaenge = result; });
         localUserService.getData("playerName").then(function (result) { vm.playerName = result; });
-
+        console.log(cordova.file.dataDirectory);
     }
 })();
