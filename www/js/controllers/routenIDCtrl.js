@@ -38,13 +38,14 @@
           
             vm.playing = true;
 
-         
+            var iwas = '';
 
             
-            PlaRouteService.getPage(2).then(function (result) { vm.route = "\nPage Pos 2 : " + result; });
+            //PlaRouteService.getPage(2).then(function (result) { vm.route += "\n\n>>>>>Page Pos 2 : " + result; });
           
-            PlaRouteService.getPageContents(2).then(function (result) { vm.route += "\nPage Pos 2 Contenst :" + result; });
-            PlaRouteService.getPageContents(2, 1).then(function(result) { vm.route += "\n Page Pos 2 Contents Pos 1 " + result;});
+            //PlaRouteService.getPageContents(2).then(function (result) { vm.route += "\n\n\n>>>>>>Page Pos 2 Contenst :" + JSON.stringify(result); });
+            PlaRouteService.getPageContents(2, 1).then(function (result) { vm.route = "\n\n\n>>>>>>< Page Pos 2 Contents Pos 1 " +  JSON.stringify(result); });
+           
             console.log(vm.route);
         }
 

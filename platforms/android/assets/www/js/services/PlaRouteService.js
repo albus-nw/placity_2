@@ -34,7 +34,7 @@
             setActiveRoute: setActiveRoute,
             getActiveRoute: getActiveRoute
         };
-      //  var vm = this;
+      
         var lokaleRouten = [];
         fileService.readFromFile('lokaleRouten.json').then( function (result) { lokaleRouten = result; });
 
@@ -164,7 +164,7 @@
             var res = $q.defer();
             for (var i = 0; i < route.pages.resource.length; i++) {
                 if (route.pages.resource[i].pos == page_pos) {
-                    res = route.pages.resource[i];
+                    res.resolve(route.pages.resource[i]);
                     break;
                 }
             }
@@ -173,16 +173,22 @@
         }
 
         function getPageContents(page_pos, content_pos) {
+            /// <summary>
+            /// ohne content_pos die gesamte page als array zurück
+            /// </summary>
+            /// <param name="page_pos" type="type"></param>
+            /// <param name="content_pos" type="type"></param>
+            /// <returns type=""></returns>
             var res = $q.defer();
                 getPage(page_pos).then(function (result) {
                     if (content_pos === 'undefined') {    //kein parameter gesetzt
-                        res = result.content_by_id_page;
+                        res.resolve(result.content_by_id_page);
                     }
                     else {
                         //Array nicht unbedingt nach pos sortiert
                         for (var i = 0; i < result.content_by_id_page.length; i++) {
                             if (result.content_by_id_page[i].pos == content_pos) {
-                                res = result.content_by_id_page[i];
+                                res.resolve(result.content_by_id_page[i]);
                                 break;
                             }
                         }
