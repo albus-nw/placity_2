@@ -28,6 +28,7 @@
         console.log(route['pages']);
         //console.log(pageX);
         $scope.ctText = "displayctrl";
+        $scope.ctDialog = route['pages'];
 
     }
 })();

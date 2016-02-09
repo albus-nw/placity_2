@@ -25,37 +25,19 @@
         return directive;
 
     }
-
-    function ctFrageFreitextCtrl() {
+    ctFrageFreitextCtrl.$inject = ['$scope'];
+    function ctFrageFreitextCtrl($scope) {
         var vm = this;
-        vm.answerGiven = "";
-        vm.message = "";
-        vm.data = {
-            "languages": [
-             {
-                 "lang": "de_DE",
-                 "fields": [{
-                     "question": "Wann wurde Rom gegründet ?",
-                     "answer": "753"
-                 }]
-             },
-             {
-                 "lang": "en_EN",
-                 "fields": [{
-                     "question": "When was Rome foundet ?",
-                     "answer": "753"
-                 }]
-             }]
-        };
+        vm.ctFrageFreitext = $scope.$parent.ctFrageFreitext;
 
 
         vm.teste = function () {
-            if (vm.data.languages[0].fields[0].answer == vm.answerGiven) {
-                console.log("Richtig!");
+            if (vm.ctFrageFreitext.answer == vm.answerGiven) {
+              //  console.log("Richtig!");
                 vm.message = "Richtig";
             }
             else {
-                console.log("Falsch!");
+               // console.log("Falsch!");
                 vm.message = "Falsch";
             }
         }
