@@ -13,8 +13,14 @@
         <a ng-show="vm.route !== {}" ng-click="vm.play(); vm.playing = true;" class="btn btn-primary">Play! </a>
     </div>
     <div>
-        {{vm.lokaleRouten}}
+        <!--{{vm.lokaleRouten}}
         {{vm.route}}
-        <div style="color: blue" >{{vm.pages}}</div>
+        <div style="color: blue">{{vm.pages}}</div>-->
+        <div style="border: 1px dotted orange; color: #ff0000;">
+            {{vm.currentPage}}
+        </div>
+        <div ng-show="vm.page">
+            <a ng-click="vm.goToNextPage()" class="btn btn-primary">Next Page</a>
+        </div>
     </div>
 </div>

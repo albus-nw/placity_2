@@ -16,13 +16,15 @@
         vm.playing = false;
         vm.routenID = $routeParams.routenID;
         vm.pages = '';
+        vm.currentPage;
+        vm.goToNextPage = goToNextPage;
+        vm.pageIter;
         vm.save = save;
         vm.play = play;
         vm.aod = function () { vm.lokaleRouten = PlaRouteService.getAllOnDevice(); };
         vm.lokaleRouten = {};
         vm.route = {};
         vm.fromDevice = function () {
-
             PlaRouteService.getRouteFromDevice(vm.routenID).then(function (result) { vm.route = result; });
         };
         vm.fromServer = function () {
@@ -32,18 +34,17 @@
             PlaRouteService.getRoute(vm.routenID).then(function (result) { vm.route = result; });
         }
        
-       
+       /*
+        * 
+        */
         function save() {
             PlaRouteService.saveRoute(vm.route);
         }
         
        
-        function play($scope) {
+        function play_1($scope) {
           
             vm.playing = true;
-
-            var iwas = '';
-
             
            // PlaRouteService.getPage(2).then(function (result) { vm.route += "\n\n>>>>>Page Pos 2 : " + result; });
           
@@ -52,14 +53,10 @@
            
             var iter = PlaRouteService.PageIter();
             setTimeout(function () {
-                //var help = iter.next();
-                //var count = 0;
-                //while(help.done != true)
-                //   help.value.then(function (value) { vm.pages += "<br /><br />"+count++ + "-------------" + JSON.stringify(value); help = iter.next(); });
                
                 iter.next().value.then(function (value) { vm.pages += '<br /><br />' + "-------------" + JSON.stringify(value); });
                 var help = iter.next();
-              //  help.value.then(function (value) { vm.pages += "\n\n\n" + "-------------" + JSON.stringify(value.page_name); });
+           
                 while (help.done == false) {
 
                     help.value.then(function (value) { vm.pages += "\n\n\nPosition: " + value.pos+ "-------------" + JSON.stringify(value.page_name); });
@@ -70,6 +67,36 @@
             console.log(vm.route);
         }
 
+        /*
+         * 
+         */
+        function play() {
+            vm.pageIter = PlaRouteService.PageIter();
+            vm.pageIter.next().value.then(function (value) {
+                var bP = "Page Name: " + value.page_name;
+                bP += "<br /> POS: " + value.pos;
+                bP += "\n Contents: " + value.content_by_id_page;
+                vm.currentPage = bP;
+            });
+        }
 
+        /*
+         * 
+         */
+        function goToNextPage() {
+            vm.pageIter.next().value.then(function (value) {
+                var bP = "Page Name: " + value.page_name;
+                bP += "<br /> POS: " + value.pos;
+                bP += "\n Contents: " + value.content_by_id_page;
+                vm.currentPage = bP;
+            });
+        }
+
+        function buildPage(value) {
+            var bP = "Page Name: " + value.page_name;
+            bP += "<br /> POS: " + value.pos;
+            bP += "\n Contents: " + value.content_by_id_page;
+            vm.currentPage = bP;
+        }
     }
 })();
