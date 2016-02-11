@@ -14,6 +14,7 @@
         /* jshint validthis:true */
         var vm = this;
         //sowas wie vm.pickedlanguage fehlt noch
+        vm.pickedlanguage='0';
         vm.playing = false;
         vm.routenID = $routeParams.routenID;
         vm.pages = '';
@@ -38,6 +39,14 @@
        
        /*
         * 
+        */
+
+      /*  function setLanguage() {
+         PlaRouteService.getPageContents(2, 1).then(function (result) { vm.pickedlanguage =JSON.stringify(result); });
+         console.log(vm.pickedlanguage);
+        }
+        setLanguage();
+
         */
         function save() {
             PlaRouteService.saveRoute(vm.route);
