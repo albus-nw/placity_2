@@ -20,7 +20,7 @@
      
         var route = "";
         PlaRouteService.getRouteFromServer(770);
-        route = PlaRouteService.getActiveRoute();
+       // route = PlaRouteService.getActiveRoute();
         //   route['id'] = id;
         //    route['pages'] = Page.get({ filter: 'id_route=' + id, related: 'content_by_id_page' });
         var pageX;

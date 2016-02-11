@@ -20,19 +20,22 @@
             controller: ctTextCtrl,
             controllerAs: 'vm',
             bindToController: true,
-            //templateUrl: 'js/contentTypes/ctText.html',
-            template: '<p style="color: #cf1fb6"> <em>{{vm.content.data_obj}}</em> ODER:   ------{{vm.ctText}}--------------------</p>',
+            templateUrl: 'js/contentTypes/ctText.html'
+           
         };
         return directive;
     }
 
-    ctTextCtrl.$inject = [];
-    function ctTextCtrl() {
-        var vm=this; 
-        //vm.ctText = $scope.$parent.ctText;
-        vm.ctText = vm.content;
-        console.log(vm.ctText);
-        console.log(vm.content);
+    ctTextCtrl.$inject = ['$sce'];
+    function ctTextCtrl($sce) {
+        var vm = this;
+        var lang_id='0'
+        var data_obj_parsed;
+
+
+        data_obj_parsed = JSON.parse(vm.content.data_obj);
+       vm.pText = $sce.trustAsHtml(data_obj_parsed.languages[lang_id].fields[0].text);
+
      
     }
 })();

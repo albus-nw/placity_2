@@ -20,12 +20,36 @@
           <!--  {{vm.currentPage}}-->
         </div>
         <div style="border: 1px dotted #ff0000; color: #000000;" ng-repeat="con in vm.content_by_id_page">
-           
-            
-        <!--    <ct-text content="'Penis'"></ct-text>-->
-            <ct-text content="{data_obj: con.data_obj}"></ct-text>
 
-        </div>
+
+            
+            <div ng-if="vm.content_by_id_page[$index].id_content_type == '1'">
+                <ct-text content="{data_obj: con.data_obj}"></ct-text>
+            </div>
+            <div ng-if="vm.content_by_id_page[$index].id_content_type == '2'">
+                 <ct-MultipleChoice content="{data_obj: con.data_obj}"></ct-MultipleChoice>
+            </div>
+            <div ng-if="vm.content_by_id_page[$index].id_content_type == '3'">
+                <ct-Dialog content="{data_obj: con.data_obj}"></ct-Dialog>
+            </div>
+            <div ng-if="vm.content_by_id_page[$index].id_content_type == '5'">
+                <ct-FrageFreitext content="{data_obj: con.data_obj}"></ct-FrageFreitext>
+            </div>
+            <div ng-if="vm.content_by_id_page[$index].id_content_type == '6'">
+                <ct-AudioApp content="{data_obj: con.data_obj}"></ct-AudioApp>
+            </div>
+            <div ng-if="vm.content_by_id_page[$index].id_content_type == '7'">
+                <ct-Video content="{data_obj: con.data_obj}"></ct-Video>
+            </div>
+            <div ng-if="vm.content_by_id_page[$index].id_content_type == '8'">
+                <ct-Image content="{data_obj: con.data_obj}"></ct-Image>
+            </div>
+
+
+
+
+
+            </div>
         <div ng-show="vm.page">
             <a ng-click="vm.goToNextPage()" class="btn btn-primary">Next Page</a>
         </div>

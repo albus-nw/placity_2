@@ -15,21 +15,24 @@
             controller: ctImageCtrl,
             controllerAs: 'vm',
             restrict: 'E',
-            scope: { }
+            scope: {
+                content: '=',
+                ctImage:'=content'
+            }
         };
 
         return directive;
     }
 
-    //ctImageCtrl.$inject = ['$scope'];
+    ctImageCtrl.$inject = ['$sce'];
     /* @ngInject */
-    function ctImageCtrl() {
-        
+    function ctImageCtrl($sce) {
         var vm = this;
-        vm.data = {
-            src: 'http://143.93.91.92/philipp/avatar1.jpg',
-            alt: '...'
-        };
+        var data_obj_parsed;
+        data_obj_parsed = JSON.parse(vm.content.data_obj);
+        vm.src = data_obj_parsed.src;
+        vm.alt = data_obj_parsed.alt;
+       
 
     }
 })();

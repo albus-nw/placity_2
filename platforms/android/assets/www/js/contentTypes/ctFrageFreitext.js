@@ -19,26 +19,35 @@
             controller: ctFrageFreitextCtrl,
             controllerAs: 'vm',
             restrict: 'E',
-            scope : { }
+            scope: {
+                content: '=',
+                ctFrageFreitext: '=content'
+            }
         };
 
         return directive;
 
     }
-    ctFrageFreitextCtrl.$inject = ['$scope'];
-    function ctFrageFreitextCtrl($scope) {
+    ctFrageFreitextCtrl.$inject = ['$sce'];
+    function ctFrageFreitextCtrl($sce) {
+        var lang_id = '0';
         var vm = this;
-        vm.ctFrageFreitext = $scope.$parent.ctFrageFreitext;
-
+        var data_obj_parsed;
+        data_obj_parsed = JSON.parse(vm.content.data_obj);
+        vm.ctFrageFreitextquestion = $sce.trustAsHtml(data_obj_parsed.languages[lang_id].fields[0].question);
+        vm.ctFrageFreitextanswer = data_obj_parsed.languages[lang_id].fields[0].answer;
+        
 
         vm.teste = function () {
-            if (vm.ctFrageFreitext.answer == vm.answerGiven) {
-              //  console.log("Richtig!");
+            if (vm.ctFrageFreitextanswer == vm.answerGiven) {
+                //  console.log("Richtig!");
+                console.log(vm.answerGiven +"richtig");
                 vm.message = "Richtig";
             }
             else {
                // console.log("Falsch!");
                 vm.message = "Falsch";
+                console.log(vm.answerGiven + "falsch");
             }
         }
     }

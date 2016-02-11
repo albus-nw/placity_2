@@ -50,7 +50,7 @@
 
     angular
         .module('contentTypes')
-        .directive('ctAudioApp', ctAudioApp);
+        .directive('ctAudioapp', ctAudioApp);
 
     ctAudioApp.$inject = [];
 
@@ -61,7 +61,11 @@
             templateUrl:'js/contentTypes/ctAudioApp.html',
             controller: ctAudioCtrlApp,
             controllerAs: 'vm',
-            restrict: 'E'
+            restrict: 'AE',
+            scope : {
+                content: '=',
+                ctAudioapp : '=content'
+            }
         };
         return directive;
 
@@ -70,37 +74,19 @@
     ctAudioCtrlApp.$inject = ['$sce'];
 
     function ctAudioCtrlApp($sce) {
-        // $scope wird nur zum Vergleich eingefügt (injiziert)
+        
         var vm = this;
+        var data_obj_parsed;
+        var audiofileurl;
+        data_obj_parsed = JSON.parse(vm.content.data_obj);
+        vm.info = data_obj_parsed.info;
 
-        vm.content =  {
-            id: 1,
-            id_page: 1,
-            id_content_type: 1,
-            data_obj: {
-                id:14,
-                audiofileurl: "http://143.93.91.92/upload/2016_1_16/Ab%20An%20De%20See.mp3",
-                info:"InfoText"
-            },
-            pos: 1
-        };
+        vm.sources = [{ src: $sce.trustAsResourceUrl(data_obj_parsed.audiofileurl), type: "audio/mpeg" }];
 
         vm.config={
-            sources:[
-                { src: $sce.trustAsResourceUrl("http://143.93.91.92/upload/2016_1_16/Ab%20An%20De%20See.mp3"), type: "audio/mpeg" }
-            ],
             theme: "js/frameworks/videogular-themes-default/videogular.css",
         };
         }
 
-        /* //ToDo: Datenzugriff auf content
-        activate();
 
-        function activate(){
-
-            return Dataservice.getMediafilesByType('12','audio').then(function(data){
-                vm.audioFiles = data;
-                return vm.audioFiles;
-            })
-        }*/
     })();
