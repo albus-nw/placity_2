@@ -76,12 +76,13 @@
     function ctAudioCtrlApp($sce) {
         
         var vm = this;
+        var lang_id = '0';
         var data_obj_parsed;
         var audiofileurl;
         data_obj_parsed = JSON.parse(vm.content.data_obj);
-        vm.info = data_obj_parsed.info;
+        vm.info = data_obj_parsed.languages[0].fields[0].info;
 
-        vm.sources = [{ src: $sce.trustAsResourceUrl(data_obj_parsed.audiofileurl), type: "audio/mpeg" }];
+        vm.sources = [{ src: $sce.trustAsResourceUrl(data_obj_parsed.languages[lang_id].fields[0].audiofileurl), type: "audio/mpeg" }];
 
         vm.config={
             theme: "js/frameworks/videogular-themes-default/videogular.css",

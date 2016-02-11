@@ -85,7 +85,6 @@
             vm.pageIter = PlaRouteService.PageIter();
             vm.pageIter.next().value.then(function (value) {
                 vm.content_by_id_page = value.content_by_id_page;
-              //  vm.content_by_id_page = JSON.parse(vm.content_by_id_page);
                 var bP = "Page Name: " + value.page_name;
                 bP += "<br /> POS: " + value.pos;
                 bP += "\n Contents: " + value.content_by_id_page;
@@ -99,7 +98,6 @@
         function goToNextPage() {
             vm.pageIter.next().value.then(function (value) {
                 vm.content_by_id_page = value.content_by_id_page;
-             //   vm.content_by_id_page = JSON.parse(vm.content_by_id_page);
                 var bP = "Page Name: " + value.page_name;
                 bP += "<br /> POS: " + value.pos;
                 bP += "\n Contents: " + value.content_by_id_page;

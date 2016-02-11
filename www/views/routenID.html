@@ -11,6 +11,11 @@
         <a ng-click="vm.save()" class="btn btn-primary">Route speichern</a>
         <a ng-click="vm.aod()" class="btn btn-primary">All On Device</a>
         <a ng-show="vm.route !== {}" ng-click="vm.play(); vm.playing = true;" class="btn btn-primary">Play! </a>
+       <!-- <div ng-show="vm.route !== {}"  >
+            <div ng-repeat="con in vm.content_by_id_page.language">
+                <input type="radio" name="Language" value="vm.content_by_id_page[0].languages[0].lang"><br>
+            </div>
+        </div>-->
     </div>
     <div>
         <!--{{vm.lokaleRouten}}

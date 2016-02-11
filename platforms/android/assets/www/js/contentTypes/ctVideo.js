@@ -30,11 +30,12 @@
 
     function ContenttypeVideoController($scope, $http, $sce) {
         var vm = this;
+        var lang_id = '0';
         var data_obj_parsed;
         data_obj_parsed = JSON.parse(vm.content.data_obj);
-        vm.ctVideodescription = data_obj_parsed.description;
-        vm.ctVideoautoplay = data_obj_parsed.autoplay;
-        vm.ctVideosrc = $sce.trustAsHtml(data_obj_parsed.src);
+        vm.ctVideodescription = data_obj_parsed.languages[lang_id].fields[0].description;
+        vm.ctVideoautoplay = data_obj_parsed.languages[lang_id].fields[0].autoplay;
+        vm.ctVideosrc = $sce.trustAsHtml(data_obj_parsed.languages[lang_id].fields[0].src);
 
 
 
