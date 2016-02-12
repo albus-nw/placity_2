@@ -14,8 +14,11 @@
         /* jshint validthis:true */
         var vm = this;
         //sowas wie vm.pickedlanguage fehlt noch
-        vm.pickedlanguage='0';
+        vm.pickedlanguage = '0';
+        vm.langarray=[];
+        vm.lang_id;
         vm.playing = false;
+        vm.loaded = false;
         vm.routenID = $routeParams.routenID;
         vm.start = $routeParams.start;
         vm.pages = '';
@@ -28,14 +31,47 @@
         vm.aod = function () { $location.path('/RouteLokal'); };
         vm.lokaleRouten = {};
         vm.route;
+        vm.getLanguage = function () {
+            console.log(vm.route.pages.resource[0].content_by_id_page[0].data_obj);
+            var help = JSON.parse(vm.route.pages.resource[0].content_by_id_page[0].data_obj);
+            console.log(help);
+            for (var x in help.languages) {
+                vm.langarray[x] = help.languages[x].lang;
+            }
+            console.log(vm.langarray);
+            
+        };
+
+
+        vm.setLanguage = function () {
+            console.log(vm.lang_id);
+            $scope.lang_id = vm.lang_id;
+            vm.playing = true;
+
+        };
         vm.fromDevice = function () {
-            PlaRouteService.getRouteFromDevice(vm.routenID).then(function (result) { vm.route = result; });
+            PlaRouteService.getRouteFromDevice(vm.routenID).then(function (result) {
+                vm.route = result;
+                vm.getLanguage();
+                vm.loaded = true;
+            });
+          
         };
         vm.fromServer = function () {
-            vm.route = PlaRouteService.getRouteFromServer(vm.routenID).then(function (result) { vm.route = result; });
+            vm.route = PlaRouteService.getRouteFromServer(vm.routenID).then(function (result) {
+                vm.route = result;
+                vm.getLanguage();
+                vm.loaded = true;
+            });
+
         };
         vm.fromSomewhere = function () {
-            PlaRouteService.getRoute(vm.routenID).then(function (result) { vm.route = result; });
+            PlaRouteService.getRoute(vm.routenID).then(function (result) {
+                vm.route = result;
+                vm.getLanguage();
+                vm.loaded = true;
+            });
+          
         }
        
         if (vm.start == 'device') {

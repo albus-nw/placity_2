@@ -26,10 +26,14 @@
         return directive;
     }
 
-    ctTextCtrl.$inject = ['$sce', 'localUserService'];
-    function ctTextCtrl($sce, localUserService) {
+    ctTextCtrl.$inject = ['$sce', 'localUserService','$scope'];
+    function ctTextCtrl($sce, localUserService,$scope) {
+        var lang_id;
         var vm = this;
-        var lang_id = '0';
+        if ($scope.$parent.vm.lang_id) {
+            lang_id = $scope.$parent.vm.lang_id;
+
+        }
        // localUserService.getData("lang").then(function (result) {
         //    lang_id = result;
             activate();

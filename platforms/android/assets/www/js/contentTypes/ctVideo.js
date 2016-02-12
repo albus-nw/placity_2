@@ -29,8 +29,12 @@
     ContenttypeVideoController.$inject = ['$scope', '$http', '$sce'];
 
     function ContenttypeVideoController($scope, $http, $sce) {
+        var lang_id;
         var vm = this;
-        var lang_id = '0';
+         if ($scope.$parent.vm.lang_id) {
+            lang_id = $scope.$parent.vm.lang_id;
+      
+        }
         var data_obj_parsed;
         data_obj_parsed = JSON.parse(vm.content.data_obj);
         vm.ctVideodescription = data_obj_parsed.languages[lang_id].fields[0].description;

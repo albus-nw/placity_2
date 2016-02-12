@@ -24,11 +24,15 @@
         return directive;
     }
 
-    ctImageCtrl.$inject = ['$sce'];
+    ctImageCtrl.$inject = ['$sce','$scope'];
     /* @ngInject */
-    function ctImageCtrl($sce) {
+    function ctImageCtrl($sce,$scope) {
+        var lang_id;
         var vm = this;
-        var lang_id = '0';
+         if ($scope.$parent.vm.lang_id) {
+            lang_id = $scope.$parent.vm.lang_id;
+      
+        }
         var data_obj_parsed;
         data_obj_parsed = JSON.parse(vm.content.data_obj);
         vm.src = data_obj_parsed.languages[lang_id].fields[0].src;

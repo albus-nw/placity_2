@@ -28,13 +28,17 @@
         return directive;
 
     }
-    ctFrageFreitextCtrl.$inject = ['$sce'];
-    function ctFrageFreitextCtrl($sce) {
-        var lang_id = '0';
+    ctFrageFreitextCtrl.$inject = ['$sce','$scope'];
+    function ctFrageFreitextCtrl($sce,$scope) {
+        var lang_id;
         var vm = this;
+        if ($scope.$parent.vm.lang_id) {
+            lang_id = $scope.$parent.vm.lang_id;
+
+        }
         var data_obj_parsed;
         data_obj_parsed = JSON.parse(vm.content.data_obj);
-        vm.ctFrageFreitextquestion = $sce.trustAsHtml(data_obj_parsed.languages[lang_id].fields[0].question);
+        vm.ctFrageFreitextquestion = $sce.trustAsHtml(data_obj_parsed.languages[lang_id].fields[0].text);
         vm.ctFrageFreitextanswer = data_obj_parsed.languages[lang_id].fields[0].answer;
         
 

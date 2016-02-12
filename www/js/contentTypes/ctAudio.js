@@ -71,12 +71,16 @@
 
     }
 
-    ctAudioCtrlApp.$inject = ['$sce'];
+    ctAudioCtrlApp.$inject = ['$sce','$scope'];
 
-    function ctAudioCtrlApp($sce) {
+    function ctAudioCtrlApp($sce,$scope) {
         
+        var lang_id;
         var vm = this;
-        var lang_id = '0';
+        if ($scope.$parent.vm.lang_id) {
+            lang_id = $scope.$parent.vm.lang_id;
+
+        }
         var data_obj_parsed;
         var audiofileurl;
         data_obj_parsed = JSON.parse(vm.content.data_obj);
