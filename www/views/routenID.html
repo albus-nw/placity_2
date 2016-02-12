@@ -3,14 +3,14 @@
 <div>
 
     <a href="#/Routen" class="btn btn-primary btn-sm">Zurück</a>
-    <div ng-show="vm.playing == false">
+    <div ng-hide="vm.playing" class="ng-hide">
         <em>RoutenID:  {{vm.routenID}}</em><br />
         <a ng-click="vm.fromDevice()" class="btn btn-primary">Von Gerät</a>
         <a ng-click="vm.fromServer()" class="btn btn-primary">Von Server</a>
         <a ng-click="vm.fromSomewhere()" class="btn btn-primary">Von Egal</a>
         <a ng-click="vm.save()" class="btn btn-primary">Route speichern</a>
         <a ng-click="vm.aod()" class="btn btn-primary">All On Device</a>
-        <a ng-show="vm.route !== {}" ng-click="vm.play(); vm.playing = true;" class="btn btn-primary">Play! </a>
+        <a ng-show="vm.route" ng-click="vm.play(); vm.playing = true;" class="btn btn-primary ng-hide">Play! </a>
        <!-- <div ng-show="vm.route !== {}"  >
             <div ng-repeat="con in vm.content_by_id_page.language">
                 <input type="radio" name="Language" value="vm.content_by_id_page[0].languages[0].lang"><br>
@@ -56,7 +56,7 @@
 
 
             </div>
-        <div ng-show="vm.page">
+        <div ng-show="vm.playing">
             <a ng-click="vm.goToNextPage()" class="btn btn-primary">Next Page</a>
         </div>
     </div>

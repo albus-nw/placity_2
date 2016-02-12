@@ -8,9 +8,9 @@
         .module('placity.controllers')
         .controller('routenIDCtrl', routenIDCtrl);
 
-    routenIDCtrl.$inject = ['$routeParams', 'PlaRouteService', '$location', '$scope'];
+    routenIDCtrl.$inject = ['$routeParams', 'PlaRouteService', '$location', '$scope', '$location'];
 
-    function routenIDCtrl($routeParams, PlaRouteService, $scope) {
+    function routenIDCtrl($routeParams, PlaRouteService, $scope, $location) {
         /* jshint validthis:true */
         var vm = this;
         //sowas wie vm.pickedlanguage fehlt noch
@@ -25,9 +25,9 @@
         vm.pageIter;
         vm.save = save;
         vm.play = play;
-        vm.aod = function () { vm.lokaleRouten = PlaRouteService.getAllOnDevice(); };
+        vm.aod = function () { $location.path('/RouteLokal'); };
         vm.lokaleRouten = {};
-        vm.route = {};
+        vm.route;
         vm.fromDevice = function () {
             PlaRouteService.getRouteFromDevice(vm.routenID).then(function (result) { vm.route = result; });
         };
@@ -97,8 +97,7 @@
             vm.pageIter.next().value.then(function (value) {
                 vm.content_by_id_page = value.content_by_id_page;
                 var bP = "Page Name: " + value.page_name;
-                bP += "<br /> POS: " + value.pos;
-                bP += "\n Contents: " + value.content_by_id_page;
+               
                 vm.currentPage = bP;
             });
         }
@@ -110,16 +109,14 @@
             vm.pageIter.next().value.then(function (value) {
                 vm.content_by_id_page = value.content_by_id_page;
                 var bP = "Page Name: " + value.page_name;
-                bP += "<br /> POS: " + value.pos;
-                bP += "\n Contents: " + value.content_by_id_page;
+               
                 vm.currentPage = bP;
             });
         }
 
         function buildPage(value) {
             var bP = "Page Name: " + value.page_name;
-            bP += "<br /> POS: " + value.pos;
-            bP += "\n Contents: " + value.content_by_id_page;
+           
             vm.currentPage = bP;
         }
     }

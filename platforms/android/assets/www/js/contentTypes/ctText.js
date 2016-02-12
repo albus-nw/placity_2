@@ -30,12 +30,17 @@
     function ctTextCtrl($sce, localUserService) {
         var vm = this;
         var lang_id = '0';
-        localUserService.getData("lang").then(function (result) { lang_id = result; });
+       // localUserService.getData("lang").then(function (result) {
+        //    lang_id = result;
+            activate();
+       // });
         var data_obj_parsed;
 
-
-        data_obj_parsed = JSON.parse(vm.content.data_obj);
+        function activate() {
+        data_obj_parsed = angular.fromJson(vm.content.data_obj);
        vm.pText = $sce.trustAsHtml(data_obj_parsed.languages[lang_id].fields[0].text);
+        }
+
 
      
     }

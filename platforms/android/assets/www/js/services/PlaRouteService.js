@@ -181,13 +181,17 @@
             /// 
             /// </summary>
             /// <returns type=""></returns>
+            var res = $q.defer();
             if (lokaleRouten.length > 1) {
-                return lokaleRouten;
+                res.resolve(lokaleRouten);
             }
             else {
-               return fileService.readFromFile('lokaleRouten.json').then(function (result) { lokaleRouten = result; return lokaleRouten;});
+                fileService.readFromFile('lokaleRouten.json').then(function (result) {
+                    lokaleRouten = result;
+                    res.resolve(lokaleRouten);
+                });
             }
-
+            return res.promise;
         }
 
         /*

@@ -11,7 +11,9 @@
         /* jshint validthis:true */
         var vm = this;
         vm.title = 'lokaleRoutenCtrl';
-        vm.aRouten = PlaRouteService.getAllOnDevice();
+        vm.aRouten = PlaRouteService.getAllOnDevice().then( function(res) {
+            vm.aRouten = res; 
+        });
         
         
     }
