@@ -17,6 +17,7 @@
         vm.pickedlanguage='0';
         vm.playing = false;
         vm.routenID = $routeParams.routenID;
+        vm.start = $routeParams.start;
         vm.pages = '';
         vm.currentPage;
         vm.content_by_id_page;
@@ -37,6 +38,15 @@
             PlaRouteService.getRoute(vm.routenID).then(function (result) { vm.route = result; });
         }
        
+        if (vm.start == 'device') {
+            vm.playing = true;
+            PlaRouteService.getRouteFromDevice(vm.routenID).then(function (result) {
+                vm.route = result;
+                play();
+            });
+            
+        }
+
        /*
         * 
         */
@@ -82,6 +92,7 @@
          * 
          */
         function play() {
+            vm.playing = true;
             vm.pageIter = PlaRouteService.PageIter();
             vm.pageIter.next().value.then(function (value) {
                 vm.content_by_id_page = value.content_by_id_page;

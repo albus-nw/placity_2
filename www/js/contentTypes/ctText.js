@@ -26,10 +26,11 @@
         return directive;
     }
 
-    ctTextCtrl.$inject = ['$sce'];
-    function ctTextCtrl($sce) {
+    ctTextCtrl.$inject = ['$sce', 'localUserService'];
+    function ctTextCtrl($sce, localUserService) {
         var vm = this;
-        var lang_id='0'
+        var lang_id = '0';
+        localUserService.getData("lang").then(function (result) { lang_id = result; });
         var data_obj_parsed;
 
 

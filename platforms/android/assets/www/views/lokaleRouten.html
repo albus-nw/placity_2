@@ -1,0 +1,7 @@
+﻿<!-- erstellt von pk
+    Lokal gespeicherten Routen anzeigen und starten -->
+<br />
+<a href="#/Routen" class="btn btn-primary btn-sm">Zurück</a>
+<div ng-repeat="route in vm.aRouten">
+    <a href="#/Routen/{{route.id_route}}?start=device" class="btn btn-info">Route {{route.id_route}} {{route.name}}, Yo!</a>
+</div>

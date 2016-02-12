@@ -1,4 +1,10 @@
 ﻿// gibt mit .getData(param) die route mit der id param zurück
+/*
+ * 
+ * 
+ * Unnötig, bitte entfernen!!
+ * gibt btw nicht die Route, sondern die Pages einer Route
+ */
 
 (function () {
     'use strict';

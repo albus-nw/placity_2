@@ -18,11 +18,11 @@
                .when('/Routen', { templateUrl: 'views/routenmenu.html', controller: 'routenmenuCtrl', controllerAs: 'vm' })
                    //Routenmenü
                .when('/QrScan', { templateUrl: 'views/scan.html', controller: 'scanCtrl', controllerAs: 'vm' })
-               .when('/RouteOnline', { templateUrl: 'views/routeOnlineSuchen.html' })
+               .when('/RouteOnline', { templateUrl: 'views/routeOnlineSuchen.html', controller: 'suchCtrl', controllerAs: 'vm' })
 
                .when('/RouteId', { templateUrl: 'views/routeIdEingabe.html', controller: 'routenIdEingabeCtrl', controllerAs: 'vm' })
 
-               .when('/RouteLokal', { template: '<a href="#/Routen" class="btn btn-primary btn-sm">Zurück</a><div><ul><li> <a href="#/RouteLokal/bsp">Route X </a></li></ul></div> ' })
+               .when('/RouteLokal', { templateUrl: 'views/lokaleRouten.html', controller: 'lokaleRoutenCtrl', controllerAs: 'vm' })
                        //eine per routenID bestimmte Route, routenID prüfen, starten, laden oä
                    .when('/Routen/:routenID', { templateUrl: 'views/routenID.html', controller: 'routenIDCtrl', controllerAs: 'vm' })
 

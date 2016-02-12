@@ -1,9 +1,9 @@
 ﻿
 <br /><br /><br />
-<div ng-init="vm.playing = false">
+<div>
 
     <a href="#/Routen" class="btn btn-primary btn-sm">Zurück</a>
-    <div ng-show="!vm.playing">
+    <div ng-show="vm.playing == false">
         <em>RoutenID:  {{vm.routenID}}</em><br />
         <a ng-click="vm.fromDevice()" class="btn btn-primary">Von Gerät</a>
         <a ng-click="vm.fromServer()" class="btn btn-primary">Von Server</a>
@@ -30,6 +30,7 @@
             
             <div ng-if="vm.content_by_id_page[$index].id_content_type == '1'">
                 <ct-text content="{data_obj: con.data_obj}"></ct-text>
+              <!-- geht auch so:   <p ct-text content="{data_obj: con.data_obj}"></p>-->
             </div>
             <div ng-if="vm.content_by_id_page[$index].id_content_type == '2'">
                  <ct-MultipleChoice content="{data_obj: con.data_obj}"></ct-MultipleChoice>

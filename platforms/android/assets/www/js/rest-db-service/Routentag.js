@@ -35,7 +35,7 @@ angular.module('restDataServices')
      *               Routentag.remove({filter:'id>2'})     löscht alle Einträge mit ID > 2
      */
         function Routentag ($resource) {
-        return $resource('/api/v2/db/_table/Routentag/:id', {id: '@id'}, {
+            return $resource('http://df.albus-it.com/api/v2/db/_table/Routentag/:id', { id: '@id' }, {
             /**
              * @ngdoc function
              * @name Routentag.get

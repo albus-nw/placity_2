@@ -12,21 +12,22 @@
       .module('placity.services')
       .factory('PlaRouteService',  PlaRouteService);
 
-    PlaRouteService.$inject = ['fileService', 'Page', 'Route', '$q'];
+    PlaRouteService.$inject = ['fileService', 'Page', 'Route', '$q', 'Routentag'];
     
     
-    function PlaRouteService(fileService, Page, Route, $q) {
+    function PlaRouteService(fileService, Page, Route, $q, Routentag) {
         var route = {};
         route['id'] = {};
         route['pages'] = {};
         console.log("ding ding ding");
-        var lokaleRouten = null;
+        var lokaleRouten = [];
         fileService.readFromFile('lokaleRouten.json').then(function (result) { lokaleRouten = result; });
 
         var service = {
             getRoute: getRoute,
             getRouteFromServer: getRouteFromServer,
             getRouteFromDevice: getRouteFromDevice,
+            searchPerTag: searchPerTag,
             saveRoute: saveRoute,
             isOnDevice: isOnDevice,
             isOnServer: isOnServer,
@@ -73,25 +74,35 @@
          */
         function getRouteFromServer(id) {
             /// <summary>
-            /// 
+            /// Route von Server holen und zurückgeben
+            /// wird in der aktuellen Routenvariable hinterlegt
             /// </summary>
             /// <param name="id" type="type"></param>
             /// <returns type=""></returns>
             var res = $q.defer();
             if (isOnServer(id) == true) {
-                route['id'] = id;
+                Route.get({ filter: 'id=' + id }).$promise.then(function (result) {
+                    result = result.resource[0];
+                    Object.keys(result).forEach(function(key) {
+                        route[key] = result[key];
+                        console.log("key "+ key + " route[key] " + route[key]);
+                    });
+                });
+               
+               // route['id'] = id;
                 Page.get({ filter: 'id_route=' + id, related: 'content_by_id_page' })
                     .$promise.then(function (result) {
                         route.pages = result;
-                        res.resolve(route);
-                        console.log(result);
                         console.log(route);
+                        res.resolve(route);
+                       // console.log(result);
+                        
                     });
             }
             else {
-                route.id = id;
-                route.pages = result;
-                res.resolve(route);
+                route.id = null;
+                route.pages = null;
+                res.reject("not on server");
                 console.log("not on server");
             }
             return res.promise;
@@ -126,10 +137,10 @@
             /// speichert übergebene Route lokal
             /// </summary>
             /// <param name="route" type="type"></param>
-            lokaleRouten.push(route['id']);
-            console.log("routeID: " + route['id']);
-           // lokaleRouten.route['id'] = "Route" + route['id'] + ".json";
-            fileService.writeToFile("Route" + route['id'] + ".json", route);
+            var fileName = "Route" + route['id'] + ".json";
+            var pathToFile = cordova.file.dataDirectory + fileName;
+            lokaleRouten.push({ id_route: route.id, name: route.name, fileName: fileName, pathToFile: pathToFile });
+            fileService.writeToFile(fileName, route);
             fileService.writeToFile('lokaleRouten.json', lokaleRouten);
         }
 
@@ -158,8 +169,8 @@
                 console.log("in if; true, route gefunden");
                 return true;
             }
-            //return false;
-            return true;
+            return false;
+            
         }
 
         /*
@@ -170,7 +181,13 @@
             /// 
             /// </summary>
             /// <returns type=""></returns>
-            return lokaleRouten;
+            if (lokaleRouten.length > 1) {
+                return lokaleRouten;
+            }
+            else {
+               return fileService.readFromFile('lokaleRouten.json').then(function (result) { lokaleRouten = result; return lokaleRouten;});
+            }
+
         }
 
         /*
@@ -232,6 +249,11 @@
          * 
          */
         function PageIterator(routen_id) {
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="routen_id" type="type"></param>
+            /// <returns type="">Objekt zum Iterieren über die Pages einer Route</returns>
             var nextIndex = 0;
             var iteratedRoute,  numberOfPages;
            
@@ -258,6 +280,10 @@
             }
             
             function next() {
+                /// <summary>
+                /// 
+                /// </summary>
+                /// <returns type="">Objekt: value: nächste Page, done: boolean, false für keine weitere Pages</returns>
                 if (nextIndex < numberOfPages) {
                     nextIndex++;
                     //index von 0 bis numberOfPages -1  ; position von 1 bis numberOfPages
@@ -267,6 +293,31 @@
                     return { done: true };
                 }
             }
+        }
+
+        /*
+         * 
+         * 
+         */
+        function searchPerTag(sTag) {
+            /// <summary>
+            /// Routen nach Tag suchen
+            /// Returns promise für ein Array von { id_route: " ", name: " ", tag_name: " " }
+            /// </summary>
+            /// <param name="sTag" type="string">Tagname für den gesucht werden soll</param>
+            var res = $q.defer();
+            Routentag.get({ filter: 'tag_name=' + sTag })
+               .$promise.then(
+                   function (result) {
+                      var aTreffer = result.resource;
+                       aTreffer.forEach(function (current, index, array) {
+                           Route.get({ filter: 'id=' + current.id_route, fields: 'name' }).$promise.then(function (result) {
+                                current.name = result.resource[0].name;
+                           });
+                       });
+                       res.resolve(aTreffer);
+                   });
+            return res.promise;
         }
 
         return service;

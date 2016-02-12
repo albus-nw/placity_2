@@ -35,7 +35,7 @@ var app = {
     onDeviceReady: function() {
       //  app.receivedEvent('deviceready');
         navigator.vibrate(1);
-        navigator.notification.beep(1);
+       // navigator.notification.beep(1);
         navigator.vibrate(7);
 
         //angular manuel bootstrappen, "ng-app" im body tag dafür entfe´rnt
