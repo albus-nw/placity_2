@@ -1,4 +1,6 @@
-
+/**
+ * created by PW on 24.01.2016
+ */
 (function () {
     'use strict';
 

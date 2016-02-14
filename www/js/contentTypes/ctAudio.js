@@ -1,49 +1,8 @@
 /**
  * Created by albus on 16.01.2016.
+ * Edit PW
  */
-//(function () {
-//    'use strict';
 
-//    angular
-//        .module('contentTypes')
-//        .directive('ctAudioQE', ctAudioQE);
-
-//    ctAudioQE.$inject = [];
-
-//    /* @ngInject */
-//    function ctAudioQE() {
-//        var directive = {
-//            bindToController: true,
-//            controller: ctAudioCtrlQE,
-//            controllerAs: 'vm',
-//            restrict: 'E',
-//            scope: {}
-//        };
-//        return directive;
-
-
-//    }
-
-//    ctAudioCtrlQE.$inject = ['Dataservice'];
-
-//    function ctAudioCtrlQE(Dataservice) {
-//        // $scope wird nur zum Vergleich eingefügt (injiziert)
-//        var vm = this;
-
-//        vm.audioFiles = [];
-
-//        activate();
-
-//        function activate(){
-//            //ToDo: this user (aktueller User hier einfügen)
-//            return Dataservice.getMediafilesByType('12','audio').then(function(data){
-//                vm.audioFiles = data;
-//                return vm.audioFiles;
-//            })
-//        }
-//    }
-
-//})();
 
 (function () {
     'use strict';

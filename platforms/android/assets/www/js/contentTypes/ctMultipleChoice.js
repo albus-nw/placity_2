@@ -32,20 +32,23 @@
         
         var vm = this;
         vm.lang_id;
-         if ($scope.$parent.vm.lang_id) {
+         if ($scope.$parent.vm.lang_id) { //abfrage der ausgewählten Sprache
             vm.lang_id = $scope.$parent.vm.lang_id;
       
         }
         var data_obj_parsed;
         data_obj_parsed = JSON.parse(vm.content.data_obj);
         vm.ctMultipleChoiceText = $sce.trustAsHtml(data_obj_parsed.languages[vm.lang_id].fields[0].text);
-       //  vm.ctMultipleChoiceText = $sce.trustAsHtml(data_obj_parsed.languages[lang_id].fields[0].text);
         vm.ctMultipleChoiceChoice = data_obj_parsed.languages[vm.lang_id].fields[0].choice;
         vm.ctMultipleChoiceChoice.answer = data_obj_parsed.languages[vm.lang_id].fields[0].answer;
       
         vm.answerGiven = "";
        
         vm.test = function () {
+            /// <summary>
+            /// Überprüft die angegebene Antwort, und setzt vm.answergiven auf DE/EN Richtig/right, Falsch/Wrong
+            /// Für weitere Sprachen müsste hier noch weitere else if definiert werden
+            /// </summary>
             console.log(vm.lang_id);
             if (vm.answerGiven == vm.ctMultipleChoiceChoice.answer) {
                 if (vm.lang_id == '0') {
