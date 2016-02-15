@@ -10,19 +10,18 @@
 
     angular
       .module('placity.services')
-      .factory('PlaRouteService',  PlaRouteService);
+      .factory('PlaRouteService', PlaRouteService);
 
     PlaRouteService.$inject = ['fileService', 'Page', 'Route', '$q', 'Routentag'];
-    
-    
+
+
     function PlaRouteService(fileService, Page, Route, $q, Routentag) {
         var route = {};
         route['id'] = {};
         route['pages'] = {};
-        console.log("ding ding ding");
         var lokaleRouten = [];
         cacheLokaleRouten();
-        
+
 
         var service = {
             getRoute: getRoute,
@@ -49,27 +48,29 @@
             /// entweder lokal wenn vorhanden oder vom server
             /// wird in der aktuellen Routenvariable hinterlegt
             /// </summary>
-            /// <param name="id" >Promise für die Route</param>
+            /// <param name="id" >ID der angeforderten Route</param>
+            /// <returns type="promise">Promise zur angeforderten Route</returns>
 
             var res = $q.defer();
             if (id === undefined) {
                 //keine id angegeben, gebe aktuelle Route zurück, falls gesetzt, oder halt null             
-                    res.resolve(route);
+                res.resolve(route);
             }
             else if (id == route.id) {
+                //die angeforderte Route entspricht der, die bereits in der Routenvariable des PlaRouteService hinterlegt ist
                 res.resolve(route);
             }
             else {
                 if (isOnDevice(id)) {
-                    console.log("from device");
+                    //console.log("from device");
                     res.resolve(getRouteFromDevice(id));
                 }
                 else {
-                    console.log("from server");
+                    //console.log("from server");
                     res.resolve(getRouteFromServer(id));
                 }
             }
-           return res.promise;
+            return res.promise;
         }
 
         /*
@@ -80,33 +81,38 @@
             /// Route von Server holen und zurückgeben
             /// wird in der aktuellen Routenvariable hinterlegt
             /// </summary>
-            /// <param name="id" type="type">ID der Route</param>
-            /// <returns type="">Promise für die Route</returns>
+            /// <param name="id">ID der Route</param>
+            /// <returns type="">Promise zur angeforderten Route</returns>
             var res = $q.defer();
             if (isOnServer(id) == true) {
-                Route.get({ filter: 'id=' + id }).$promise.then(function (result) {
-                    result = result.resource[0];
-                    Object.keys(result).forEach(function(key) {
-                        route[key] = result[key];
-                        console.log("key "+ key + " route[key] " + route[key]);
+                Route.get({ filter: 'id=' + id }).$promise.then(
+                    function (result) {
+                        result = result.resource[0];
+                        Object.keys(result).forEach(
+                            //alle Eigenschaften der vom Server geholten Route werden in der Routenvariable des Service hinterlegt
+                            function (key) {
+                                route[key] = result[key];
+                                //console.log("key "+ key + " route[key] " + route[key]);
+                            });
                     });
-                });
-               
-               // route['id'] = id;
+
                 Page.get({ filter: 'id_route=' + id, related: 'content_by_id_page' })
-                    .$promise.then(function (result) {
+                    .$promise.then(
+                    //alle Pages, die zur Route gehören, sind in einer eigenen Tabelle in der Datenbank hinterlegt
+                    //hier werden diese geholt und in der Routenvariable des Service hinterlegt
+                    function (result) {
                         route.pages = result;
                         console.log(route);
                         res.resolve(route);
-                       // console.log(result);
-                        
+                        // console.log(result);  
                     });
             }
             else {
+                //Route nicht auf Server; id und pages der Routenvariable des Service werden auf null gesetzt; das Promise wird rejected
                 route.id = null;
                 route.pages = null;
                 res.reject("not on server");
-                console.log("not on server");
+                //console.log("not on server");
             }
             return res.promise;
         }
@@ -119,31 +125,34 @@
             /// Route aus dem lokalen Dateisystem holen;
             /// wird in der aktuellen Routenvariable hinterlegt
             /// </summary>
-            /// <param name="id" type="type">ID der Route</param>
+            /// <param name="id">ID der Route</param>
             /// <returns type="">Promise für die Route</returns>
-     
-             var res = $q.defer();
-             fileService.readFromFile("Route" + id + ".json")
-                 .then(function (result) {
-                     route = result;
-                     res.resolve(route);
-                     console.log(route);
-                 });
+
+            var res = $q.defer();
+            fileService.readFromFile("Route" + id + ".json")
+                //alle Routen sind im Format "Route<id>.json" auf dem lokalen Dateisystem gespeichert
+                .then(function (result) {
+                    route = result;
+                    res.resolve(route);
+                    console.log(route);
+                });
             return res.promise;
         }
-          
 
         /*
          * 
          */
         function saveRoute(route) {
             /// <summary>
-            /// speichert übergebene Route lokal
+            /// speichert übergebene Route im lokalen Dateisystem
+            /// im Format "Route<id>.json", id wird aus der übergebenen Route übernommen
+            /// eine Route mit dieser ID wird überschrieben, falls vorhanden
             /// </summary>
-            /// <param name="route" type="type"></param>
+            /// <param name="route" type="object">Die zu speichernde Route</param>
             var fileName = "Route" + route['id'] + ".json";
             var pathToFile = cordova.file.dataDirectory + fileName;
             lokaleRouten.push({ id_route: route.id, name: route.name, fileName: fileName, pathToFile: pathToFile });
+            //in der Array-Variable lokaleRouten wird das ebenfalls hinterlegt
             fileService.writeToFile(fileName, route);
         }
 
@@ -157,7 +166,7 @@
             /// <param name="name">Name der zu löschenden Route</param>
             fileService.removeFile(name);   //aus Dateisystem löschen
             for (var i = 0; i < lokaleRouten.length; i++) {
-                    //aus dem lokaleRouten-Array entfernen
+                //aus dem lokaleRouten-Array entfernen
                 if (lokaleRouten[i].fileName == name) {
                     lokaleRouten.splice(i, 1);
                     break;
@@ -172,9 +181,16 @@
             /// <summary>
             /// check, ob route lokal
             /// </summary>
-            /// <param name="id" type="type"></param>
-           
-            return lokaleRouten.indexOf(id) >= 0;
+            /// <param name="id"></param>
+            var b = false;
+            for (var i = 0; i < lokaleRouten.length; i++) {
+                if (lokaleRouten[i].id_route && lokaleRouten[i].id_route == id) {
+                    b = true;
+                    break;
+                }
+            }
+            console.log("is on device: " + b);
+            return b;
         }
 
         /*
@@ -186,20 +202,29 @@
             /// </summary>
             /// <param name="id" type="type"></param>
             /// <returns type="boolean"></returns>
-            if (Route.get({ id: id })) {    //ToDo: das so nicht gut
-                console.log("in if; true, route gefunden");
-                return true;
-            }
-            return false;
+            //Route.get({ id: id }).$promise.then(function (result) {
+            //    if (result.error) {
+            //        console.log("fuuuuuuuuuuuuuu");
+            //        console.log(result);
+            //        return false;
+            //    }
+            //    else {
+            //        console.log("in if; true, route gefunden");
+            //        console.log(result);
+            //        return true;
+            //    }
+            //});
+            //--->könnten Sie das mal nachscaheun, herr weller??
+            return true;
         }
-            
+
         /*
          * 
          */
         function getAllOnDevice() {
             return lokaleRouten;
         }
-           
+
 
         /*
          * 
@@ -219,7 +244,7 @@
             }
             return res.promise;
         }
-         
+
 
         /*
          * 
@@ -233,20 +258,20 @@
             /// <param name="content_pos" type="type"></param>
             /// <returns type="">Promise</returns>
             var res = $q.defer();
-                getPage(page_pos).then(function (result) {
-                    if (content_pos === undefined) {    //kein parameter gesetzt
-                        res.resolve(result.content_by_id_page);
-                    }
-                    else {
-                        //Array nicht unbedingt nach pos sortiert
-                        for (var i = 0; i < result.content_by_id_page.length; i++) {
-                            if (result.content_by_id_page[i].pos == content_pos) {
-                                res.resolve(result.content_by_id_page[i]);
-                                break;
-                            }
+            getPage(page_pos).then(function (result) {
+                if (content_pos === undefined) {    //kein parameter gesetzt
+                    res.resolve(result.content_by_id_page);
+                }
+                else {
+                    //Array nicht unbedingt nach pos sortiert
+                    for (var i = 0; i < result.content_by_id_page.length; i++) {
+                        if (result.content_by_id_page[i].pos == content_pos) {
+                            res.resolve(result.content_by_id_page[i]);
+                            break;
                         }
                     }
-                });
+                }
+            });
             return res.promise;
         }
 
@@ -268,22 +293,22 @@
             /// <param name="routen_id" type="type"></param>
             /// <returns type="">Objekt zum Iterieren über die Pages einer Route</returns>
             var nextIndex = 0;
-            var iteratedRoute,  numberOfPages;
-           
+            var iteratedRoute, numberOfPages;
+
             var initIter = initIter;
 
             if (routen_id === undefined || routen_id == route.id) {
                 //PageIterator zur derzeit unter route gespeichertern Route
-               return initIter();
+                return initIter();
             }
             else {
                 //PageIterator zur derzeit nicht unter route gespeicherten Route
                 getRoute(routen_id)
-                    .then(function(result) {
-                       return initIter();
+                    .then(function (result) {
+                        return initIter();
                     });
             }
-           
+
             function initIter() {
                 iteratedRoute = route.id;
                 numberOfPages = route.pages.resource.length || 0;
@@ -291,7 +316,7 @@
                     next: next
                 };
             }
-            
+
             function next() {
                 /// <summary>
                 /// Nächste Page
@@ -322,10 +347,10 @@
             Routentag.get({ filter: 'tag_name=' + sTag })
                .$promise.then(
                    function (result) {
-                      var aTreffer = result.resource;
+                       var aTreffer = result.resource;
                        aTreffer.forEach(function (current, index, array) {
                            Route.get({ filter: 'id=' + current.id_route, fields: 'name' }).$promise.then(function (result) {
-                                current.name = result.resource[0].name;
+                               current.name = result.resource[0].name;
                            });
                        });
                        res.resolve(aTreffer);
