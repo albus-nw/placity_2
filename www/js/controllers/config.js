@@ -13,7 +13,7 @@
                .when('/Optionen', { templateUrl: 'views/options.html', controller: 'optionsCtrl', controllerAs: 'vm' })
               // .when('/Ergebnisse', { templateUrl: 'views/route.html', controller: 'displayRouteCtrl', controllerAs: 'vm' })
                .when('/Profil', { templateUrl: 'views/profil.html', controller: 'profilCtrl', controllerAs: 'vm' })
-               .when('/Abmelden', { template: '<div>{{vm.playerName}}  abgemeldet</div> <br /><a href="#/Login" class="btn btn-primary btn-sm">Login</a>', controller: 'logoutCtrl', controllerAs: 'vm' })
+               .when('/Abmelden', { templateUrl: 'views/logout.html', controller: 'logoutCtrl', controllerAs: 'vm' })
 
                .when('/Routen', { templateUrl: 'views/routenmenu.html', controller: 'routenmenuCtrl', controllerAs: 'vm' })
                    //Routenmenü

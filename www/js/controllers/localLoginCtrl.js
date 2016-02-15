@@ -18,7 +18,6 @@
         function login() {
             var localUser = localUserService.getData();
             localUser.playerName = vm.playerName;
-            localUser.penisLaenge = 18;
             localUser.highscores = {};
             localUser.highscores['route X'] = '300000000 Punkte';
             localUserService.setData(localUser);

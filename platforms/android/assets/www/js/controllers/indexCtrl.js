@@ -14,7 +14,6 @@
         /* jshint validthis:true */
         var vm = this; 
         vm.playerName = '';
-        vm.penisLaenge = 'klein';
         vm.buttons = [
                                /* {
                                     "value": "Ergebnisse",
@@ -37,13 +36,13 @@
                                     "class": "btn btn-primary menuButton"
                                 },
                                 {
-                                    "value": "Abmelden",
-                                    "href": "#/Abmelden",
+                                    "value": "Lokal Login",
+                                    "href": "#/Login",
                                     "class": "btn btn-primary menuButton",
                                 },
                                 {
-                                    "value": "Lokal Login",
-                                    "href": "#/Login",
+                                    "value": "Abmelden",
+                                    "href": "#/Abmelden",
                                     "class": "btn btn-primary menuButton",
                                 }
 

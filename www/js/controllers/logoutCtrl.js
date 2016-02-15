@@ -5,15 +5,18 @@
         .module('placity.controllers')
         .controller('logoutCtrl', logoutCtrl);
 
-    logoutCtrl.$inject = ['$location']; 
+    logoutCtrl.$inject = ['$location', 'localUserService']; 
 
-    function logoutCtrl($location) {
+    function logoutCtrl($location,localUserService) {
         /* jshint validthis:true */
         var vm = this;
         vm.title = 'logoutCtrl';
 
-        activate();
+        logout();
 
-        function activate() { }
+        function logout() {
+ 
+            localUserService.setData('');
+        }
     }
 })();
