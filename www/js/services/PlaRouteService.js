@@ -130,8 +130,8 @@
                      console.log(route);
                  });
             return res.promise;
-          
         }
+          
 
         /*
          * 
