@@ -9,7 +9,7 @@
         <a ng-click="vm.fromServer()" class="btn btn-primary">Von Server</a>
         <a ng-click="vm.fromSomewhere()" class="btn btn-primary">Von Egal</a>
         <a ng-click="vm.save()" class="btn btn-primary">Route speichern</a>
-        <a ng-click="vm.aod()" class="btn btn-primary">All On Device</a>
+        
          
         <div ng-if="vm.loaded" class="btn btn-primary">
             
@@ -20,17 +20,13 @@
                     <option ng-repeat="option in vm.langarray" value="{{$index}}">{{option}}</option>
                 </select>
 
-                <a ng-show="vm.route" ng-click="vm.setLanguage(vm.lang_id);vm.play();vm.playing = true;" class="btn btn-primary">starten</a>
+                <a ng-show="vm.route" ng-click="vm.setLanguage(vm.lang_id);vm.play();" class="btn btn-primary">starten</a>
             </form>
         </div>
         
       
 
-        <!-- <div ng-show="vm.route !== {}"  >
-            <div ng-repeat="con in vm.content_by_id_page.language">
-                <input type="radio" name="Language" value="vm.content_by_id_page[0].languages[0].lang"><br>
-            </div>
-        </div>-->
+      
     </div>
     <div>
         <!--{{vm.lokaleRouten}}

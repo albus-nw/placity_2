@@ -3,5 +3,8 @@
 <br />
 <a href="#/Routen" class="btn btn-primary btn-sm">Zurück</a>
 <div ng-repeat="route in vm.aRouten">
-    <a href="#/Routen/{{route.id_route}}?start=device" class="btn btn-info">Route {{route.id_route}} {{route.name}}, Yo!</a>
+    <a href="#/Routen/{{route.id_route}}?start=device" class="btn btn-info">
+        Route {{route.id_route}} {{route.name}}, Yo!
+    </a>
+    <a href="" class="btn btn-danger" ng-click="vm.remove(route.fileName)">X</a>
 </div>

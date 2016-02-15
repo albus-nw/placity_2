@@ -1,4 +1,8 @@
-﻿(function () {
+﻿/*
+ * created by pk
+ * Service zum Lesen, Schreiben und Löschen von Dateien im lokalen FileSystem
+ */
+(function () {
     'use strict';
 
     angular
@@ -10,7 +14,9 @@
     function fileService($q) {
         var service = {
             readFromFile : readFromFile,
-            writeToFile : writeToFile
+            writeToFile : writeToFile, 
+            getAllFiles: getAllFiles,
+            removeFile: removeFile
         };
 
         return service;
@@ -101,8 +107,66 @@
              };
 
              console.log('Error (' + fileName + '): ' + msg);
-         };
+         }
 
 
+
+
+         function getAllFiles() {
+             /// <summary>
+             /// Array aller Datein auf dem Gerät
+             /// </summary>
+             /// <returns type="">Promise für Array aller Datein auf dem Gerät</returns>
+             var deferred = $q.defer();
+
+             function success(entries) {
+                 deferred.resolve(entries);
+             }
+
+             function fail(error) {
+                 deferred.reject("Failed to list directory contents: " + error.code);
+             }
+
+             window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (directoryEntry) {
+                 // Get a directory reader
+                 var directoryReader = directoryEntry.createReader();
+
+                 // Get a list of all the entries in the directory
+                 directoryReader.readEntries(success, fail);
+             });
+
+             return deferred.promise;
+         }
+
+         function removeFile(fileName) {
+             /// <summary>
+             /// Datei löschen
+             /// </summary>
+             /// <param name="fileName">Der Dateienname, required</param>
+             function success(entries) {
+                 var i;
+                 for (i = 0; i < entries.length; i++) {
+                     if (entries[i].name == fileName) {
+                         entries[i].remove(function () {
+                             console.log(fileName + " removed!");
+                         },
+                         function (error) {
+                             console.log("Error removing file " + fileName + " : " + error.code);
+                         });
+                         break;
+                     }
+                 }
+             }
+
+             function fail(error) {
+                 console.log("Error removing file " + error.code);
+             }
+
+             window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (directoryEntry) {
+                 var directoryReader = directoryEntry.createReader();
+
+                 directoryReader.readEntries(success, fail);
+             });
+         }
     }
 })();

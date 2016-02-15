@@ -10,9 +10,9 @@
         <!-- also ich weiß nicht, wieso das in der app mit dem ng-show nicht klappt, anderswo und in den onlineDinger (plunker oder die fiddles alle heißen)
              klappt das wie gewollt :/-->
     </div>
-    <div ng-show="vm.show">
+    <div ng-show="vm.show" class="ng-hide">
         Suche nach {{vm.suchbegriff}} ergab {{vm.iTreffer}} Treffer
-        TAG: {{vm.tag}}
+       
         <p style="color: orangered">{{vm.tag2}}</p>
         <div ng-repeat="treffer in vm.aTreffer">
             <a href="#/Routen/{{treffer.id_route}}" class="btn btn-primary">Route {{treffer.id_route}} {{treffer.name}}, Yo!</a>

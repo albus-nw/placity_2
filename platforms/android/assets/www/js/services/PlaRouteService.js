@@ -21,7 +21,8 @@
         route['pages'] = {};
         console.log("ding ding ding");
         var lokaleRouten = [];
-        fileService.readFromFile('lokaleRouten.json').then(function (result) { lokaleRouten = result; });
+        cacheLokaleRouten();
+        
 
         var service = {
             getRoute: getRoute,
@@ -29,6 +30,7 @@
             getRouteFromDevice: getRouteFromDevice,
             searchPerTag: searchPerTag,
             saveRoute: saveRoute,
+            deleteRoute: deleteRoute,
             isOnDevice: isOnDevice,
             isOnServer: isOnServer,
             getAllOnDevice: getAllOnDevice,
@@ -45,8 +47,9 @@
             /// <summary>
             /// gibt zur id gehörende Route zurück
             /// entweder lokal wenn vorhanden oder vom server
+            /// wird in der aktuellen Routenvariable hinterlegt
             /// </summary>
-            /// <param name="id" ></param>
+            /// <param name="id" >Promise für die Route</param>
 
             var res = $q.defer();
             if (id === undefined) {
@@ -77,8 +80,8 @@
             /// Route von Server holen und zurückgeben
             /// wird in der aktuellen Routenvariable hinterlegt
             /// </summary>
-            /// <param name="id" type="type"></param>
-            /// <returns type=""></returns>
+            /// <param name="id" type="type">ID der Route</param>
+            /// <returns type="">Promise für die Route</returns>
             var res = $q.defer();
             if (isOnServer(id) == true) {
                 Route.get({ filter: 'id=' + id }).$promise.then(function (result) {
@@ -113,10 +116,11 @@
          */
         function getRouteFromDevice(id) {
             /// <summary>
-            /// 
+            /// Route aus dem lokalen Dateisystem holen;
+            /// wird in der aktuellen Routenvariable hinterlegt
             /// </summary>
-            /// <param name="id" type="type"></param>
-            /// <returns type=""></returns>
+            /// <param name="id" type="type">ID der Route</param>
+            /// <returns type="">Promise für die Route</returns>
      
              var res = $q.defer();
              fileService.readFromFile("Route" + id + ".json")
@@ -141,7 +145,24 @@
             var pathToFile = cordova.file.dataDirectory + fileName;
             lokaleRouten.push({ id_route: route.id, name: route.name, fileName: fileName, pathToFile: pathToFile });
             fileService.writeToFile(fileName, route);
-            fileService.writeToFile('lokaleRouten.json', lokaleRouten);
+        }
+
+        /*
+         * 
+         */
+        function deleteRoute(name) {
+            /// <summary>
+            /// Route aus dem lokalen Dateisystem löschen
+            /// </summary>
+            /// <param name="name">Name der zu löschenden Route</param>
+            fileService.removeFile(name);   //aus Dateisystem löschen
+            for (var i = 0; i < lokaleRouten.length; i++) {
+                    //aus dem lokaleRouten-Array entfernen
+                if (lokaleRouten[i].fileName == name) {
+                    lokaleRouten.splice(i, 1);
+                    break;
+                }
+            }
         }
 
         /*
@@ -170,29 +191,15 @@
                 return true;
             }
             return false;
-            
         }
-
+            
         /*
          * 
          */
         function getAllOnDevice() {
-            /// <summary>
-            /// 
-            /// </summary>
-            /// <returns type=""></returns>
-            var res = $q.defer();
-            if (lokaleRouten.length > 1) {
-                res.resolve(lokaleRouten);
-            }
-            else {
-                fileService.readFromFile('lokaleRouten.json').then(function (result) {
-                    lokaleRouten = result;
-                    res.resolve(lokaleRouten);
-                });
-            }
-            return res.promise;
+            return lokaleRouten;
         }
+           
 
         /*
          * 
@@ -202,7 +209,7 @@
             /// Liefert die gesamte page an der Position page_pos der geladenen Route
             /// </summary>
             /// <param name="page_pos" >Page Position</param>
-            /// <returns >Page an der Position oder null</returns>
+            /// <returns >Promise für Page an der Position oder null</returns>
             var res = $q.defer();
             for (var i = 0; i < route.pages.resource.length; i++) {
                 if (route.pages.resource[i].pos == page_pos) {
@@ -211,19 +218,20 @@
                 }
             }
             return res.promise;
-          //  var page = route.pages.resource[0].content_by_id_page[0].data_obj
         }
+         
 
         /*
          * 
          */
         function getPageContents(page_pos, content_pos) {
             /// <summary>
+            /// 
             /// ohne content_pos die gesamte page als array zurück
             /// </summary>
             /// <param name="page_pos" type="type"></param>
             /// <param name="content_pos" type="type"></param>
-            /// <returns type=""></returns>
+            /// <returns type="">Promise</returns>
             var res = $q.defer();
                 getPage(page_pos).then(function (result) {
                     if (content_pos === undefined) {    //kein parameter gesetzt
@@ -254,7 +262,8 @@
          */
         function PageIterator(routen_id) {
             /// <summary>
-            /// 
+            /// Ein Iterator über eine Route
+            /// next() liefert die nächste Page einer Route
             /// </summary>
             /// <param name="routen_id" type="type"></param>
             /// <returns type="">Objekt zum Iterieren über die Pages einer Route</returns>
@@ -285,7 +294,7 @@
             
             function next() {
                 /// <summary>
-                /// 
+                /// Nächste Page
                 /// </summary>
                 /// <returns type="">Objekt: value: nächste Page, done: boolean, false für keine weitere Pages</returns>
                 if (nextIndex < numberOfPages) {
@@ -322,6 +331,27 @@
                        res.resolve(aTreffer);
                    });
             return res.promise;
+        }
+
+        function cacheLokaleRouten() {
+            /// <summary>
+            /// alle Dateien lesen, dann für jede Datei, die eine eine Route darstellt, einen Eintrag in lokaleRouten-Array einfügen
+            /// </summary>
+            fileService.getAllFiles().then(function (entries) {
+                entries.forEach(function (current, index, array) {
+                    if (current.name.indexOf('Route') == 0) {
+                        console.log("reading route: " + current.name);
+                        fileService.readFromFile(current.name).then(function (res) {
+                            lokaleRouten.push({
+                                fileName: current.name,
+                                pathToFile: current.nativeURL,
+                                name: res.name,
+                                id_route: res.id
+                            });
+                        });
+                    }
+                });
+            });
         }
 
         return service;
