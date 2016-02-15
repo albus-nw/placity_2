@@ -43,8 +43,6 @@
 
 
 
-       // vm.ctDialog = $scope.$parent.ctDialog;
-        //console.log(vm.ctDialog);
 
     }
 })();

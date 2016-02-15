@@ -7,7 +7,7 @@
 
     angular
         .module('contentTypes')
-        .directive('ctFragefreitext', ctFrageFreitext); //wichtig nicht 'ctFrageFreitext'
+        .directive('ctFragefreitext', ctFrageFreitext); 
 
     ctFrageFreitext.$inject = [];
 
@@ -44,6 +44,10 @@
         
 
         vm.teste = function () {
+            /// <summary>
+            /// Überprüft die angegebene Antwort, und setzt vm.mesage auf DE/EN Richtig/right, Falsch/Wrong
+            /// Für weitere Sprachen müsste hier noch weitere else if definiert werden
+            /// </summary>
             if (vm.ctFrageFreitextanswer == vm.answerGiven) {
                             
                 if (vm.lang_id == '0') {

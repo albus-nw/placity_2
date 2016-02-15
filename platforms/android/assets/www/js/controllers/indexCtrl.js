@@ -16,11 +16,11 @@
         vm.playerName = '';
         vm.penisLaenge = 'klein';
         vm.buttons = [
-                                {
+                               /* {
                                     "value": "Ergebnisse",
                                     "href": "#/Ergebnisse",
                                     "class": "btn btn-primary menuButton"
-                                },
+                                },*/
                                 {
                                     "value": "Routen",
                                     "href": "#/Routen",

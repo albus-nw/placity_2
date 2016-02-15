@@ -11,7 +11,7 @@
                .when('/', { templateUrl: 'views/hauptmenu.html', controller: 'indexCtrl', controllerAs: 'vm' })
                    //Hauptmenü
                .when('/Optionen', { templateUrl: 'views/options.html', controller: 'optionsCtrl', controllerAs: 'vm' })
-               .when('/Ergebnisse', { templateUrl: 'views/route.html', controller: 'displayRouteCtrl', controllerAs: 'vm' })
+              // .when('/Ergebnisse', { templateUrl: 'views/route.html', controller: 'displayRouteCtrl', controllerAs: 'vm' })
                .when('/Profil', { templateUrl: 'views/profil.html', controller: 'profilCtrl', controllerAs: 'vm' })
                .when('/Abmelden', { template: '<div>{{vm.playerName}}  abgemeldet</div> <br /><a href="#/Login" class="btn btn-primary btn-sm">Login</a>', controller: 'logoutCtrl', controllerAs: 'vm' })
 
