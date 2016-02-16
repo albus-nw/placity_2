@@ -29,8 +29,8 @@
 
     }
     ctFrageFreitextCtrl.$inject = ['$sce','$scope'];
-    function ctFrageFreitextCtrl($sce,$scope) {
-        
+    function ctFrageFreitextCtrl($sce, $scope) {
+
         var vm = this;
         vm.lang_id;
         if ($scope.$parent.vm.lang_id) {
@@ -41,7 +41,8 @@
         data_obj_parsed = JSON.parse(vm.content.data_obj);
         vm.ctFrageFreitextquestion = $sce.trustAsHtml(data_obj_parsed.languages[vm.lang_id].fields[0].text);
         vm.ctFrageFreitextanswer = data_obj_parsed.languages[vm.lang_id].fields[0].answer;
-        
+        vm.ctFrageFreitextwmessage = data_obj_parsed.languages[vm.lang_id].fields[0].wmessage;
+        vm.ctFrageFreitextcmessage = data_obj_parsed.languages[vm.lang_id].fields[0].cmessage;
 
         vm.teste = function () {
             /// <summary>
@@ -49,21 +50,15 @@
             /// Für weitere Sprachen müsste hier noch weitere else if definiert werden
             /// </summary>
             if (vm.ctFrageFreitextanswer == vm.answerGiven) {
-                            
-                if (vm.lang_id == '0') {
-                    vm.message = "Richtig";
-                }
-                else if (vm.lang_id == '1') {
-                    vm.message = "right";
-                }
+
+
+                vm.message = vm.ctFrageFreitextcmessage;
             }
+
             else {
-                if (vm.lang_id == '0') {
-                    vm.message = "Falsch";
-                }
-                else if (vm.lang_id == '1') {
-                    vm.message = "wrong";
-                }
+
+                vm.message = vm.ctFrageFreitextwmessage;
+
             }
         }
     }

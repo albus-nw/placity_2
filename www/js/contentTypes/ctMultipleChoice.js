@@ -41,32 +41,28 @@
         vm.ctMultipleChoiceText = $sce.trustAsHtml(data_obj_parsed.languages[vm.lang_id].fields[0].text);
         vm.ctMultipleChoiceChoice = data_obj_parsed.languages[vm.lang_id].fields[0].choice;
         vm.ctMultipleChoiceChoice.answer = data_obj_parsed.languages[vm.lang_id].fields[0].answer;
+        vm.ctMultipleChoiceChoice.cmessage = data_obj_parsed.languages[vm.lang_id].fields[0].cmessage;
+        vm.ctMultipleChoiceChoice.wmessage = data_obj_parsed.languages[vm.lang_id].fields[0].wmessage;
       
         vm.answerGiven = "";
        
         vm.test = function () {
             /// <summary>
-            /// Überprüft die angegebene Antwort, und setzt vm.answergiven auf DE/EN Richtig/right, Falsch/Wrong
-            /// Für weitere Sprachen müsste hier noch weitere else if definiert werden
+            /// Überprüft die angegebene Antwort, und gibt eine Richtig / Falsch Message aus
             /// </summary>
-            console.log(vm.lang_id);
+           
             if (vm.answerGiven == vm.ctMultipleChoiceChoice.answer) {
-                if (vm.lang_id == '0') {
-                    vm.answerGiven = "Richtig";
-                }
-                else if (vm.lang_id == '1') {
-                    vm.answerGiven = "right";
-                }
+                
+                    vm.answerGiven = vm.ctMultipleChoiceChoice.cmessage;
+                
                 
                 }
             else {
-                if (vm.lang_id == '0') {
-                    vm.answerGiven = "Falsch";
+                
+                    vm.answerGiven = vm.ctMultipleChoiceChoice.wmessage
                 }
-                else if (vm.lang_id == '1') {
-                    vm.answerGiven = "wrong";
-                }
-            }
+                
+            
 
     }
 
