@@ -84,36 +84,38 @@
             /// <param name="id">ID der Route</param>
             /// <returns type="">Promise zur angeforderten Route</returns>
             var res = $q.defer();
-            if (isOnServer(id) == true) {
-                Route.get({ filter: 'id=' + id }).$promise.then(
-                    function (result) {
-                        result = result.resource[0];
-                        Object.keys(result).forEach(
-                            //alle Eigenschaften der vom Server geholten Route werden in der Routenvariable des Service hinterlegt
-                            function (key) {
-                                route[key] = result[key];
-                                //console.log("key "+ key + " route[key] " + route[key]);
-                            });
-                    });
+            isOnServer(id).then(function(onServer) {
+                if (onServer) {
+                    Route.get({ filter: 'id=' + id }).$promise.then(
+                        function (result) {
+                            result = result.resource[0];
+                            Object.keys(result).forEach(
+                                //alle Eigenschaften der vom Server geholten Route werden in der Routenvariable des Service hinterlegt
+                                function (key) {
+                                    route[key] = result[key];
+                                    //console.log("key "+ key + " route[key] " + route[key]);
+                                });
+                        });
 
-                Page.get({ filter: 'id_route=' + id, related: 'content_by_id_page' })
-                    .$promise.then(
-                    //alle Pages, die zur Route gehören, sind in einer eigenen Tabelle in der Datenbank hinterlegt
-                    //hier werden diese geholt und in der Routenvariable des Service hinterlegt
-                    function (result) {
-                        route.pages = result;
-                        console.log(route);
-                        res.resolve(route);
-                        // console.log(result);  
-                    });
-            }
-            else {
-                //Route nicht auf Server; id und pages der Routenvariable des Service werden auf null gesetzt; das Promise wird rejected
-                route.id = null;
-                route.pages = null;
-                res.reject("not on server");
-                //console.log("not on server");
-            }
+                    Page.get({ filter: 'id_route=' + id, related: 'content_by_id_page' })
+                        .$promise.then(
+                        //alle Pages, die zur Route gehören, sind in einer eigenen Tabelle in der Datenbank hinterlegt
+                        //hier werden diese geholt und in der Routenvariable des Service hinterlegt
+                        function (result) {
+                            route.pages = result;
+                            console.log(route);
+                            res.resolve(route);
+                            // console.log(result);  
+                        });
+                }
+                else {
+                    //Route nicht auf Server; id und pages der Routenvariable des Service werden auf null gesetzt; das Promise wird rejected
+                    route.id = null;
+                    route.pages = null;
+                    res.reject("not on server");
+                    //console.log("not on server");
+                }
+            });
             return res.promise;
         }
 
@@ -199,16 +201,19 @@
         function isOnServer(id) {
             /// <summary>
             /// lookup on server
+            /// returns promise
             /// </summary>
             /// <param name="id" type="type"></param>
-            /// <returns type="boolean"></returns>
-            return Route.get({ id: id },function () {
+            /// <returns type="Promise"></returns>
+            var res = $q.defer();
+            Route.get({ id: id },function () {
                 console.log("route gefunden");
-                return true;
+                res.resolve(true);
             },function() {
                 console.log("Route nicht auf Server");
-                return false;
+                res.resolve(false);
             });
+            return res.promise;
                
         }
 
