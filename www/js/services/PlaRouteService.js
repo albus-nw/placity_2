@@ -202,29 +202,32 @@
             /// </summary>
             /// <param name="id" type="type"></param>
             /// <returns type="boolean"></returns>
-            //Route.get({ id: id }).$promise.then(function (result) {
-            //    if (result.error) {
-            //        console.log("fuuuuuuuuuuuuuu");
-            //        console.log(result);
-            //        return false;
-            //    }
-            //    else {
-            //        console.log("in if; true, route gefunden");
-            //        console.log(result);
-            //        return true;
-            //    }
-            //});
-            //--->könnten Sie das mal nachscaheun, herr weller??
-            return true;
+            return Route.get({ id: id },function () {
+                console.log("route gefunden");
+                return true;
+            },function() {
+                console.log("Route nicht auf Server");
+                return false;
+            });
+               
         }
 
         /*
          * 
          */
         function getAllOnDevice() {
+            /// <summary>
+            /// Getter für Array mit Informationen über lokal gespeicherte Routen
+            /// Objekte der Form 
+            /// {   fileName: "value",
+            ///     pathToFile: "value",
+            ///     name: "value",
+            ///     id_route: "value"
+            ///  }
+            /// </summary>
+            /// <returns type="array"> object array</returns>
             return lokaleRouten;
         }
-
 
         /*
          * 
@@ -251,12 +254,12 @@
          */
         function getPageContents(page_pos, content_pos) {
             /// <summary>
-            /// 
-            /// ohne content_pos die gesamte page als array zurück
+            /// Getter für Content an einer bestimmten Position in einer Page an bestimmter Position in der aktuellen Route
+            /// ohne content_pos die gesamte page als array von Contents zurück
             /// </summary>
-            /// <param name="page_pos" type="type"></param>
-            /// <param name="content_pos" type="type"></param>
-            /// <returns type="">Promise</returns>
+            /// <param name="page_pos" type="int">Position der Page</param>
+            /// <param name="content_pos" type="int">Position des Contents</param>
+            /// <returns type="">Promise für PageContent bzw Content-Array</returns>
             var res = $q.defer();
             getPage(page_pos).then(function (result) {
                 if (content_pos === undefined) {    //kein parameter gesetzt
@@ -279,6 +282,10 @@
          * 
          */
         function getCurrentRouteId() {
+            /// <summary>
+            /// Gibt die ID der aktuell in der Routenvariablen hinterlegten Route
+            /// </summary>
+            /// <returns type="int">ID der Route</returns>
             return route.id;
         }
 
@@ -302,7 +309,7 @@
                 return initIter();
             }
             else {
-                //PageIterator zur derzeit nicht unter route gespeicherten Route
+                //PageIterator zur derzeit nicht unter route gespeicherten Route; aktuelle Route wird geändert
                 getRoute(routen_id)
                     .then(function (result) {
                         return initIter();
@@ -321,7 +328,7 @@
                 /// <summary>
                 /// Nächste Page
                 /// </summary>
-                /// <returns type="">Objekt: value: nächste Page, done: boolean, false für keine weitere Pages</returns>
+                /// <returns type="object">Objekt: {value: nächste Page, done: boolean (-->false für keine weitere Pages) }</returns>
                 if (nextIndex < numberOfPages) {
                     nextIndex++;
                     //index von 0 bis numberOfPages -1  ; position von 1 bis numberOfPages
@@ -349,6 +356,7 @@
                    function (result) {
                        var aTreffer = result.resource;
                        aTreffer.forEach(function (current, index, array) {
+                           //hier nochmal holen des namen der zur id_route gehörenden Route
                            Route.get({ filter: 'id=' + current.id_route, fields: 'name' }).$promise.then(function (result) {
                                current.name = result.resource[0].name;
                            });
